@@ -1,10 +1,11 @@
 const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
-  host: 'your_database_host',
-  user: 'your_database_user',
-  password: 'your_database_password',
-  database: 'your_database_name',
+  host: 'deltona.birdnest.org',
+  user: 'my.vaughnk3',
+  password: '09cc!369y',
+  database: 'my_vaughnk3_career_cluster',
 });
 
 module.exports = connection;
+
