@@ -1,29 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+//import { Link, useNavigate } from 'react-router-dom';
+import Cluster from './components/cluster_Components/Cluster.js'
+import DemographicInfo from './components/homePage/DemographicInfo';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LoginPage from './components/login_components/LoginPage.js';
+import ClusterPage from './components/cluster_Components/ClusterPage';
+import SubFieldsPage from './components/SubFieldInfo/SubFieldPage';
+import SubClusterPage from './components/subCluster_Components/SubClusterPage.js';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-                <img src={logo} className="App-logo" alt="logo" />
-                <img src={logo} className="App-logo" alt="logo" />
-                <img src={logo} className="App-logo" alt="logo" />
-                
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<DemographicInfo />} />
+        <Route path="/cluster" element={<ClusterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/cluster/subcluster" element={<SubClusterPage/>} />
+        <Route path="/cluster/subcluster/subclusterinfo" element={<SubFieldsPage/>} />
+      </Routes>
+    </Router>
   );
 }
 
 export default App;
+//<Route path="/cluster/subcluster" element={<SubClusterPage/>} />//

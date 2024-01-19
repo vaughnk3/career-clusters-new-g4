@@ -1,0 +1,10 @@
+.top-rectangle {
+    background-color: #253251;
+    color: white;
+    text-align: center;
+    height: 110px;
+    position: sticky;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
+  }

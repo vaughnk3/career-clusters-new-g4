@@ -1,0 +1,83 @@
+#demographic-box {
+    /* centers the box on the page */
+    margin-left: auto;
+    margin-right: auto;
+
+  
+
+    text-align: center;
+
+    max-width: 700px;
+    padding-bottom: 20px;
+
+    background-color: #253251;
+    border-radius: 25px; /* Adjust the border-radius for rounded corners */
+    box-shadow: 0 0 50px rgba(0, 0, 0,.3);
+}
+
+#demographic-box-container {
+  padding: 50px;
+}
+
+.demographic-item {
+  display: inline-block;
+  text-align: left;
+  width: 250px;
+  margin: 15px;
+}
+
+.demographic-item select {
+  margin-bottom: 50px;
+  width: 80%;
+}
+
+.demographic-item h3 {
+  margin: 0px;
+  color: white;
+}
+
+.demographic-item input {
+  width: 80%;
+}
+
+#submit-button {
+    position: relative;
+    bottom: 20px;
+
+    background-color: #98ca41;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.hidden {
+  color: gray;
+}
+.header {
+  color: black;
+  margin-bottom: 10px; /* Adjust the margin as needed */
+}
+
+.select {
+  height:2rem;
+  border-radius: 10px 10px 0px 0px;
+  border:0;
+  color: gray;
+  font-weight: 600;
+  border-bottom:1.5px solid #98ca41
+ }
+
+
+ .test {
+  font-size: 1rem;
+  text-align: center;
+  color:black;
+  border-top: 1px solid #98ca41;
+  border:1px solid #98ca41;
+  font-weight: 400;
+ }

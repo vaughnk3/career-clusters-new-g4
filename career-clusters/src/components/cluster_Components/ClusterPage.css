@@ -1,0 +1,68 @@
+
+
+
+
+#topRectangle {
+    background-color: #253251;
+    color: white;
+    text-align: center;
+    height: 110px;
+	position: fixed;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
+	margin-top:0;
+  }
+
+#topRectangle h1 {
+	font-size:2rem;
+	margin-top:1%;
+	margin-bottom:0;
+}
+
+#topRectangle p {
+	font-size:1rem;
+	margin-top:0;
+	
+}
+
+
+#c_array {
+	display: flex;
+	flex-wrap:wrap;
+	
+	overflow-y:scroll;
+}
+
+#form1 {
+
+	width:40%;
+	height: 15rem;
+	padding-right:3%;
+
+	border-radius: 60px;
+
+	margin-left: 4%;
+	margin-bottom:3%;
+	margin-top:1%;
+
+	display:flex;
+	flex-direction: column;
+}
+
+#submitButton {
+	background-color: #98CA41;
+	border: none;
+	color: white;
+	margin-right:2%;
+	text-decoration: none;
+	border-radius:5px;
+	width:8rem;
+	height:2rem;
+	
+	cursor: pointer;
+
+	position: sticky;
+	bottom:20%;
+}
+
