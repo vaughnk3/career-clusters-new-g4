@@ -3,7 +3,9 @@ import './TopRectangle.css'
 
 const TopRectangle = () => {
     return (
-        <div className = "top-rectangle" > </div>
+        <div className = "top-rectangle" ></div>
+        
+        
     )
 };
 
