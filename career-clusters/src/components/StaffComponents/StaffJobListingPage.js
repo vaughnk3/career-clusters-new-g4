@@ -1,4 +1,5 @@
 import JobListingPage from "../JobListingComponents/JobListingPage";
+import OverlayRectangle from "./OverlayRectangle";
 
 const StaffJobListingPage = () => {
 
@@ -6,6 +7,7 @@ const StaffJobListingPage = () => {
     return (
         <div>
             <JobListingPage/>
+            <OverlayRectangle/>
         </div>
     )
 }

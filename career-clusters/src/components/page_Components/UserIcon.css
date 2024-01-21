@@ -4,6 +4,6 @@
     right: 30px;
     width: 50px; /* Adjust the width as needed */
     height: auto; /* Maintain aspect ratio */
-    z-index:9999;
+    z-index:9000;
     cursor:pointer;
 }

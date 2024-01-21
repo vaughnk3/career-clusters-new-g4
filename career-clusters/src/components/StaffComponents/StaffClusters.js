@@ -2,6 +2,7 @@ import ClusterPage from "../cluster_Components/ClusterPage";
 import './StaffClusters.css';
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
+import OverlayRectangle from "./OverlayRectangle";
 
 const StaffClusters = () => {
 
@@ -13,12 +14,9 @@ const StaffClusters = () => {
 
     return (
         <div>
-            <ClusterPage>
-                <div>
-                <button content="Cluster Management" id="cluster_management_button" onClick={handleButtonClick} />
-                </div>
-            </ClusterPage>
-            
+           <ClusterPage/>
+           
+          <OverlayRectangle/>
         </div>
     )
 }
@@ -26,4 +24,3 @@ const StaffClusters = () => {
 
 export default StaffClusters;
 
-//<button id="cluster_management_button" onClick={handleButtonClick} />
