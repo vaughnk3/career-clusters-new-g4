@@ -1,0 +1,11 @@
+.overlay {
+    background-color: #253251;
+    color: white;
+    text-align: center;
+    height: 110px;
+    position: absolute;
+    width: 100%;
+    z-index: 9995; /* Higher z-index than the underlying rectangle */
+    top: 0;
+    opacity:1.0;
+  }
