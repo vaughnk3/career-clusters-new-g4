@@ -30,7 +30,7 @@
 #c_array {
 	display: flex;
 	flex-wrap:wrap;
-	
+	border:2p solid black;
 	overflow-y:scroll;
 }
 

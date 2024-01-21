@@ -11,13 +11,13 @@ import './Cluster.css';
       <h2>{GetClusterNameByID(CareerClusterMap, ID)}</h2>
 */
 
-const Cluster = ( {ID, onClick} ) => {
+const Cluster = ( {id, clusterName, onClick} ) => {
 
   return (
-    <div onClick={() => onClick(ID)} class="cluster">
-        <h2> Placeholder for cluster name / image
-        <img src={require('../Cluster_Pictures/Mathematics.png') } alt="Cluster Picture" className="cluster-pics"></img> 
+    <div onClick={() => onClick(id)} class="cluster">
+        <h2> {clusterName}
         </h2>
+        <img src={require('../Cluster_Pictures/Mathematics.png') } alt="Cluster Picture" className="cluster-pics"></img>
     </div>
   );
 }
