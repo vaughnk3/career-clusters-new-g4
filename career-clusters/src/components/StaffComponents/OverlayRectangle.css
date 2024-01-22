@@ -1,7 +1,6 @@
 .overlay {
     background-color: #253251;
     color: white;
-    text-align: center;
     height: 110px;
     position: absolute;
     width: 100%;
@@ -9,3 +8,16 @@
     top: 0;
     opacity:1.0;
   }
+
+
+  /* failed attempt at putting export data button on there */
+.export_data {
+    background-color:#98CA41;
+    width:11rem;
+    height:2rem;
+    border-radius:1rem;
+    margin-top:40px;
+    margin-right:-83%;
+    font-weight: bold;
+    border-color:#253251;
+}
