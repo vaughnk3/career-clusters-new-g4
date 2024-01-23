@@ -2,7 +2,7 @@
     background-color: #253251;
     color: white;
     height: 110px;
-    position: absolute;
+    position: fixed;
     width: 100%;
     z-index: 9995; /* Higher z-index than the underlying rectangle */
     top: 0;
