@@ -49,13 +49,14 @@ const ClusterPage = () => {
         <br></br><br></br><br></br><br></br><br></br><br></br> 
         <UserIcon/>
  
-            <h2>Placeholder for cluster page</h2>
-            <div id="c_array">
+            <li id="c_array">
                 {clusters.map(cluster => (
-                    <Cluster key={cluster.id} id={cluster.id} clusterName={cluster.clusterName} onClick={handleClusterClick}/>
+                    <form id="form1" onSubmit={handleFormSubmit}>
+                        <Cluster key={cluster.id} id={cluster.id} clusterName={cluster.clusterName} onClick={handleClusterClick}/>
+                    </form>
                 ))}
-            </div>
-     
+
+            </li>
 
   
         <BottomRectangle/>
@@ -67,4 +68,10 @@ const ClusterPage = () => {
 
 export default ClusterPage;
 
-
+/*
+<div id="c_array">
+                {clusters.map(cluster => (
+                    <Cluster key={cluster.id} id={cluster.id} clusterName={cluster.clusterName} onClick={handleClusterClick}/>
+                ))}
+            </div>
+*/
