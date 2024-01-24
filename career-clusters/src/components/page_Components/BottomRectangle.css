@@ -9,6 +9,8 @@
     flex-basis: auto;
   
     display: flex;
+
+    z-index: 999;
   }
   
   #bottom-rectangle-container {

@@ -13,7 +13,7 @@ const DemographicInfo = () => {
         <TopLeftLogo/>
         <UserIcon/>
       </div>
-      <div id="content">
+      <div class="content">
         <h2>To gain access to the career cluster tool,</h2>
         <h2>please enter your demographic information below</h2> 
         <h3>(Fields marked with * are required)</h3>

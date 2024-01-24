@@ -32,14 +32,3 @@ h3 {
 	background-color: white;
 	border-radius: 10px;
 }
-
-#content {
-	margin-left: 20px;
-	margin-right: 20px;
-	margin-top: 6%; 
-	margin-bottom: 30px;
-
-	flex-grow: 1;
-  	flex-shrink: 0;
-  	flex-basis: auto;
-}
