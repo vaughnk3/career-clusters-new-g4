@@ -56,9 +56,8 @@ const SubClusterPage = ({ }) => {
                 <p>Cluster ID: {clusterId}</p>
                 <ul>
                     {subclusters.map((subcluster) => (
-                        <li key={subcluster.id}>
-                            <p>Subcluster Name: {subcluster.subclusterName}</p>
-                            <img src={subcluster.img} alt="Subcluster Image" />
+                        <li>
+                            <SubCluster key={subcluster.id} ID={subcluster.id} subID={subcluster.clusterID} subclusterName={subcluster.subclusterName} onClick={handleClusterClick}/>
                         </li>
                     ))}
                 </ul>
