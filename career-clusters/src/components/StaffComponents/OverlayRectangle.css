@@ -8,16 +8,3 @@
     top: 0;
     opacity:1.0;
   }
-
-
-  /* failed attempt at putting export data button on there */
-.export_data {
-    background-color:var(--green);
-    width:11rem;
-    height:2rem;
-    border-radius:1rem;
-    margin-top:40px;
-    margin-right:-83%;
-    font-weight: bold;
-    border-color:var(--darkblue);
-}

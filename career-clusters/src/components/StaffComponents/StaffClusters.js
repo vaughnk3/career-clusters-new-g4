@@ -16,8 +16,15 @@ const StaffClusters = () => {
     return (
         <div>
            <ClusterPage/>
-          <div className="overlay" >
-            <button className='staff_management_button' onClick={handleButtonClick} content='Cluster Management'>Cluster Management</button>
+          <div className="overlay">
+            <div class="staff-button-column">
+              <a class="staff-button" onClick={handleButtonClick}>Cluster Management</a>
+              <a class="staff-button" onClick={handleButtonClick}>Logout</a>
+            </div>
+            <div class="staff-button-column">
+              <a class="staff-button" onClick={handleButtonClick}>Staff Management</a>
+              <a class="staff-button" onClick={handleButtonClick}>Export Data (.xlsx)</a>
+            </div>
           </div>
         </div>
     )
