@@ -72,3 +72,4 @@ const SubClusterPage = ({ }) => {
 
 
 export default SubClusterPage;
+//subclusterF.subclusterName

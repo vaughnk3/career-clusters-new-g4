@@ -49,8 +49,6 @@ const ClusterPage = () => {
         <br></br><br></br><br></br><br></br><br></br><br></br> 
         <UserIcon/>
  
-            <h2>Placeholder for cluster page</h2>
-            
             <li id="c_array">
                 {clusters.map(cluster => (
                 <form id="form1" onSubmit={handleFormSubmit}>

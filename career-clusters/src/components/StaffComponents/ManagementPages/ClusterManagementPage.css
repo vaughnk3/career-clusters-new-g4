@@ -1,0 +1,25 @@
+#page {
+	min-height: 100vh;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+
+#_topRectangle {
+    background-color: var(--darkblue);
+    color: white;
+    text-align: center;
+    height: 110px;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    top:0;
+}
+
+#_topRectangle h2 {
+    padding-top: 15px;
+}
+
+
+
