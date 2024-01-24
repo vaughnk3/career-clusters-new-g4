@@ -9,7 +9,7 @@
     margin-right:auto;
     margin-bottom:5%;
 
-    background-color: #253251;
+    background-color: var(--darkblue);
     border-radius: 25px; /* Adjust the border-radius for rounded corners */
     box-shadow: 0 0 50px rgba(0, 0, 0,.3);
 }
@@ -79,7 +79,7 @@
     position: relative;
     bottom: 20px;
 
-    background-color: #98ca41;
+    background-color: var(--green);
     color: white;
     padding: 10px 20px;
     border: none;

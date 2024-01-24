@@ -22,14 +22,14 @@
 }*/
 
 #fName {
-    color:#253251;
+    color:var(--darkblue);
     font-size:4rem;    
     text-align: left; 
     margin-bottom:2%;
 }
 
 #fDesc {
-    color:#253251;
+    color:var(--darkblue);
     font-size:1.25rem;  
     width:80%;
     text-align: left;

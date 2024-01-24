@@ -1,7 +1,7 @@
 #bottom-rectangle {
     width: 100%;
     min-height: 140px;
-    background-color: #59bab6;
+    background-color: var(--blue);
     padding-top: 20px;
     
     flex-grow: 0;

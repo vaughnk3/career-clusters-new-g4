@@ -1,5 +1,5 @@
 .overlay {
-    background-color: #253251;
+    background-color: var(--darkblue);
     color: white;
     height: 110px;
     position: fixed;
@@ -12,12 +12,12 @@
 
   /* failed attempt at putting export data button on there */
 .export_data {
-    background-color:#98CA41;
+    background-color:var(--green);
     width:11rem;
     height:2rem;
     border-radius:1rem;
     margin-top:40px;
     margin-right:-83%;
     font-weight: bold;
-    border-color:#253251;
+    border-color:var(--darkblue);
 }

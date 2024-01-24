@@ -3,7 +3,7 @@
 	height: 15rem;
 	background-color: #D9D9D9;
 	padding-right: 6%;
-	border: 6px solid #98ac41;
+	border: 6px solid var(--green);
 	border-radius: 60px;
 	display: flex;
 	flex-direction: row; /* Change from column to row */
@@ -12,7 +12,7 @@
   }
   
   .cluster:hover {
-	background-color: #253251;
+	background-color: var(--darkblue);
 	color: white;
   }
   

@@ -15,7 +15,7 @@ body {
 }
 
 #_topRectangle {
-    background-color: #253251;
+    background-color: var(--darkblue);
     color: white;
     text-align: center;
     height: 110px;

@@ -3,7 +3,7 @@
 
 
 #topRectangle {
-    background-color: #253251;
+    background-color: var(--darkblue);
     color: white;
     text-align: center;
     height: 110px;
@@ -51,7 +51,7 @@
 }
 
 #submitButton {
-	background-color: #98CA41;
+	background-color: var(--green);
 	border: none;
 	color: white;
 	margin-right:2%;
