@@ -43,7 +43,22 @@ app.get('/cluster', (req, res) => {
       res.status(500).send('Error fetching information from Cluster table in database')
     } else {
       res.json(results);
-      console.log('It worked !!!!!! Results: ', results)
+      console.log('Cluster results: ', results)
+    }
+  })
+})
+
+app.get('/cluster/subcluster/:clusterId', (req, res) => {
+  const clusterId = req.params.clusterId;
+  console.log(`Received GET request to /cluster/subcluster/${clusterId}`);
+  pool.query('SELECT * FROM Subcluster WHERE clusterId = ?', [clusterId], (error, results, fields) => {
+    if(error) {
+      console.error(error);
+      console.log('Sad error fetching information from Subcluster table');
+      res.status(500).send('Error fetching information from Subcluster table in database');
+    } else {
+      res.json(results);
+      console.log('Subcluster results: ', results);
     }
   })
 })
