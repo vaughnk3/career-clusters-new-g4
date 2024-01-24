@@ -41,10 +41,12 @@ const SubClusterPage = ({ }) => {
         fetchSubclusters();
     }, [clusterId])
 
+    const subclusterF = subclusters.length > 0 ? subclusters[0] : {};
+
     return (
         <div id="page">
             <div id="_topRectangle">
-                <p>Please select a subcluster within the BLANK cluster.</p>
+                <p>Please select a subcluster within the {subclusterF.subclusterName} cluster.</p>
             </div>
             <UserIcon />
             {/* <h1 id="test">{clusterID}</h1> */}

@@ -29,3 +29,7 @@ body {
     margin-top:2.75rem;
   
 }
+
+ul {
+    list-style-type: none;
+}

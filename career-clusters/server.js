@@ -63,6 +63,21 @@ app.get('/cluster/subcluster/:clusterId', (req, res) => {
   })
 })
 
+app.get('/cluster/subcluster/subclusterinfo/:subclusterId', (req, res) => {
+  const subclusterId = req.params.subclusterId;
+  console.log(`Recieved GET request to /cluster/subcluster/subclusterinfo/${subclusterId}`);
+  pool.query('SELECT * FROM Field WHERE subclusterId = ?', [subclusterId], (error, results, fields) => {
+    if(error) {
+      console.error(error);
+      console.log('Sad error fetching information from Fields table');
+      res.status(500).send('Error fetching information from Fields table in database');
+    } else {
+      res.json(results);
+      console.log('Field results: ', results);
+    }
+  })
+})
+
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

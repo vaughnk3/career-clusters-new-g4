@@ -24,7 +24,7 @@ function App() {
         <Route path="/" element={<DemographicInfo />} />
         <Route path="/cluster" element={<ClusterPage />} />
         <Route path="/cluster/subcluster/:clusterId" element={<SubClusterPage/>} />
-        <Route path="/cluster/subcluster/subclusterinfo" element={<SubFieldsPage/>} />
+        <Route path="/cluster/subcluster/subclusterinfo/:subclusterId" element={<SubFieldsPage/>} />
         <Route path="/cluster/subcluster/subclusterinfo/joblistings" element={<JobListingPage/>} />
 
         <Route path="/login" element={<LoginPage />} />
