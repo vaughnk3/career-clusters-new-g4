@@ -10,7 +10,7 @@ const StaffSubClusters = () => {
             <SubClusterPage/>
             <div className="overlay">
             <div class="staff-button-column">
-              <a class="staff-button" >Cluster Fields Management</a>
+              <a class="staff-button" >Sub-Cluster Management</a>
               <a class="staff-button" >Logout</a>
             </div>
             <div class="staff-button-column">

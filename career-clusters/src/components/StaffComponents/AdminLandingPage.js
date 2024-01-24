@@ -13,13 +13,13 @@ const AdminLandingPage = () => {
             <br></br><br></br><br></br><br></br><br></br>
             <div class="content admin-content">
                 <div class="admin-landing-column">
-                    <a href="">Create Staff Account</a>
-                    <a href="">Staff Cluster View</a>
+                    <a href="/login/adminpage/createstaffpage">Create Staff Account</a>
+                    <a href="/login/staffclusters">Staff Cluster View</a>
                     <a href="">Cluster Fields Management</a>
                 </div>
                 <div class="admin-landing-column">
-                    <a href="">Modify User Permissions</a>
-                    <a href="">Cluster Management</a> 
+                    <a href="/login/adminpage/modifyperms">Modify User Permissions</a>
+                    <a href="/login/staffclusters/clustermanagementpage">Cluster Management</a> 
                     <a href="">Manage Job Postings</a>
                 </div>
                 <a href="">Export Data (.xlsx)</a>
