@@ -49,15 +49,16 @@ const ClusterManagementPage = () => {
                 <button onClick={openPopup} id="add_cluster">Add Cluster</button>
                 {isOpen && (
                     <div className="popup">
-                        <div className="popup-content">
-                            <span className="close" onClick={closePopup}>&times;</span>                            
+                        <div className="popup-content">                           
                             <div id="popupLeft">
                                 <h2> Name </h2>
                                 <h2> Image </h2>
+                                <button className="cancelButton" onClick={closePopup}>Cancel</button>
                             </div>
                             <div id="popupRight">
                                 <p>placeholder text</p>
                                 <p>placeholder img</p>
+                                <button className="addButton">Add</button>
                             </div>
                         </div>
                     </div>

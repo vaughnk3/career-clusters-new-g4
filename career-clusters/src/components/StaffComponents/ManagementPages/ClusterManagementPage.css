@@ -55,6 +55,8 @@
     }
     
     .popup-content {
+        width:40%;
+        height:30%;
         background-color: white;
         padding: 20px;
         border-radius: 10px;
@@ -74,11 +76,13 @@
 
     #popupLeft h2 {
         padding-bottom:25%; 
+        color:black;
     }
 
     #popupRight {
         flex:1;
         padding-left:20px;
+        color:black;
 
     }
     
@@ -88,4 +92,19 @@
         right: 10px;
         font-size: 20px;
         cursor: pointer;
+    }
+
+    .cancelButton {
+        border-radius: 40px;
+        border-color:#98ca41;
+        border:3px solid var(--green);
+        width:60%;
+    }
+
+    .addButton {
+        border-radius: 40px;
+        border-color:#98ca41;
+        border:3px solid var(--green);
+        width:60%;
+        background-color:var(--green);
     }
