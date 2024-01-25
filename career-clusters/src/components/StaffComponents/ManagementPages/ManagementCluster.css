@@ -39,7 +39,7 @@
 #edit_Name {
     color: var(--darkblue);
     height:50%;
-    border-radius: 45%;
+    border-radius: 40px;
     width:8%;
     border-color:#98ca41;
     margin:auto;
@@ -49,7 +49,7 @@
 #replace_Image {
     color: var(--darkblue);
     height:50%;
-    border-radius: 45%;
+    border-radius: 40px;
     width:8%;
     border-color:#98ca41;
     margin:auto;
@@ -59,7 +59,7 @@
 #delete {
     color: var(--darkblue);
     height:50%;
-    border-radius: 45%;
+    border-radius: 40px;
     width:8%;
     border-color:#98ca41;
     margin:auto;

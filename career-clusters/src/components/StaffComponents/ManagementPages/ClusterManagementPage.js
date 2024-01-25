@@ -5,7 +5,7 @@ import OverlayRectangle from "../OverlayRectangle";
 import ManagementCluster from "./ManagementCluster";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import './PopUps.css';
+import PopAddCluster from "./PopAddCluster";
 
 
 
@@ -35,7 +35,6 @@ const ClusterManagementPage = () => {
     }
     return (
         <div id="page">
-            <link rel="stylesheet" href="./PopUps.css"></link>
             <div id="_topRectangle">
                 <button id="add_cluster" >Add Cluster</button>
                 <button id="back_button" onClick={backButtonHandler}>Back</button>
@@ -52,7 +51,6 @@ const ClusterManagementPage = () => {
                 </ul>
 
             <BottomRectangle/>
-
         </div>
 
 
@@ -62,3 +60,4 @@ const ClusterManagementPage = () => {
 
 
 export default ClusterManagementPage;
+//<button id="add_cluster" >Add Cluster</button>
