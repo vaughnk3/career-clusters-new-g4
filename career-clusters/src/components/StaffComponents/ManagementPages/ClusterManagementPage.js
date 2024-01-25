@@ -44,14 +44,8 @@ const ClusterManagementPage = () => {
     return (
         <div id="page">
             <div id="_topRectangle">
-                <button id="add_cluster" >Add Cluster</button>
                 <button id="back_button" onClick={backButtonHandler}>Back</button>
-                <h2>Cluster Management Page</h2>
-                <h4>Please select an option for cluster management.</h4>
-            </div>
-            <br></br><br></br><br></br><br></br><br></br><br></br>
-            <div>
-                <button onClick={openPopup}>Open Popup</button>
+                <button onClick={openPopup} id="add_cluster">Add Cluster</button>
                 {isOpen && (
                     <div className="popup">
                         <div className="popup-content">
@@ -67,7 +61,11 @@ const ClusterManagementPage = () => {
                         </div>
                     </div>
                 )}
+                <h2>Cluster Management Page</h2>
+                <h4>Please select an option for cluster management.</h4>
             </div>
+            <br></br><br></br><br></br><br></br><br></br><br></br>
+            
             <ul>
                 {clusters.map((cluster) => (
                     <li>
@@ -88,3 +86,26 @@ const ClusterManagementPage = () => {
 
 export default ClusterManagementPage;
 //<button id="add_cluster" >Add Cluster</button>
+
+/*
+<div>
+                <button onClick={openPopup} id="add_cluster">Open Popup</button>
+                {isOpen && (
+                    <div className="popup">
+                        <div className="popup-content">
+                            <span className="close" onClick={closePopup}>&times;</span>                            
+                            <div id="popupLeft">
+                                <h2> Name </h2>
+                                <h2> Image </h2>
+                            </div>
+                            <div id="popupRight">
+                                <p>placeholder text</p>
+                                <p>placeholder img</p>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+
+
+*/
