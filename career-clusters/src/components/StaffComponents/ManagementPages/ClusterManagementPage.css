@@ -22,13 +22,26 @@
 }
 
 #add_cluster {
-    margin-left:30%;
+    margin-left:25%;
     position:absolute;
     margin-top:2.4%;
     width:15%;
     height:40%;
     background-color: var(--green);
-    border-radius: 45%;
+    border-radius: 50%;
+    border:3px solid var(--green);
+    font-size:20px;
+}
+
+
+#back_button {
+    position:absolute;
+    margin-left:-40%;
+    margin-top:2.4%;
+    width:15%;
+    height:40%;
+    background-color: var(--green);
+    border-radius: 50%;
     border:3px solid var(--green);
     font-size:20px;
 }

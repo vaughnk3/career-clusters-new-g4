@@ -8,8 +8,9 @@ import { useNavigate } from 'react-router-dom';
 import './PopUps.css';
 
 
-const ClusterManagementPage = () => {
 
+const ClusterManagementPage = () => {
+    const navigate = useNavigate();
     const [clusters, setClusters] = useState([]);
 
     useEffect(() => {
@@ -29,11 +30,15 @@ const ClusterManagementPage = () => {
     }, []);
 
 
+    const backButtonHandler = () => {
+        navigate('/login/staffclusters');
+    }
     return (
         <div id="page">
             <link rel="stylesheet" href="./PopUps.css"></link>
             <div id="_topRectangle">
                 <button id="add_cluster" >Add Cluster</button>
+                <button id="back_button" onClick={backButtonHandler}>Back</button>
                 <h2>Cluster Management Page</h2>
                 <h4>Please select an option for cluster management.</h4>
             </div>
