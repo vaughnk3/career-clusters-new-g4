@@ -79,6 +79,7 @@
     background-color: #98ca41;
 }
 
+
 .popup{
     position: fixed;
     top: 0;
@@ -105,3 +106,6 @@
     font-size: 20px;
     cursor: pointer;
   }
+
+
+
