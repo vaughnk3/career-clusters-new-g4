@@ -19,6 +19,9 @@
 	color:white;
 }
 
+.cluster_m h2 {
+    width:40%;
+}
 
 .cluster-pics {
 	display:flex;
@@ -36,23 +39,29 @@
 #edit_Name {
     color: var(--darkblue);
     height:50%;
-    border-radius: 30%;
+    border-radius: 45%;
     width:8%;
     border-color:#98ca41;
+    margin:auto;
+    border:3px solid var(--green)
 }
 
 #replace_Image {
     color: var(--darkblue);
     height:50%;
-    border-radius: 30%;
+    border-radius: 45%;
     width:8%;
     border-color:#98ca41;
+    margin:auto;
+    border:3px solid var(--green)
 }
 
 #delete {
     color: var(--darkblue);
     height:50%;
-    border-radius: 30%;
+    border-radius: 45%;
     width:8%;
     border-color:#98ca41;
+    margin:auto;
+    border:3px solid var(--green)
 }
