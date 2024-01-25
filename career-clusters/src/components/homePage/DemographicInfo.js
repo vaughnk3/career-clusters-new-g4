@@ -19,6 +19,7 @@ const DemographicInfo = () => {
         <h3>(Fields marked with * are required)</h3>
         <DemographicBox/>
       </div>
+      <br></br><br></br>
       <BottomRectangle/>
     </div>
   );
