@@ -21,6 +21,7 @@
 
 .cluster_m h2 {
     width:40%;
+    /*color: var(--darkblue);*/
 }
 
 .cluster-pics {
@@ -43,7 +44,9 @@
     width:8%;
     border-color:#98ca41;
     margin:auto;
-    border:3px solid var(--green)
+    border:3px solid var(--green);
+    background-color: #98ca41;
+    
 }
 
 #replace_Image {
@@ -53,7 +56,8 @@
     width:8%;
     border-color:#98ca41;
     margin:auto;
-    border:3px solid var(--green)
+    border:3px solid var(--green);
+    background-color: #98ca41;
 }
 
 #delete {
@@ -63,5 +67,6 @@
     width:8%;
     border-color:#98ca41;
     margin:auto;
-    border:3px solid var(--green)
+    border:3px solid var(--green);
+    background-color: #98ca41;
 }

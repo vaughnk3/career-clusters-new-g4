@@ -30,8 +30,8 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
 
         <Route path="/login/staffclusters" element={<StaffClusters/>} />
-        <Route path="/login/staffclusters/staffsubclusters" element={<StaffSubClusters/>} />
-        <Route path="/login/staffclusters/staffsubclusters/staffsubclusterinfo" element={<StaffSubFields/>} />
+        <Route path="/login/staffclusters/staffsubclusters/:clusterId" element={<StaffSubClusters/>} />
+        <Route path="/login/staffclusters/staffsubclusters/staffsubclusterinfo/:subclusterId" element={<StaffSubFields/>} />
         <Route path="/login/staffclusters/staffsubclusters/staffsubclusterinfo/staffjoblistings" element={<StaffJobListingPage/>} />
 
         <Route path="/login/adminpage" element={<AdminLandingPage/>} />

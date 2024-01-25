@@ -1,0 +1,22 @@
+#c_array {
+	display: flex;
+	flex-wrap:wrap;
+	border:2p solid black;
+	overflow-y:scroll;
+}
+
+#form1 {
+
+	width:40%;
+	height: 15rem;
+	padding-right:3%;
+
+	border-radius: 60px;
+
+	margin-left: 4%;
+	margin-bottom:3%;
+	margin-top:1%;
+
+	display:flex;
+	flex-direction: column;
+}

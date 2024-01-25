@@ -5,8 +5,6 @@ import UserIcon from "../page_Components/UserIcon.js";
 import { useNavigate } from 'react-router-dom';
 import TopRectangle from "../page_Components/TopRectangle.js";
 import './ClusterPage.css';
-// import './../../../server.js'
-
 
 const ClusterPage = () => {
     const navigate = useNavigate();

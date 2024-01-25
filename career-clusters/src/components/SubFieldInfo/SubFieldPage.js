@@ -31,6 +31,7 @@ const SubFieldsPage = () => {
         <div id="page">
             <TopRectangle/>
             <UserIcon/>
+            <br></br><br></br>
             <div id="content">
                 <div id="row">
                     <div id="topLeft">
@@ -52,19 +53,9 @@ const SubFieldsPage = () => {
                         <h2>Growth Rate</h2>
                         <h1>{field.growthRate}</h1>
                     </div>
-                    {/* <ul class="inline"> 
-                        <li class="fInlineTitle">Average Salary</li>
-                        <li class="fInlineTitle">Education Level</li>
-                        <li class="fInlineTitle">Growth Rate</li>
-                    </ul><br></br>
-                    <ul class="inline">
-                        <li class="fInline">{ GetFieldSalaryByIDS (CareerClusterMap, ClusterID, SubID) }</li>
-                        <li class="fInline">{ GetFieldEdLevelByIDS (CareerClusterMap, ClusterID, SubID) }</li>
-                        <li class="fInline">{ GetFieldGrowthRateByIDS (CareerClusterMap, ClusterID, SubID) }</li><br></br>
-                    </ul> */}
                 </div>
             </div>
-            
+            <br></br><br></br><br></br><br></br>
             <BottomRectangle/>
         </div>
     )
