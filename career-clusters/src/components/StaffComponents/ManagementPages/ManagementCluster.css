@@ -106,18 +106,28 @@
     display:flex;
     flex-direction:column;
     justify-content: center;
+    width:50%;
 }
 
 #popupLeft h2 {
     padding-bottom:25%; 
     color:black;
+
 }
 
 #popupRight {
     flex:1;
     padding-left:20px;
     color:black;
+    width:50%;
 
+}
+
+.button-row {
+    display:flex;
+    margin-top:20px;
+    border:2px solid black;
+    width:100%;
 }
   .close{
     position: absolute;

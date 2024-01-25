@@ -161,6 +161,23 @@ app.get('/login/staffclusters/staffsubclusters/staffsubclusterinfo/:subclusterId
 })
 //************************************************************************/
 
+app.post('/login/staffclusters/clustermanagementpage/add-cluster', (req, res) => {
+  const { clusterName } = req.body;
+  pool.query(
+    'INSERT INTO Cluster (clusterName) VALUES (?)',
+    [clusterName],
+    (error, results, fields) => {
+      if(error) {
+        console.error('Error adding Cluster:', error);
+        res.status(500).send('Error adding Cluster');
+      } else {
+        console.log('Cluster added successfully');
+        res.status(200).send('Cluster added successfully')
+      }
+    }
+  )
+})
+
 
 
 const PORT = 3001;
