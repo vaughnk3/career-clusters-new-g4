@@ -12,12 +12,20 @@ import PopAddCluster from "./PopAddCluster";
 const ClusterManagementPage = () => {
     const navigate = useNavigate();
     const [clusters, setClusters] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
+    const openPopup = () => {
+        setIsOpen(true);
+    }
+
+    const closePopup = () => {
+        setIsOpen(false);
+    }
 
     useEffect(() => {
         const fetchClusters = async () => {
             try {
                 const response = await (fetch('http://localhost:3001/login/staffclusters/clustermanagementpage'));
-                if(!response.ok) {
+                if (!response.ok) {
                     throw new Error('Error fetching clusters');
                 }
                 const data = await response.json();
@@ -42,19 +50,38 @@ const ClusterManagementPage = () => {
                 <h4>Please select an option for cluster management.</h4>
             </div>
             <br></br><br></br><br></br><br></br><br></br><br></br>
+            <div>
+                <button onClick={openPopup}>Open Popup</button>
+                {isOpen && (
+                    <div className="popup">
+                        <div className="popup-content">
+                            <span className="close" onClick={closePopup}>&times;</span>                            
+                            <div id="popupLeft">
+                                <h2> Name </h2>
+                                <h2> Image </h2>
+                            </div>
+                            <div id="popupRight">
+                                <p>placeholder text</p>
+                                <p>placeholder img</p>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
             <ul>
-                    {clusters.map((clusters) => (
-                        <li>
-                            <ManagementCluster key={clusters.id} ID={clusters.id} clusterName={clusters.clusterName} onClick=""/>
-                        </li>
-                    ))}
-                </ul>
+                {clusters.map((cluster) => (
+                    <li>
+                        <ManagementCluster key={cluster.id} ID={cluster.id} clusterName={cluster.clusterName} onClick="" />
+                    </li>
+                ))}
+            </ul>
 
-            <BottomRectangle/>
+
+            <BottomRectangle />
         </div>
 
 
-        
+
     )
 }
 

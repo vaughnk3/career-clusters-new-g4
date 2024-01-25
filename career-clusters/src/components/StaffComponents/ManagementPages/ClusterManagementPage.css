@@ -1,41 +1,90 @@
 
 
-#_topRectangle {
-    background-color: var(--darkblue);
-    color: white;
-    text-align: center;
-    height: 110px;
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-    top:0;
-}
+    #_topRectangle {
+        background-color: var(--darkblue);
+        color: white;
+        text-align: center;
+        height: 110px;
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        top:0;
+    }
 
-#_topRectangle h2 {
-    padding-top: 15px;
-}
+    #_topRectangle h2 {
+        padding-top: 15px;
+    }
 
-#add_cluster {
-    margin-left:25%;
-    position:absolute;
-    margin-top:2.4%;
-    width:15%;
-    height:40%;
-    background-color: var(--green);
-    border-radius: 40px;
-    border:3px solid var(--green);
-    font-size:20px;
-}
+    #add_cluster {
+        margin-left:25%;
+        position:absolute;
+        margin-top:2.4%;
+        width:15%;
+        height:40%;
+        background-color: var(--green);
+        border-radius: 40px;
+        border:3px solid var(--green);
+        font-size:20px;
+    }
 
 
-#back_button {
-    position:absolute;
-    margin-left:-40%;
-    margin-top:2.4%;
-    width:15%;
-    height:40%;
-    background-color: var(--green);
-    border-radius: 40px;
-    border:3px solid var(--green);
-    font-size:20px;
-}
+    #back_button {
+        position:absolute;
+        margin-left:-40%;
+        margin-top:2.4%;
+        width:15%;
+        height:40%;
+        background-color: var(--green);
+        border-radius: 40px;
+        border:3px solid var(--green);
+        font-size:20px;
+    }
+
+
+    .popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        z-index: 1000; /* Ensure popup is above other content */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .popup-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        position: relative;
+    }
+
+
+    #popupLeft {
+        flex: 1;
+        padding-right:20px;
+        display:flex;
+        flex-direction:column;
+        justify-content: center;
+    }
+
+    #popupLeft h2 {
+        padding-bottom:25%; 
+    }
+
+    #popupRight {
+        flex:1;
+        padding-left:20px;
+
+    }
+    
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        cursor: pointer;
+    }
