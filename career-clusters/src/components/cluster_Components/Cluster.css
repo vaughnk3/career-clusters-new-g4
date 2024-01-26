@@ -9,6 +9,7 @@
 	flex-direction: row; /* Change from column to row */
 	cursor: pointer;
 	align-items: center; /* Center items vertically */
+	box-shadow: 0 0 15px var(--green);
   }
   
   .cluster:hover {
