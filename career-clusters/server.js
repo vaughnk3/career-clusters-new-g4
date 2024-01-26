@@ -179,6 +179,24 @@ app.post('/login/staffclusters/clustermanagementpage/add-cluster', (req, res) =>
 })
 
 
+app.post('/login/staffclusters/clustermanagementpage/edit-cluster-name', (req, res) => {
+  const { clusterName, ID } = req.body;
+  pool.query(
+    'UPDATE Cluster SET clusterName = ? WHERE id = ?',
+    [clusterName, ID],
+    (error, results, fields) => {
+      if(error) {
+        console.error('Error updating Cluster:', error);
+        res.status(500).send('Error updatingCluster');
+      } else {
+        console.log('Cluster name updated successfully   ', ID, clusterName);
+        res.status(200).send('Cluster name updated successfully')
+      }
+    }
+  )
+})
+
+
 
 const PORT = 3001;
 app.listen(PORT, () => {
