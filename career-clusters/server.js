@@ -36,7 +36,7 @@ pool.getConnection((err, connection) => {
 //GENERAL VIEW SELECT ALL CLUSTERS
 app.get('/cluster', (req, res) => {
   console.log('Recieved GET request to /cluster')
-  pool.query('SELECT * FROM Cluster', (error, results, fields) => {
+  pool.query('SELECT * FROM Cluster ORDER BY clusterName', (error, results, fields) => {
     if(error) {
       console.error(error);
       console.log('Sad error fetching information from Cluster table')
@@ -92,7 +92,7 @@ app.get('/cluster/subcluster/subclusterinfo/:subclusterId', (req, res) => {
 // GET ALL CLUSTERS FOR THE CLUSTER MANAGEMENT PAGE LIST -- STAFF VIEW/ADMIN VIEW
 app.get('/login/staffclusters/clustermanagementpage', (req, res) => {
   console.log('Recieved GET request to /cluster')
-  pool.query('SELECT * FROM Cluster', (error, results, fields) => {
+  pool.query('SELECT * FROM Cluster ORDER BY clusterName', (error, results, fields) => {
     if(error) {
       console.error(error);
       console.log('Sad error fetching information from Cluster table')
@@ -110,7 +110,7 @@ app.get('/login/staffclusters/clustermanagementpage', (req, res) => {
 //GET ALL CLUSTERS FOR THE STAFF VIEW PAGE -- STAFF/ADMIN
 app.get('/login/staffclusters', (req, res) => {
   console.log('Recieved GET request to /cluster')
-  pool.query('SELECT * FROM Cluster', (error, results, fields) => {
+  pool.query('SELECT * FROM Cluster ORDER BY clusterName', (error, results, fields) => {
     if(error) {
       console.error(error);
       console.log('Sad error fetching information from Cluster table')
@@ -161,6 +161,8 @@ app.get('/login/staffclusters/staffsubclusters/staffsubclusterinfo/:subclusterId
 })
 //************************************************************************/
 
+//************************************************************************/
+//ADD CLUSTER
 app.post('/login/staffclusters/clustermanagementpage/add-cluster', (req, res) => {
   const { clusterName } = req.body;
   pool.query(
@@ -177,8 +179,11 @@ app.post('/login/staffclusters/clustermanagementpage/add-cluster', (req, res) =>
     }
   )
 })
+//************************************************************************/
 
 
+//************************************************************************/
+// EDIT CLUSTER NAME
 app.post('/login/staffclusters/clustermanagementpage/edit-cluster-name', (req, res) => {
   const { clusterName, ID } = req.body;
   pool.query(
@@ -195,8 +200,28 @@ app.post('/login/staffclusters/clustermanagementpage/edit-cluster-name', (req, r
     }
   )
 })
+//************************************************************************/
 
 
+//************************************************************************/
+//ADD CLUSTER
+app.post('/login/staffclusters/clustermanagementpage/delete-cluster', (req, res) => {
+  const { ID } = req.body;
+  pool.query(
+    'DELETE FROM Cluster WHERE id = ?',
+    [ID],
+    (error, results, fields) => {
+      if(error) {
+        console.error('Error adding Cluster:', error);
+        res.status(500).send('Error adding Cluster');
+      } else {
+        console.log('Cluster added successfully');
+        res.status(200).send('Cluster added successfully')
+      }
+    }
+  )
+})
+//************************************************************************/
 
 const PORT = 3001;
 app.listen(PORT, () => {
