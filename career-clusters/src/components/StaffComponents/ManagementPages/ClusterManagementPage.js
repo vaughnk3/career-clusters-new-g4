@@ -5,7 +5,6 @@ import OverlayRectangle from "../OverlayRectangle";
 import ManagementCluster from "./ManagementCluster";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import PopAddCluster from "./PopAddCluster";
 import './ManagementCluster.css';
 
 

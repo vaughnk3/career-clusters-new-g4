@@ -16,6 +16,10 @@ const StaffSubClusters = () => {
 
     }
 
+    const handleSubclusterManagementClick = () => {
+      navigate('/login/staffclusters/staffsubclusters/subclustermanagementpage')
+    }
+
     const { clusterId } = useParams();
     const [subclusters, setSubclusters] = useState([]);
 
@@ -50,7 +54,7 @@ const StaffSubClusters = () => {
             </ul>
             <div className="overlay">
             <div class="staff-button-column">
-              <a class="staff-button" >Sub-Cluster Management</a>
+              <a class="staff-button" onClick={handleSubclusterManagementClick} >Sub-Cluster Management</a>
               <a class="staff-button" >Logout</a>
             </div>
             <div class="staff-button-column">

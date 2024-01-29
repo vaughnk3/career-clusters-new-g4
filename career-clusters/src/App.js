@@ -16,6 +16,7 @@ import AdminLandingPage from './components/StaffComponents/AdminLandingPage';
 import ModifyPermsPage from './components/StaffComponents/AdminPrivComponents/ModifyPermsPage';
 import CreateStaffAccount from './components/StaffComponents/AdminPrivComponents/CreateStaffAccount';
 import ClusterManagementPage from './components/StaffComponents/ManagementPages/ClusterManagementPage';
+import SubClusterManagementPage from './components/StaffComponents/ManagementPages/SubClusterManagementPage';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/login/adminpage/createstaffpage" element={<CreateStaffAccount/>} />
 
         <Route path="/login/staffclusters/clustermanagementpage" element={<ClusterManagementPage/>} />
+        <Route path="/login/staffclusters/staffsubclusters/subclustermanagementpage" element={<SubClusterManagementPage/>} />
       </Routes>
     </Router>
   );
