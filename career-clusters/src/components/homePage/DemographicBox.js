@@ -13,6 +13,12 @@ const DemographicBox = () => {
             const data = await response.json();
 
             var schoolSelect = document.getElementById("school-select");
+
+            // Temporary(?) solution because this fetch happens twice for some reason
+            for (var i = schoolSelect.options.length; i > 0; i--) {
+              schoolSelect.remove(i);
+            }
+
             for (var i = 0; i < data.length; i++) {
               var option = document.createElement("option");
               option.text = data[i].schoolName;
