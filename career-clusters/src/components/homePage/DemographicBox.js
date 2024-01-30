@@ -1,17 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import './DemographicBox.css';
 
+
 const DemographicBox = () => {
+  useEffect(() => {
+    const fetchSchools = async () => {
+        try {
+            const response = await (fetch('http://localhost:3001/school'));
+            if(!response.ok) {
+                throw new Error('Error fetching schools');
+            }
+            const data = await response.json();
+
+            var schoolSelect = document.getElementById("school-select");
+            for (var i = 0; i < data.length; i++) {
+              var option = document.createElement("option");
+              option.text = data[i].schoolName;
+              schoolSelect.appendChild(option);
+            }
+            
+        } catch (error) {
+            console.error('Error: ', error);
+        }
+    }
+    fetchSchools();
+}, []);
+  
   return ( 
     <div id="demographic-box">
       <div id="demographic-box-container">
         <div class="demographic-item">
           <h3>School *</h3>
-          <select name="school" class="select">
+          <select id="school-select" name="school" class="select">
             <option value="" disabled selected hidden className="hidden">Select one</option>
-           <option class="test" value="rhhs">Rock Hill High School</option>
-           <option class="test" value="fmhs">Fort Mill High School</option>
-           <option class="test" value="nafo">Nation Ford High School</option>
           </select>
         </div>
         <div class="demographic-item">

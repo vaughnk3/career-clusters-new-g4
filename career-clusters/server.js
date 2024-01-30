@@ -33,6 +33,24 @@ pool.getConnection((err, connection) => {
 })
 
 //************************************************************************/
+// Get list of schools for demographic page
+app.get('/school', (req, res) => {
+  console.log('Recieved GET request to /school')
+  pool.query('SELECT * FROM School ORDER BY schoolName', (error, results, fields) => {
+    if(error) {
+      console.error(error);
+      console.log('Sad error fetching information from School table')
+      res.status(500).send('Error fetching information from School table in database')
+    } else {
+      res.json(results);
+      console.log('School results: ', results)
+    }
+  })
+})
+//************************************************************************/
+
+
+//************************************************************************/
 //GENERAL VIEW SELECT ALL CLUSTERS
 app.get('/cluster', (req, res) => {
   console.log('Recieved GET request to /cluster')
