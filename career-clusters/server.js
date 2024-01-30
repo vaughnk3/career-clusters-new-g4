@@ -223,6 +223,32 @@ app.post('/login/staffclusters/clustermanagementpage/delete-cluster', (req, res)
 })
 //************************************************************************/
 
+
+//************************************************************************/
+app.get('/login/staffclusters/staffsubclusters/subclustermanagementpage', (req, res) => {
+  console.log('Recieved GET request to /cluster')
+  pool.query('SELECT * FROM Subcluster', (error, results, fields) => {
+    if(error) {
+      console.error(error);
+      console.log('Sad error fetching information from Cluster table')
+      res.status(500).send('Error fetching information from Cluster table in database')
+    } else {
+      res.json(results);
+      console.log('Cluster results: ', results)
+    }
+  })
+})
+
+//************************************************************************/
+
+
+
+
+
+
+
+
+
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
