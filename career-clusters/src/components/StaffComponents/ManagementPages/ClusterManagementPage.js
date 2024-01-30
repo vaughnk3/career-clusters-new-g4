@@ -90,7 +90,7 @@ const ClusterManagementPage = () => {
                 <h2>Cluster Management Page</h2>
                 <h4>Please select an option for cluster management.</h4>
             </div>
-            <br></br><br></br><br></br><br></br><br></br><br></br>
+            
             
             <ul>
                 {clusters.map((cluster) => (

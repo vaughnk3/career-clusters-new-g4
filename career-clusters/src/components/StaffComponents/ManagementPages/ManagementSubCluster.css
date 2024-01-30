@@ -1,0 +1,70 @@
+.subcluster_m {
+    width: 90%;
+    height: 7rem;
+    margin-bottom:2.5%;
+    background-color: #D9D9D9;
+    border: 6px solid var(--green);
+	border-radius: 60px;
+    margin-left:auto;
+    margin-right:auto;
+    
+	display:flex;
+	flex-direction: row;
+	cursor: pointer;
+}
+
+
+.subcluster_m:hover {
+	background-color: var(--darkblue);
+	color:white;
+}
+
+.subcluster_m h2 {
+    width:30%;
+    align-self: center;
+    margin-left:-5%;
+    font-size: 16px;
+    font-family:Arial, Helvetica, sans-serif
+    /*color: var(--darkblue);*/
+}
+
+
+/* EDIT NAME BUTTON IN SUBCLUSTER MANAGEMENT PAGE */
+.Name {
+    width:9%;
+    margin:auto;
+    height:100%;
+}
+
+.editName {
+    width:100%;
+    border-radius:20px;
+    border-color: var(--green);
+    border:3px solid var(--green);
+    height:50%;
+    margin-top:25%;
+}
+
+.editName:hover {
+    background-color: var(--darkblue);
+}
+
+
+.Description {
+    width:12%;
+    margin:auto;
+    height:100%;
+}
+
+.editDescription {
+    width:100%;
+    border-radius:20px;
+    border-color: var(--green);
+    border:3px solid var(--green);
+    height:50%;
+}
+
+.editDescription:hover {
+    background-color: var (--darkblue);
+}
+
