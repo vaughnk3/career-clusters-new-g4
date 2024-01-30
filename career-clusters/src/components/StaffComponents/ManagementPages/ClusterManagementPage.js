@@ -22,6 +22,10 @@ const ClusterManagementPage = () => {
         setIsOpen(false);
     }
 
+    const refreshPage = () => {
+        window.location.reload();
+      }
+
     const addCluster = async () => {
         try {
 
@@ -42,6 +46,7 @@ const ClusterManagementPage = () => {
         }
         console.log('POST request sent from add button')
         setIsOpen(false);
+        refreshPage();
     }
 
     useEffect(() => {
@@ -91,7 +96,7 @@ const ClusterManagementPage = () => {
                 <h4>Please select an option for cluster management.</h4>
             </div>
             
-            
+            <br></br><br></br><br></br><br></br><br></br><br></br>
             <ul>
                 {clusters.map((cluster) => (
                     <li>

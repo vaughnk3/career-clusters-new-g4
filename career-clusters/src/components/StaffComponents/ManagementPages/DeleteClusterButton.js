@@ -11,6 +11,12 @@ const DeleteClusterButton = ({ID}) => {
     const closePopup = () => {
         setIsOpen(false);
     }
+
+    const refreshPage = () => {
+        window.location.reload();
+    }
+
+    
     const deleteCluster = async () => {
         try {
 
@@ -31,6 +37,7 @@ const DeleteClusterButton = ({ID}) => {
         }
         console.log('POST request sent from delete button')
         setIsOpen(false);
+        refreshPage();
     }
 
     return (
