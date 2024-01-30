@@ -20,10 +20,10 @@
 }
 
 .subcluster_m h2 {
-    width:30%;
+    width:20%;
     align-self: center;
-    margin-left:-5%;
-    font-size: 16px;
+    margin-left:3%;
+    font-size: 20px;
     font-family:Arial, Helvetica, sans-serif
     /*color: var(--darkblue);*/
 }
@@ -42,7 +42,7 @@
     border-color: var(--green);
     border:3px solid var(--green);
     height:50%;
-    margin-top:25%;
+    /*margin-top:25%;*/
 }
 
 .editName:hover {
@@ -50,8 +50,9 @@
 }
 
 
+/* Edit description of subcluster */
 .Description {
-    width:12%;
+    width:9%;
     margin:auto;
     height:100%;
 }
@@ -68,3 +69,109 @@
     background-color: var (--darkblue);
 }
 
+
+/* Edit Salary for subcluster */
+.Salary {
+    width:9%;
+    margin:auto;
+    height:100%;
+}
+
+.editSalary {
+    width:100%;
+    border-radius:20px;
+    border-color: var(--green);
+    border:3px solid var(--green);
+    height:50%;
+}
+
+.editSalary:hover {
+    background-color: var (--darkblue);
+}
+
+
+/* For growth rate on subcluster */
+
+.GrowthRate {
+    width:9%;
+    margin:auto;
+    height:100%;
+}
+
+.editGrowthRate {
+    width:100%;
+    border-radius:20px;
+    border-color: var(--green);
+    border:3px solid var(--green);
+    height:50%;
+}
+
+.editGrowthRate:hover{
+    background-color: var(--darkblue);
+}
+
+
+
+/* For edit education level*/
+
+.Education {
+    width:9%;
+    margin:auto;
+    height:100%;
+}
+
+.editEducation {
+    width:100%;
+    border-radius:20px;
+    border-color: var(--green);
+    border:3px solid var(--green);
+    height:50%;
+}
+
+.editEducation:hover {
+    background-color: var(--darkblue);
+}
+
+
+/* Delete button */
+
+.Delete {
+    width:9%;
+    margin:auto;
+    height:100%;
+}
+
+.deleteButton {
+    width:100%;
+    border-radius:20px;
+    border-color: var(--green);
+    border:3px solid var(--green);
+    height:50%;
+    margin-top:25%;
+}
+
+.deleteButton:hover {
+    background-color: var(--darkblue);
+}
+
+
+
+/* Edit image */
+
+.Image {
+    width:9%;
+    margin:auto;
+    height:100%;
+}
+
+.editImage {
+    width:100%;
+    border-radius:20px;
+    border-color: var(--green);
+    border:3px solid var(--green);
+    height:50%;
+}
+
+.editImage:hover{
+    background-color: var(--darkblue);
+}
