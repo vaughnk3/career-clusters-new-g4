@@ -1,25 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import TopLeftLogo from '../page_Components/TopLeftLogo';
 import BottomRectangle from '../page_Components/BottomRectangle';
 import './LoginPage.css'
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import {initializeApp} from 'firebase/app';
-import {getAuth} from "firebase/auth";
+import { getAnalytics } from "firebase/analytics";
+import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
 
 //Replace this with firebase config info :) (Not sure what some of these fields would be)
 const firebaseConfig = {
-    apiKey: "", //Project's API key (Waiting on information)
-    authDomain:: "", //Authentication domain
-    projectId: "", //Firebase project ID
-    storageBucket: "", //Project's storage bucket
-    messagingSenderId: "", //Firebase messaging sender ID
-    appId: "", //Firebase app ID
+  apiKey: "AIzaSyD1npOwsCve7cKnLGk7mwtUuesAmI_hwdU",
+  authDomain: "career-clusters-9dcc3.firebaseapp.com",
+  projectId: "career-clusters-9dcc3",
+  storageBucket: "career-clusters-9dcc3.appspot.com",
+  messagingSenderId: "884985748554",
+  appId: "1:884985748554:web:29c9f24c69dd1cd8fcdab3",
+  measurementId: "G-GJMD49N4ES"
 };
-
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 //Initialize Firebase Auth
 const auth = getAuth(app);
-
-
-
 
 
 
@@ -27,8 +28,20 @@ const LoginPage = () => {
     const[username, setUsername] = useState('');
     const[password, setPassword] = useState('');
 
-    const handleSubmit = (event) => {
+    const navigate = useNavigate();
+    
+    const handleSubmit = async (event) => {
         event.preventDefault();
+
+        try {
+          const userCredential = await signInWithEmailAndPassword(auth, username, password);
+          const user = userCredential.user;
+          console.log('User logged in: ', user);
+
+          navigate('/login/staffclusters/clustermanagementpage')
+        } catch (error) {
+          console.error('Login error:', error.message);
+        }
     }
 
     return (

@@ -8,6 +8,7 @@ import { useState , useEffect} from "react";
 import Cluster_S from "./Cluster_S";
 import './Cluster_S.css'
 import BottomRectangle from "../page_Components/BottomRectangle";
+import { getAuth, signOut } from "firebase/auth";
 
 const StaffClusters = () => {
 
@@ -45,9 +46,16 @@ const StaffClusters = () => {
   const handleButtonClickClusterManagement = () => {
     navigate('/login/staffclusters/clustermanagementpage');
   };
-  const handleButtonClickLogout = () => {
+  const handleButtonClickLogout = async () => {
     //Logout
-    console.log("Logout.");
+    const auth = getAuth();
+    try {
+      await signOut(auth);
+      console.log("Logout.");
+      navigate('/login');
+    } catch(error) {
+      console.error('Logout error:', error.message);
+    }
   };
   const handleButtonClickExportData = () => {
     console.log("Export Data");
