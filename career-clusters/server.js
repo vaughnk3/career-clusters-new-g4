@@ -295,7 +295,22 @@ app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-su
   )
 })
 
-
+app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-subcluster-education', (req, res) => {
+  const { subclusterEducation, ID } = req.body;
+  pool.query(
+    'UPDATE Field SET educationLvl = ? WHERE subclusterId = ?',
+    [subclusterEducation, ID],
+    (error, results, fields) => {
+      if(error) {
+        console.error('Error updating Cluster:', error);
+        res.status(500).send('Error updatingCluster');
+      } else {
+        console.log('Cluster name updated successfully   ', ID, subclusterEducation);
+        res.status(200).send('Cluster name updated successfully')
+      }
+    }
+  )
+})
 
 
 
