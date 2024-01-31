@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import {initializeApp} from 'firebase/app';
 import { getAnalytics } from "firebase/analytics";
 import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
+//Kek
 
 //Replace this with firebase config info :) (Not sure what some of these fields would be)
 const firebaseConfig = {
