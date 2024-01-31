@@ -259,8 +259,23 @@ app.get('/login/staffclusters/staffsubclusters/subclustermanagementpage', (req, 
 
 //************************************************************************/
 
-
-
+// /login/staffclusters/staffsubclusters/subclustermanagementpage/edit-subcluster-name
+app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-subcluster-name', (req, res) => {
+  const { subclusterName, ID } = req.body;
+  pool.query(
+    'UPDATE Subcluster SET subclusterName = ? WHERE id = ?',
+    [subclusterName, ID],
+    (error, results, fields) => {
+      if(error) {
+        console.error('Error updating Cluster:', error);
+        res.status(500).send('Error updatingCluster');
+      } else {
+        console.log('Cluster name updated successfully   ', ID, subclusterName);
+        res.status(200).send('Cluster name updated successfully')
+      }
+    }
+  )
+})
 
 
 
