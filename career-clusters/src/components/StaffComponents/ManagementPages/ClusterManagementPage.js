@@ -78,8 +78,8 @@ const ClusterManagementPage = () => {
                     <div className="popup">
                         <div className="popup-content">                           
                             <div id="popupLeft">
-                                <h2> Name </h2>
-                                <h2> Image </h2>
+                                <h4> Name </h4>
+                                <h4> Image </h4>
                             </div>
                             <div id="popupRight">
                                 <input type="text" id="clusterName" name="clusterName" placeholder="Enter the name of new cluster" value={clusterName} onChange={(e) => setClusterName(e.target.value)}></input>
