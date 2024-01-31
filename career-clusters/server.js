@@ -345,6 +345,26 @@ app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-su
 //************************************************************************/
 
 
+//************************************************************************/
+//DELETE SUBCLUSTER
+app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/delete-subcluster', (req, res) => {
+  const { ID } = req.body;
+  pool.query(
+    'DELETE FROM Subcluster WHERE id = ?',
+    [ID],
+    (error, results, fields) => {
+      if(error) {
+        console.error('Error deleting subcluster:', error);
+        res.status(500).send('Error deleting subCluster');
+      } else {
+        console.log('Cluster deleted successfully');
+        res.status(200).send('Cluster deleted successfully')
+      }
+    }
+  )
+})
+//************************************************************************/
+
 
 
 const PORT = 3001;
