@@ -3,6 +3,7 @@ import TopLeftLogo from '../page_Components/TopLeftLogo';
 import BottomRectangle from '../page_Components/BottomRectangle';
 import './LoginPage.css'
 import {initializeApp} from 'firebase/app';
+import {getAuth} from "firebase/auth";
 
 //Replace this with firebase config info :) (Not sure what some of these fields would be)
 const firebaseConfig = {
@@ -14,8 +15,8 @@ const firebaseConfig = {
     appId: "", //Firebase app ID
 };
 
-//Initialize Firebase Config
-const app = initializeApp(firebaseConfig);
+//Initialize Firebase Auth
+const auth = getAuth(app);
 
 
 
