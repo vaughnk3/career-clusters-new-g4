@@ -222,7 +222,7 @@ app.post('/login/staffclusters/clustermanagementpage/edit-cluster-name', (req, r
 
 
 //************************************************************************/
-//ADD CLUSTER
+//DELETE CLUSTER
 app.post('/login/staffclusters/clustermanagementpage/delete-cluster', (req, res) => {
   const { ID } = req.body;
   pool.query(
@@ -243,6 +243,7 @@ app.post('/login/staffclusters/clustermanagementpage/delete-cluster', (req, res)
 
 
 //************************************************************************/
+// Gets all the subclusters to be displayed on subcluster managment page
 app.get('/login/staffclusters/staffsubclusters/subclustermanagementpage', (req, res) => {
   console.log('Recieved GET request to /cluster')
   pool.query('SELECT * FROM Subcluster', (error, results, fields) => {
@@ -259,7 +260,9 @@ app.get('/login/staffclusters/staffsubclusters/subclustermanagementpage', (req, 
 
 //************************************************************************/
 
-// /login/staffclusters/staffsubclusters/subclustermanagementpage/edit-subcluster-name
+
+//************************************************************************/
+// Update request to update a subcluster name based on ID
 app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-subcluster-name', (req, res) => {
   const { subclusterName, ID } = req.body;
   pool.query(
@@ -276,8 +279,11 @@ app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-su
     }
   )
 })
+//************************************************************************/
 
 
+//************************************************************************/
+//Update request for updating a subcluster's description
 app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-subcluster-descrip', (req, res) => {
   const { subclusterDescrip, ID } = req.body;
   pool.query(
@@ -294,7 +300,11 @@ app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-su
     }
   )
 })
+//************************************************************************/
 
+
+//************************************************************************/
+// Update request for updating the education level of a subcluster
 app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-subcluster-education', (req, res) => {
   const { subclusterEducation, ID } = req.body;
   pool.query(
@@ -311,6 +321,28 @@ app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-su
     }
   )
 })
+//************************************************************************/
+
+
+//************************************************************************/
+// Update request for updating the salary of a subcluster
+app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-subcluster-salary', (req, res) => {
+  const { subclusterSalary, ID } = req.body;
+  pool.query(
+    'UPDATE Field SET avgSalary = ? WHERE subclusterId = ?',
+    [subclusterSalary, ID],
+    (error, results, fields) => {
+      if(error) {
+        console.error('Error updating Cluster:', error);
+        res.status(500).send('Error updatingCluster');
+      } else {
+        console.log('Cluster name updated successfully   ', ID, subclusterSalary);
+        res.status(200).send('Cluster name updated successfully')
+      }
+    }
+  )
+})
+//************************************************************************/
 
 
 
