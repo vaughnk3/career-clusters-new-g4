@@ -390,7 +390,7 @@ app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-su
 //************************************************************************/
 // Insert request for adding subcluster into subcluster table
 app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/add-subcluster', (req, res) => {
-  const { newSCName, newSCDescrip, newSCsalary, newSCEdLevel, newSCGrowthRate, clusterID} = req.body;
+  const { newSCName, clusterID} = req.body;
   pool.query(
     'INSERT INTO Subcluster (clusterId, subclusterName) VALUES (?, ?)',
     [clusterID, newSCName],
@@ -400,6 +400,7 @@ app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/add-sub
         res.status(500).send('Error inserting subcluster :(');
       } else {
         const subclusterID = results.insertId;
+        console.log("SUBCLUSTER ID (SERVER>JS)   ",subclusterID );
         console.log('Inserted into subcuster successfully ', newSCName);
         res.status(200).json({subclusterID});
       }

@@ -77,7 +77,7 @@ const SubClusterManagementPage = () => {
     const [clusterID, setClusterID] = useState('');
 
     const addSubCluster = async () => {
-        const subclusterID = null;
+        const subclusterID = 0;
         try {
             const response = await(fetch('http://localhost:3001/login/staffclusters/staffsubclusters/subclustermanagementpage/add-subcluster', {
                 method: 'POST',
@@ -89,7 +89,7 @@ const SubClusterManagementPage = () => {
             if (response.ok) {
                 const data = await response.json();
                 subclusterID = data.subclusterID;
-                console.log('SubCluster added successfully with ID: ');
+                console.log('SubCluster added successfully with ID: ', subclusterID);
             } else {
                 console.error('Failed to add subcluster');
             } 
@@ -97,6 +97,8 @@ const SubClusterManagementPage = () => {
             console.error('Error adding subcluster: ', error);
         }
         console.log('POST request sent from add subcluster button')
+
+        console.log('SubCluster added successfully with ID between: ', subclusterID);
 
         try {
             const response = await(fetch('http://localhost:3001/login/staffclusters/staffsubclusters/subclustermanagementpage/add-subcluster-field', {
@@ -106,7 +108,7 @@ const SubClusterManagementPage = () => {
                 },
                 body: JSON.stringify({subclusterID, newSCName, newSCDescrip, newSCSalary, newSCEdLevel, newSCGrowthRate})
             }));
-            console.log(subclusterID);
+            console.log(subclusterID, " INSIDE SECOND REQUEST");
             if(response.ok) {
                 console.log('Field data added successfully');
             } else {
@@ -119,9 +121,7 @@ const SubClusterManagementPage = () => {
         setIsOpen(false);
         refreshPage();
     }
-    
 
-    console.log("TEST SELECTED CLUSTER ID:  ", clusterID)
     /********************************************* */
 
 
