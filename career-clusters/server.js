@@ -399,8 +399,26 @@ app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/add-sub
         console.error('Error inserting subcluster: ', error);
         res.status(500).send('Error inserting subcluster :(');
       } else {
+        const subclusterID = results.insertId;
         console.log('Inserted into subcuster successfully ', newSCName);
-        res.status(200).send('Subcluster inserted successfully');
+        res.status(200).json({subclusterID});
+      }
+    }
+  )
+})
+
+app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/add-subcluster-field', (req, res) => {
+  const { subclusterID, newSCName, newSCDescrip, newSCsalary, newSCEdLevel, newSCGrowthRate} = req.body;
+  pool.query(
+    'INSERT INTO Field (subclusterID, fieldName, description, avgSalary, educationLvl, growthRate) VALUES (?, ?, ?, ?, ?, ?)',
+    [subclusterID, newSCName, newSCDescrip, newSCsalary, newSCEdLevel, newSCGrowthRate],
+    (error, results, fields) => {
+      if(error) {
+        console.error("Error inserting field: ", error);
+        res.status(500).send('Error inserting field :(');
+      } else {
+        console.log('Inserted into field successfully :)', newSCName);
+        res.status(200).send('Field inserted successfully!!');
       }
     }
   )

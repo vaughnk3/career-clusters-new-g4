@@ -33,6 +33,7 @@ const SubClusterManagementPage = () => {
             } catch (error) {
                 console.error('Error: ', error);
             }
+            
         }
         fetchSubClusters();
     }, []);
@@ -76,8 +77,8 @@ const SubClusterManagementPage = () => {
     const [clusterID, setClusterID] = useState('');
 
     const addSubCluster = async () => {
+        const subclusterID = null;
         try {
-
             const response = await(fetch('http://localhost:3001/login/staffclusters/staffsubclusters/subclustermanagementpage/add-subcluster', {
                 method: 'POST',
                 headers: {
@@ -86,7 +87,9 @@ const SubClusterManagementPage = () => {
                 body: JSON.stringify({ newSCName, newSCDescrip, newSCSalary, newSCEdLevel, newSCGrowthRate, clusterID })
             }));
             if (response.ok) {
-                console.log('SubCluster added successfully');
+                const data = await response.json();
+                subclusterID = data.subclusterID;
+                console.log('SubCluster added successfully with ID: ');
             } else {
                 console.error('Failed to add subcluster');
             } 
@@ -94,6 +97,25 @@ const SubClusterManagementPage = () => {
             console.error('Error adding subcluster: ', error);
         }
         console.log('POST request sent from add subcluster button')
+
+        try {
+            const response = await(fetch('http://localhost:3001/login/staffclusters/staffsubclusters/subclustermanagementpage/add-subcluster-field', {
+                method: 'POST',
+                headers: {
+                    'Content-Type' : 'application/json'
+                },
+                body: JSON.stringify({subclusterID, newSCName, newSCDescrip, newSCSalary, newSCEdLevel, newSCGrowthRate})
+            }));
+            console.log(subclusterID);
+            if(response.ok) {
+                console.log('Field data added successfully');
+            } else {
+                console.error('Failed to add field data');
+            }
+        } catch(error) {
+            console.error('Error adding field: ', error);
+        }
+        console.log('POST request sent from add subcluster button for field information')
         setIsOpen(false);
         refreshPage();
     }
