@@ -15,6 +15,11 @@ const SubClusterManagementPage = () => {
         navigate('/login/staffclusters/staffsubclusters')
     }
 
+    // Once the post request occurs, refresh the page so we can see the changes. 
+    const refreshPage = () => {
+        window.location.reload();
+    }
+
 
     useEffect(() => {
         const fetchSubClusters = async () => {
@@ -35,6 +40,8 @@ const SubClusterManagementPage = () => {
 
     /********************************************* */
     //FETCH CLUSTERS
+    const [clusters, setClusters] = useState([]);
+
     useEffect(() => {
         const fetchClusters = async () => {
             try { 
@@ -45,22 +52,7 @@ const SubClusterManagementPage = () => {
                 const data = await response.json();
                 console.log(data)
 
-                var clusterSelect = document.getElementById("select-cluster");
-                console.log(clusterSelect, "CLUSTER SELECT")
-                
-                /*
-                // Temporary(?) solution because this fetch happens twice for some reason
-                for (var i = clusterSelect.options.length; i > 0; i--) {
-                  clusterSelect.remove(i);
-                }
-                */
-    
-                for (var i = 0; i < data.length; i++) {
-                  var option = document.createElement("option");
-                  option.text = data[i].clusterName;
-                  console.log(option.text)
-                  clusterSelect.appendChild(option);
-                }
+                setClusters(data);
                 
             } catch (error) {
                 console.error('Error: ', error);
@@ -82,6 +74,32 @@ const SubClusterManagementPage = () => {
     const [newSCEdLevel, setNewEdLevel] = useState('');
     const [newSCGrowtRate, setNewGrowthRate] = useState('');
     const [clusterID, setClusterID] = useState('');
+
+    const addSubCluster = async () => {
+        try {
+
+            const response = await(fetch('http://localhost:3001/login/staffclusters/staffsubclusters/subclustermanagementpage/add-subcluster', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ newSCName, newSCDescrip, newSCSalary, newSCEdLevel, newSCGrowtRate, clusterID })
+            }));
+            if (response.ok) {
+                console.log('SubCluster added successfully');
+            } else {
+                console.error('Failed to add subcluster');
+            } 
+        }   catch (error) {
+            console.error('Error adding subcluster: ', error);
+        }
+        console.log('POST request sent from add subcluster button')
+        setIsOpen(false);
+        refreshPage();
+    }
+    
+
+    console.log("TEST SELECTED CLUSTER ID:  ", clusterID)
     /********************************************* */
 
 
@@ -111,11 +129,16 @@ const SubClusterManagementPage = () => {
 
                             <input type="file" id="img" name="img" accept="image/*"></input>
 
-                            <button id="submitName" onClick={""}>Submit</button>
+                            <button id="submitName" onClick={addSubCluster}>Submit</button>
                             <button onClick={closePopup} className="cancelButton">Cancel</button>
 
-                            <select id="select-cluster" >
+                            <select id="select-cluster" value={clusterID} onChange={(e) => setClusterID(e.target.value)} >
                                 <option value="" disabled selected hidden className="hidden">Select one</option>
+                                {clusters.map((cluster) => (
+                                    <option key={cluster.id} value={cluster.id} >
+                                        {cluster.clusterName}
+                                    </option>
+                                ))}
                             </select>
 
                         </div>
