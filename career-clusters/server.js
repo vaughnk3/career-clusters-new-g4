@@ -387,6 +387,24 @@ app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-su
 //************************************************************************/
 
 
+//************************************************************************/
+//GENERAL VIEW SELECT ALL CLUSTERS
+app.get('/login/staffclusters/staffsubclusters/subclustermanagementpage/fetch-clusters', (req, res) => {
+  console.log('Recieved GET request to /cluster')
+  pool.query('SELECT * FROM Cluster ORDER BY clusterName', (error, results, fields) => {
+    if(error) {
+      console.error(error);
+      console.log('Sad error fetching information from Cluster table')
+      res.status(500).send('Error fetching information from Cluster table in database')
+    } else {
+      res.json(results);
+      console.log('Cluster results: ', results)
+    }
+  })
+})
+//************************************************************************/
+
+
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
