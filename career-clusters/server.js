@@ -245,7 +245,7 @@ app.post('/login/staffclusters/clustermanagementpage/delete-cluster', (req, res)
 //************************************************************************/
 // Gets all the subclusters to be displayed on subcluster managment page
 app.get('/login/staffclusters/staffsubclusters/subclustermanagementpage', (req, res) => {
-  console.log('Recieved GET request to /cluster')
+  console.log('JDFSJFDLKFHJSKDFHKJDSHFK')
   pool.query('SELECT * FROM Subcluster', (error, results, fields) => {
     if(error) {
       console.error(error);
@@ -253,7 +253,7 @@ app.get('/login/staffclusters/staffsubclusters/subclustermanagementpage', (req, 
       res.status(500).send('Error fetching information from Cluster table in database')
     } else {
       res.json(results);
-      console.log('Cluster results: ', results)
+      console.log('Subcluster :) results: ', results)
     }
   })
 })

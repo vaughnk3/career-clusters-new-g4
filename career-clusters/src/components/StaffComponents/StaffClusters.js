@@ -65,6 +65,11 @@ const StaffClusters = () => {
     navigate('/login/adminpage/modifyperms');
   };
 
+ //// TEESTSTSTST
+  const handleSubclusterManagementClick = () => {
+    navigate('/login/staffclusters/staffsubclusters/subclustermanagementpage')
+  }
+
     return (
         <div>
           <br></br><br></br><br></br><br></br><br></br><br></br> 
@@ -83,6 +88,7 @@ const StaffClusters = () => {
             <div class="staff-button-column">
               <a class="staff-button" onClick={handleButtonClickStaff}>Staff Management</a>
               <a class="staff-button" onClick={handleButtonClickExportData}>Export Data (.xlsx)</a>
+              <a class="staff-button" onClick={handleSubclusterManagementClick}>SubCluster Management</a>
             </div>
           </div>
           <BottomRectangle/>

@@ -9,7 +9,7 @@ const SubClusterManagementPage = () => {
     /********************************************* */
     //FETCH SUBCLUSTERS CODE
     const navigate = useNavigate();
-    const[subClusters, setSubClusters] = useState([]);
+    const[subClusters, setSubClusters2] = useState([]);
 
     const handleBackButton = () => {
         navigate('/login/staffclusters/staffsubclusters')
@@ -22,20 +22,21 @@ const SubClusterManagementPage = () => {
 
 
     useEffect(() => {
-        const fetchSubClusters = async () => {
+        const fetchSubClusters2 = async () => {
             try {
                 const response = await (fetch('http://localhost:3001/login/staffclusters/staffsubclusters/subclustermanagementpage'));
                 if (!response.ok) {
                     throw new Error('Error fetching subclusters');
                 }
                 const data = await response.json();
-                setSubClusters(data);
+                setSubClusters2(data);
+                console.log(data)
             } catch (error) {
                 console.error('Error: ', error);
             }
             
         }
-        fetchSubClusters();
+        fetchSubClusters2();
     }, []);
     /********************************************* */
 
@@ -176,7 +177,7 @@ const SubClusterManagementPage = () => {
             <ul>
                 {subClusters.map((subcluster) => (
                     <li>
-                        <ManagementSubCluster key={subcluster.id} ID={subcluster.id} subclusterName={subcluster.subclusterName} onClick=""/>
+                        <ManagementSubCluster key={subcluster.id} ID={subcluster.id} subclusterName={subcluster.subclusterName} />
                     </li>
                 ))}
             </ul>
