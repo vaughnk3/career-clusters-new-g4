@@ -22,7 +22,7 @@ const EditNameSubcluster = ({ID}) => {
     const changeSubClusterName = async () => {
         try {
 
-            const response = await(fetch('http://localhost:3001/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-subcluster-name', {
+            const response = await(fetch('http://localhost:3001/subclustermanagementpage/edit-subcluster-name', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

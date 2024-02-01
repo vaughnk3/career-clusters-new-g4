@@ -23,7 +23,7 @@ const EditSalarySubCluster = ({ID}) => {
     const changeSubClusterSalary = async () => {
         try {
 
-            const response = await(fetch('http://localhost:3001/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-subcluster-salary', {
+            const response = await(fetch('http://localhost:3001/subclustermanagementpage/edit-subcluster-salary', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

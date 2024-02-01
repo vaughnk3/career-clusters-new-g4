@@ -23,7 +23,7 @@ const EditDescriptionSubcluster = ({ID}) => {
     const changeSubClusterDescrip = async () => {
         try {
 
-            const response = await(fetch('http://localhost:3001/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-subcluster-descrip', {
+            const response = await(fetch('http://localhost:3001/subclustermanagementpage/edit-subcluster-descrip', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

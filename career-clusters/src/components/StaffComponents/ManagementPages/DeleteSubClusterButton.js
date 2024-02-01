@@ -21,7 +21,7 @@ const DeleteSubClusterButton = ({ID}) => {
     const DeleteSubCluster = async () => {
         try {
 
-            const response = await(fetch('http://localhost:3001/login/staffclusters/staffsubclusters/subclustermanagementpage/delete-subcluster', {
+            const response = await(fetch('http://localhost:3001/subclustermanagementpage/delete-subcluster', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
