@@ -13,6 +13,11 @@ const EditNameButton = ({ID, ClusterName}) => {
         setIsOpen(false);
     }
 
+    // Once the post request occurs, refresh the page so we can see the changes. 
+    const refreshPage = () => {
+        window.location.reload();
+    }
+
     const changeClusterName = async () => {
         try {
 
@@ -33,6 +38,7 @@ const EditNameButton = ({ID, ClusterName}) => {
         }
         console.log('POST request sent from update button')
         setIsOpen(false);
+        refreshPage();
     }
 
     return (
