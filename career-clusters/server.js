@@ -388,6 +388,25 @@ app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-su
 
 
 //************************************************************************/
+// Insert request for adding subcluster into subcluster table
+app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/add-subcluster', (req, res) => {
+  const { newSCName, newSCDescrip, newSCsalary, newSCEdLevel, newSCGrowthRate, clusterID} = req.body;
+  pool.query(
+    'INSERT INTO Subcluster (clusterId, subclusterName) VALUES (?, ?)',
+    [clusterID, newSCName],
+    (error, results, fields) => {
+      if(error) {
+        console.error('Error inserting subcluster: ', error);
+        res.status(500).send('Error inserting subcluster :(');
+      } else {
+        console.log('Inserted into subcuster successfully ', newSCName);
+        res.status(200).send('Subcluster inserted successfully');
+      }
+    }
+  )
+})
+
+//************************************************************************/
 //GENERAL VIEW SELECT ALL CLUSTERS
 app.get('/login/staffclusters/staffsubclusters/subclustermanagementpage/fetch-clusters', (req, res) => {
   console.log('Recieved GET request to /cluster')

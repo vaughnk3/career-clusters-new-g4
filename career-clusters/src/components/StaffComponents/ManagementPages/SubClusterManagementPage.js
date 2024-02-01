@@ -72,7 +72,7 @@ const SubClusterManagementPage = () => {
     const [newSCName, setNewName] = useState('');
     const [newSCSalary, setNewSalary] = useState('');
     const [newSCEdLevel, setNewEdLevel] = useState('');
-    const [newSCGrowtRate, setNewGrowthRate] = useState('');
+    const [newSCGrowthRate, setNewGrowthRate] = useState('');
     const [clusterID, setClusterID] = useState('');
 
     const addSubCluster = async () => {
@@ -83,7 +83,7 @@ const SubClusterManagementPage = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ newSCName, newSCDescrip, newSCSalary, newSCEdLevel, newSCGrowtRate, clusterID })
+                body: JSON.stringify({ newSCName, newSCDescrip, newSCSalary, newSCEdLevel, newSCGrowthRate, clusterID })
             }));
             if (response.ok) {
                 console.log('SubCluster added successfully');
@@ -120,7 +120,7 @@ const SubClusterManagementPage = () => {
 
                             <input type="text" id="subclusterEducation" name="subclusterEducation" placeholder="Enter new ed level" value={newSCEdLevel} onChange={(e) => setNewEdLevel(e.target.value)}></input>
 
-                            <select id="growth-rate" name="rate" value={newSCGrowtRate} onChange={(e) => setNewGrowthRate(e.target.value)} >
+                            <select id="growth-rate" name="rate" value={newSCGrowthRate} onChange={(e) => setNewGrowthRate(e.target.value)} >
                                 <option>Select Growth Rate</option>
                                 <option value="High">High</option>
                                 <option value="Medium">Medium</option>
