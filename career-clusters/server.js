@@ -366,6 +366,26 @@ app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/delete-
 //************************************************************************/
 
 
+//************************************************************************/
+// Update request for updating the growth rate of a subcluster
+app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-subcluster-growthrate', (req, res) => {
+  const { subclusterGrowthRate, ID } = req.body;
+  pool.query(
+    'UPDATE Field SET growthRate = ? WHERE subclusterId = ?',
+    [subclusterGrowthRate, ID],
+    (error, results, fields) => {
+      if(error) {
+        console.error('Error updating Cluster:', error);
+        res.status(500).send('Error updatingCluster');
+      } else {
+        console.log('Cluster name updated successfully   ', ID, subclusterGrowthRate);
+        res.status(200).send('Cluster name updated successfully')
+      }
+    }
+  )
+})
+//************************************************************************/
+
 
 const PORT = 3001;
 app.listen(PORT, () => {
