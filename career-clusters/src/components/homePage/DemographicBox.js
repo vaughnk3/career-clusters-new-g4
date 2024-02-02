@@ -54,6 +54,12 @@ const DemographicBox = () => {
   const [currentAge, setCurrentAge] = useState('');
 
   const navigate = useNavigate();
+
+  const handleAgeChange = (event) => {
+    //do some logic with age check
+    let age = event.target.value;
+    setCurrentAge(age)
+  }
   
 
   const sendDemographicInfo = async () => {
@@ -91,7 +97,7 @@ const DemographicBox = () => {
         </div>
         <div class="demographic-item">
           <h3>Desired Career Field</h3>
-          <select name="dField" class="select">
+          <select name="dField" class="select"> onChange={(e) => setDesiredCareerField(e.target.value)}
             <option value="" disabled selected hidden class="hidden">Select one</option>
             {clusters.map((cluster) => (
                 <option key={cluster.id} value={cluster.id} >
@@ -102,7 +108,7 @@ const DemographicBox = () => {
         </div>
         <div class="demographic-item">
           <h3>Grade *</h3>
-          <select name="grade" class="select">
+          <select name="grade" class="select" onChange={(e) => setGradeLevel(e.target.value)}>
           <option value="" disabled selected hidden class="hidden">Select one</option>
            <option value="1">1</option>
            <option value="2">2</option>
@@ -120,7 +126,7 @@ const DemographicBox = () => {
         </div>
         <div class="demographic-item">
           <h3>Age</h3>
-          <input type="number" class="select" name="fname" placeholder='Please input your age here'></input>
+          <input type="number" class="select" name="fname" placeholder='Please input your age here' onChange={handleAgeChange}></input>
         </div>
       </div>
 
