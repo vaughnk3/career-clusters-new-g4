@@ -50,6 +50,25 @@ app.get('/school', (req, res) => {
 })
 //************************************************************************/
 
+//************************************************************************/
+// Send collected demographic information to database
+app.post('/demographicinfo', (req, res) => {
+  const { school, gradeLevel, desiredCareerField, currentAge } = req.body;
+  pool.query(
+    'INSERT INTO UserDemographicInfo (userID, school, gradeLevel, desiredCareerField, currentAge) VALUES (NULL, ?, ?, ?, ?)',
+    [school, gradeLevel, desiredCareerField, currentAge ],
+    (error, results, fields) => {
+      if(error) {
+        console.error("Error adding demographic information: ", error);
+        res.status(500).send("Error adding demographic information");
+      } else {
+        console.log("Added demographic information successfully");
+        res.status(200).send("Added demographic information successfully");
+      }
+    }
+  )
+})
+//************************************************************************/
 
 //************************************************************************/
 //GENERAL VIEW SELECT ALL CLUSTERS

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import './DemographicBox.css';
 
 
@@ -14,7 +15,7 @@ const DemographicBox = () => {
                   throw new Error('Error fetching schools');
               }
               const data = await response.json();
-              console.log(data)
+              //console.log(data)
 
               setSchools(data);
               
@@ -25,7 +26,7 @@ const DemographicBox = () => {
       fetchSchools();
   }, []);
 
-  //FETCH CLUSTERS
+  // fetch clusters
   const [clusters, setClusters] = useState([]);
 
   useEffect(() => {
@@ -36,7 +37,7 @@ const DemographicBox = () => {
                   throw new Error('Error fetching clusters');
               }
               const data = await response.json();
-              console.log(data)
+              //console.log(data)
 
               setClusters(data);
               
@@ -47,12 +48,39 @@ const DemographicBox = () => {
       fetchClusters();
   }, []);
 
+  const [school, setSchool] = useState('');
+  const [gradeLevel, setGradeLevel] = useState('');
+  const [desiredCareerField, setDesiredCareerField] = useState('');
+  const [currentAge, setCurrentAge] = useState('');
+
+  const navigate = useNavigate();
+  
+
+  const sendDemographicInfo = async () => {
+    try {
+        const response = await(fetch('http://localhost:3001/demographicinfo', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify([school, gradeLevel, desiredCareerField, currentAge])
+        }));
+        if (!response.ok)
+            console.error('Failed to send demographic information');
+    }   catch (error) {
+        console.error('Error sending demographic information: ', error);
+    }
+    console.log('POST request sent from submit button');
+
+    navigate('/cluster');
+  }
+
   return ( 
     <div id="demographic-box">
       <div id="demographic-box-container">
         <div class="demographic-item">
           <h3>School *</h3>
-          <select id="school-select" name="school" class="select">
+          <select id="school-select" name="school" class="select" onChange={(e) => setSchool(e.target.value)}>
             <option value="" disabled selected hidden className="hidden">Select one</option>
             {schools.map((school) => (
                 <option key={school.id} value={school.id} >
@@ -97,7 +125,7 @@ const DemographicBox = () => {
       </div>
 
 
-      <a href="/cluster" id="submit-button">Submit</a>
+      <a href="#" id="submit-button" onClick={sendDemographicInfo}>Submit</a>
     </div>
   );
 };
