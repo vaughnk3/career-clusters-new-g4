@@ -58,7 +58,7 @@ const DemographicBox = () => {
   const handleAgeChange = (event) => {
     //do some logic with age check
     let age = event.target.value;
-    setCurrentAge(age)
+    setCurrentAge(age);
   }
   
 
@@ -69,7 +69,7 @@ const DemographicBox = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify([school, gradeLevel, desiredCareerField, currentAge])
+            body: JSON.stringify({school, gradeLevel, desiredCareerField, currentAge})
         }));
         if (!response.ok)
             console.error('Failed to send demographic information');
@@ -86,7 +86,7 @@ const DemographicBox = () => {
       <div id="demographic-box-container">
         <div class="demographic-item">
           <h3>School *</h3>
-          <select id="school-select" name="school" class="select" onChange={(e) => setSchool(e.target.value)}>
+          <select id="school-select" name="school" class="select" onChange={(e) => setSchool(e.target.selectedOptions[0].text)}>
             <option value="" disabled selected hidden className="hidden">Select one</option>
             {schools.map((school) => (
                 <option key={school.id} value={school.id} >
@@ -97,7 +97,7 @@ const DemographicBox = () => {
         </div>
         <div class="demographic-item">
           <h3>Desired Career Field</h3>
-          <select name="dField" class="select"> onChange={(e) => setDesiredCareerField(e.target.value)}
+          <select name="dField" class="select" onChange={(e) => setDesiredCareerField(e.target.selectedOptions[0].text)} >
             <option value="" disabled selected hidden class="hidden">Select one</option>
             {clusters.map((cluster) => (
                 <option key={cluster.id} value={cluster.id} >
@@ -126,7 +126,7 @@ const DemographicBox = () => {
         </div>
         <div class="demographic-item">
           <h3>Age</h3>
-          <input type="number" class="select" name="fname" placeholder='Please input your age here' onChange={handleAgeChange}></input>
+          <input type="number" class="select" name="fname" placeholder='Please input your age here' value={currentAge} onChange={handleAgeChange}></input>
         </div>
       </div>
 

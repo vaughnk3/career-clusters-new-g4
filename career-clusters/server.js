@@ -54,6 +54,7 @@ app.get('/school', (req, res) => {
 // Send collected demographic information to database
 app.post('/demographicinfo', (req, res) => {
   const { school, gradeLevel, desiredCareerField, currentAge } = req.body;
+  console.log(school + ", " + gradeLevel + ", " + desiredCareerField + ", " + currentAge);
   pool.query(
     'INSERT INTO UserDemographicInfo (userID, school, gradeLevel, desiredCareerField, currentAge) VALUES (NULL, ?, ?, ?, ?)',
     [school, gradeLevel, desiredCareerField, currentAge ],
