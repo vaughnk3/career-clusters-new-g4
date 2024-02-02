@@ -12,7 +12,7 @@ const SubClusterManagementPage = () => {
     const[subClusters2, setSubClusters2] = useState([]);
 
     const handleBackButton = () => {
-        navigate('/login/staffclusters/staffsubclusters')
+        navigate('/login/staffclusters/')
     }
 
     // Once the post request occurs, refresh the page so we can see the changes. 
@@ -24,7 +24,7 @@ const SubClusterManagementPage = () => {
     useEffect(() => {
         const fetchSubClusters2 = async () => {
             try {
-                const response = await (fetch('http://localhost:3001/login/staffclusters/staffsubclusters/subclustermanagementpage'));
+                const response = await (fetch('http://localhost:3001/subclustermanagementpage'));
                 if (!response.ok) {
                     throw new Error('Error fetching subclusters');
                 }
@@ -47,7 +47,7 @@ const SubClusterManagementPage = () => {
     useEffect(() => {
         const fetchClusters = async () => {
             try { 
-                const response = await (fetch('http://localhost:3001/login/staffclusters/staffsubclusters/subclustermanagementpage/fetch-clusters'));
+                const response = await (fetch('http://localhost:3001/subclustermanagementpage/fetch-clusters'));
                 if(!response.ok) {
                     throw new Error('Error fetching clusters');
                 }
@@ -80,7 +80,7 @@ const SubClusterManagementPage = () => {
     const addSubCluster = async () => {
         const subclusterID = 0;
         try {
-            const response = await(fetch('http://localhost:3001/login/staffclusters/staffsubclusters/subclustermanagementpage/add-subcluster', {
+            const response = await(fetch('http://localhost:3001/subclustermanagementpage/add-subcluster', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -102,7 +102,7 @@ const SubClusterManagementPage = () => {
         console.log('SubCluster added successfully with ID between: ', subclusterID);
 
         try {
-            const response = await(fetch('http://localhost:3001/login/staffclusters/staffsubclusters/subclustermanagementpage/add-subcluster-field', {
+            const response = await(fetch('http://localhost:3001/subclustermanagementpage/add-subcluster-field', {
                 method: 'POST',
                 headers: {
                     'Content-Type' : 'application/json'

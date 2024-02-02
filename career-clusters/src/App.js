@@ -40,7 +40,7 @@ function App() {
         <Route path="/login/adminpage/createstaffpage" element={<CreateStaffAccount/>} />
 
         <Route path="/login/staffclusters/clustermanagementpage" element={<ClusterManagementPage/>} />
-        <Route path="/login/staffclusters/staffsubclusters/subclustermanagementpage" element={<SubClusterManagementPage/>} />
+        <Route path="/subclustermanagementpage" element={<SubClusterManagementPage/>} />
       </Routes>
     </Router>
   );

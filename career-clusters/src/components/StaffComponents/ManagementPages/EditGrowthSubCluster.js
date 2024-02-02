@@ -30,7 +30,7 @@ const EditGrowthSubCluster = ({ID}) => {
     const changeSubClusterGrowthRate = async () => {
         try {
 
-            const response = await(fetch('http://localhost:3001/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-subcluster-growthrate', {
+            const response = await(fetch('http://localhost:3001/subclustermanagementpage/edit-subcluster-growthrate', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

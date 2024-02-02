@@ -32,6 +32,7 @@ pool.getConnection((err, connection) => {
   }
 })
 
+
 //************************************************************************/
 // Get list of schools for demographic page
 app.get('/school', (req, res) => {
@@ -49,6 +50,25 @@ app.get('/school', (req, res) => {
 })
 //************************************************************************/
 
+//************************************************************************/
+// Send collected demographic information to database
+app.post('/demographicinfo', (req, res) => {
+  const { school, gradeLevel, desiredCareerField, currentAge } = req.body;
+  pool.query(
+    'INSERT INTO UserDemographicInfo (userID, school, gradeLevel, desiredCareerField, currentAge) VALUES (NULL, ?, ?, ?, ?)',
+    [school, gradeLevel, desiredCareerField, currentAge ],
+    (error, results, fields) => {
+      if(error) {
+        console.error("Error adding demographic information: ", error);
+        res.status(500).send("Error adding demographic information");
+      } else {
+        console.log("Added demographic information successfully");
+        res.status(200).send("Added demographic information successfully");
+      }
+    }
+  )
+})
+//************************************************************************/
 
 //************************************************************************/
 //GENERAL VIEW SELECT ALL CLUSTERS
@@ -67,43 +87,6 @@ app.get('/cluster', (req, res) => {
 })
 //************************************************************************/
 
-
-//************************************************************************/
-//SELECT ALL SUBCLUSTERS PERTAINING TO THE CLUSTER ID PASSED IN FOR GENERAL VIEW
-app.get('/cluster/subcluster/:clusterId', (req, res) => {
-  const clusterId = req.params.clusterId;
-  console.log(`Received GET request to /cluster/subcluster/${clusterId}`);
-  pool.query('SELECT * FROM Subcluster WHERE clusterId = ?', [clusterId], (error, results, fields) => {
-    if(error) {
-      console.error(error);
-      console.log('Sad error fetching information from Subcluster table');
-      res.status(500).send('Error fetching information from Subcluster table in database');
-    } else {
-      res.json(results);
-      console.log('Subcluster results: ', results);
-    }
-  })
-})
-//************************************************************************/
-
-
-//************************************************************************/
-// GET ALL FIELD INFORMATION PERTAINING TO THE SUBCLUSTER ID PASSED FOR GENERAL VIEW.
-app.get('/cluster/subcluster/subclusterinfo/:subclusterId', (req, res) => {
-  const subclusterId = req.params.subclusterId;
-  console.log(`Recieved GET request to /cluster/subcluster/subclusterinfo/${subclusterId}`);
-  pool.query('SELECT * FROM Field WHERE subclusterId = ?', [subclusterId], (error, results, fields) => {
-    if(error) {
-      console.error(error);
-      console.log('Sad error fetching information from Fields table');
-      res.status(500).send('Error fetching information from Fields table in database');
-    } else {
-      res.json(results);
-      console.log('Field results: ', results);
-    }
-  })
-})
-//************************************************************************/
 
 
 //************************************************************************/
@@ -141,43 +124,24 @@ app.get('/login/staffclusters', (req, res) => {
 })
 //************************************************************************/
 
-
 //************************************************************************/
-//GRAB SUB CLUSTERS FOR STAFF /ADMIN VIEW
-app.get('/login/staffclusters/staffsubclusters/:clusterId', (req, res) => {
-  const clusterId = req.params.clusterId;
-  console.log(`Received GET request to /cluster/subcluster/${clusterId}`);
-  pool.query('SELECT * FROM Subcluster WHERE clusterId = ?', [clusterId], (error, results, fields) => {
+// Gets all the subclusters to be displayed on subcluster managment page
+app.get('/subclustermanagementpage', (req, res) => {
+  console.log('JDFSJFDLKFHJSKDFHKJDSHFK')
+  pool.query('SELECT * FROM Subcluster', (error, results, fields) => {
     if(error) {
       console.error(error);
-      console.log('Sad error fetching information from Subcluster table');
-      res.status(500).send('Error fetching information from Subcluster table in database');
+      console.log('Sad error fetching information from Cluster table')
+      res.status(500).send('Error fetching information from Cluster table in database')
     } else {
       res.json(results);
-      console.log('Subcluster results: ', results);
+      console.log('Subcluster :) results: ', results)
     }
   })
 })
-//************************************************************************/
-
 
 //************************************************************************/
-//GRAB ALL SUBCLUSTER FIEDLDS -- THIS IS FOR STAFF VIEW /ADMIN
-app.get('/login/staffclusters/staffsubclusters/staffsubclusterinfo/:subclusterId', (req, res) => {
-  const subclusterId = req.params.subclusterId;
-  console.log(`Recieved GET request to /cluster/subcluster/subclusterinfo/${subclusterId}`);
-  pool.query('SELECT * FROM Field WHERE subclusterId = ?', [subclusterId], (error, results, fields) => {
-    if(error) {
-      console.error(error);
-      console.log('Sad error fetching information from Fields table');
-      res.status(500).send('Error fetching information from Fields table in database');
-    } else {
-      res.json(results);
-      console.log('Field results: ', results);
-    }
-  })
-})
-//************************************************************************/
+
 
 //************************************************************************/
 //ADD CLUSTER
@@ -197,7 +161,7 @@ app.post('/login/staffclusters/clustermanagementpage/add-cluster', (req, res) =>
     }
   )
 })
-//************************************************************************/
+//*********************************************************************kek***/
 
 
 //************************************************************************/
@@ -243,27 +207,8 @@ app.post('/login/staffclusters/clustermanagementpage/delete-cluster', (req, res)
 
 
 //************************************************************************/
-// Gets all the subclusters to be displayed on subcluster managment page
-app.get('/login/staffclusters/staffsubclusters/subclustermanagementpage', (req, res) => {
-  console.log('JDFSJFDLKFHJSKDFHKJDSHFK')
-  pool.query('SELECT * FROM Subcluster', (error, results, fields) => {
-    if(error) {
-      console.error(error);
-      console.log('Sad error fetching information from Cluster table')
-      res.status(500).send('Error fetching information from Cluster table in database')
-    } else {
-      res.json(results);
-      console.log('Subcluster :) results: ', results)
-    }
-  })
-})
-
-//************************************************************************/
-
-
-//************************************************************************/
 // Update request to update a subcluster name based on ID
-app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-subcluster-name', (req, res) => {
+app.post('/subclustermanagementpage/edit-subcluster-name', (req, res) => {
   const { subclusterName, ID } = req.body;
   pool.query(
     'UPDATE Subcluster SET subclusterName = ? WHERE id = ?',
@@ -284,7 +229,7 @@ app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-su
 
 //************************************************************************/
 //Update request for updating a subcluster's description
-app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-subcluster-descrip', (req, res) => {
+app.post('/subclustermanagementpage/edit-subcluster-descrip', (req, res) => {
   const { subclusterDescrip, ID } = req.body;
   pool.query(
     'UPDATE Field SET description = ? WHERE subclusterId = ?',
@@ -305,7 +250,7 @@ app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-su
 
 //************************************************************************/
 // Update request for updating the education level of a subcluster
-app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-subcluster-education', (req, res) => {
+app.post('/subclustermanagementpage/edit-subcluster-education', (req, res) => {
   const { subclusterEducation, ID } = req.body;
   pool.query(
     'UPDATE Field SET educationLvl = ? WHERE subclusterId = ?',
@@ -326,7 +271,7 @@ app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-su
 
 //************************************************************************/
 // Update request for updating the salary of a subcluster
-app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-subcluster-salary', (req, res) => {
+app.post('/subclustermanagementpage/edit-subcluster-salary', (req, res) => {
   const { subclusterSalary, ID } = req.body;
   pool.query(
     'UPDATE Field SET avgSalary = ? WHERE subclusterId = ?',
@@ -347,7 +292,7 @@ app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-su
 
 //************************************************************************/
 //DELETE SUBCLUSTER
-app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/delete-subcluster', (req, res) => {
+app.post('/subclustermanagementpage/delete-subcluster', (req, res) => {
   const { ID } = req.body;
   pool.query(
     'DELETE FROM Subcluster WHERE id = ?',
@@ -368,7 +313,7 @@ app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/delete-
 
 //************************************************************************/
 // Update request for updating the growth rate of a subcluster
-app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-subcluster-growthrate', (req, res) => {
+app.post('/subclustermanagementpage/edit-subcluster-growthrate', (req, res) => {
   const { subclusterGrowthRate, ID } = req.body;
   pool.query(
     'UPDATE Field SET growthRate = ? WHERE subclusterId = ?',
@@ -389,7 +334,7 @@ app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/edit-su
 
 //************************************************************************/
 // Insert request for adding subcluster into subcluster table
-app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/add-subcluster', (req, res) => {
+app.post('/subclustermanagementpage/add-subcluster', (req, res) => {
   const { newSCName, clusterID} = req.body;
   pool.query(
     'INSERT INTO Subcluster (clusterId, subclusterName) VALUES (?, ?)',
@@ -408,7 +353,7 @@ app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/add-sub
   )
 })
 
-app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/add-subcluster-field', (req, res) => {
+app.post('/subclustermanagementpage/add-subcluster-field', (req, res) => {
   const { subclusterID, newSCName, newSCDescrip, newSCsalary, newSCEdLevel, newSCGrowthRate} = req.body;
   pool.query(
     'INSERT INTO Field (subclusterID, fieldName, description, avgSalary, educationLvl, growthRate) VALUES (?, ?, ?, ?, ?, ?)',
@@ -427,7 +372,7 @@ app.post('/login/staffclusters/staffsubclusters/subclustermanagementpage/add-sub
 
 //************************************************************************/
 //GENERAL VIEW SELECT ALL CLUSTERS
-app.get('/login/staffclusters/staffsubclusters/subclustermanagementpage/fetch-clusters', (req, res) => {
+app.get('/subclustermanagementpage/fetch-clusters', (req, res) => {
   console.log('Recieved GET request to /cluster')
   pool.query('SELECT * FROM Cluster ORDER BY clusterName', (error, results, fields) => {
     if(error) {
@@ -442,6 +387,77 @@ app.get('/login/staffclusters/staffsubclusters/subclustermanagementpage/fetch-cl
 })
 //************************************************************************/
 
+//************************************************************************/
+//SELECT ALL SUBCLUSTERS PERTAINING TO THE CLUSTER ID PASSED IN FOR GENERAL VIEW
+app.get('/cluster/subcluster/:clusterId', (req, res) => {
+  const clusterId = req.params.clusterId;
+  console.log(`Received GET request to /cluster/subcluster/${clusterId}`);
+  pool.query('SELECT * FROM Subcluster WHERE clusterId = ?', [clusterId], (error, results, fields) => {
+    if(error) {
+      console.error(error);
+      console.log('Sad error fetching information from Subcluster table');
+      res.status(500).send('Error fetching information from Subcluster table in database');
+    } else {
+      res.json(results);
+      console.log('Subcluster results: ', results);
+    }
+  })
+})
+//************************************************************************/
+
+//************************************************************************/
+//GRAB SUB CLUSTERS FOR STAFF /ADMIN VIEW
+app.get('/login/staffclusters/staffsubclusters/:clusterId', (req, res) => {
+  const clusterId = req.params.clusterId;
+  console.log(`Received GET request to /cluster/subcluster/${clusterId}`);
+  pool.query('SELECT * FROM Subcluster WHERE id = ?', [clusterId], (error, results, fields) => {
+    if(error) {
+      console.error(error);
+      console.log('Sad error fetching information from Subcluster table');
+      res.status(500).send('Error fetching information from Subcluster table in database');
+    } else {
+      res.json(results);
+      console.log('Subcluster results: ', results);
+    }
+  })
+})
+//************************************************************************/
+
+//************************************************************************/
+// GET ALL FIELD INFORMATION PERTAINING TO THE SUBCLUSTER ID PASSED FOR GENERAL VIEW.
+app.get('/cluster/subcluster/subclusterinfo/:subclusterId', (req, res) => {
+  const subclusterId = req.params.subclusterId;
+  console.log(`Recieved GET request to /cluster/subcluster/subclusterinfo/${subclusterId}`);
+  pool.query('SELECT * FROM Field WHERE subclusterId = ?', [subclusterId], (error, results, fields) => {
+    if(error) {
+      console.error(error);
+      console.log('Sad error fetching information from Fields table');
+      res.status(500).send('Error fetching information from Fields table in database');
+    } else {
+      res.json(results);
+      console.log('Field results: ', results);
+    }
+  })
+})
+//************************************************************************/
+
+//************************************************************************/
+//GRAB ALL SUBCLUSTER FIEDLDS -- THIS IS FOR STAFF VIEW /ADMIN
+app.get('/login/staffclusters/staffsubclusters/staffsubclusterinfo/:subclusterId', (req, res) => {
+  const subclusterId = req.params.subclusterId;
+  console.log(`Recieved GET request to /cluster/subcluster/subclusterinfo/${subclusterId}`);
+  pool.query('SELECT * FROM Field WHERE subclusterId = ?', [subclusterId], (error, results, fields) => {
+    if(error) {
+      console.error(error);
+      console.log('Sad error fetching information from Fields table');
+      res.status(500).send('Error fetching information from Fields table in database');
+    } else {
+      res.json(results);
+      console.log('Field results: ', results);
+    }
+  })
+})
+//************************************************************************/
 
 const PORT = 3001;
 app.listen(PORT, () => {
