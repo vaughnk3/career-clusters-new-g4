@@ -28,7 +28,6 @@ const ClusterManagementPage = () => {
 
     const addCluster = async () => {
         try {
-
             const response = await(fetch('http://localhost:3001/login/staffclusters/clustermanagementpage/add-cluster', {
                 method: 'POST',
                 headers: {

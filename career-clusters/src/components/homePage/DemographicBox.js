@@ -56,29 +56,40 @@ const DemographicBox = () => {
   const navigate = useNavigate();
 
   const handleAgeChange = (event) => {
-    //do some logic with age check
-    let age = event.target.value;
-    setCurrentAge(age);
+    var age = event.target.value;
+    if (age > 0 && age <= 150)
+      setCurrentAge(age);
   }
   
+  const getAge = () => {
+    return currentAge;
+  }
 
   const sendDemographicInfo = async () => {
-    try {
-        const response = await(fetch('http://localhost:3001/demographicinfo', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({school, gradeLevel, desiredCareerField, currentAge})
-        }));
-        if (!response.ok)
-            console.error('Failed to send demographic information');
-    }   catch (error) {
-        console.error('Error sending demographic information: ', error);
+    if (school == "" || gradeLevel == "") {
+      console.log("something missing!");
     }
-    console.log('POST request sent from submit button');
+    else {
+      // doesnt work yet
+      //var age = (currentAge != "" ? currentAge : 0); 
 
-    navigate('/cluster');
+      try {
+          const response = await(fetch('http://localhost:3001/demographicinfo', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({school, gradeLevel, desiredCareerField, currentAge})
+          }));
+          if (!response.ok)
+              console.error('Failed to send demographic information');
+      }   catch (error) {
+          console.error('Error sending demographic information: ', error);
+      }
+      console.log('POST request sent from submit button');
+
+      navigate('/cluster');
+    }
   }
 
   return ( 
