@@ -3,35 +3,50 @@ import './DemographicBox.css';
 
 
 const DemographicBox = () => {
+  // fetch schools
+  const [schools, setSchools] = useState([]);
+
   useEffect(() => {
-    const fetchSchools = async () => {
-        try {
-            const response = await (fetch('http://localhost:3001/school'));
-            if(!response.ok) {
-                throw new Error('Error fetching schools');
-            }
-            const data = await response.json();
+      const fetchSchools = async () => {
+          try { 
+              const response = await (fetch('http://localhost:3001/school'));
+              if(!response.ok) {
+                  throw new Error('Error fetching schools');
+              }
+              const data = await response.json();
+              console.log(data)
 
-            var schoolSelect = document.getElementById("school-select");
+              setSchools(data);
+              
+          } catch (error) {
+              console.error('Error: ', error);
+          }
+      }
+      fetchSchools();
+  }, []);
 
-            // Temporary(?) solution because this fetch happens twice for some reason
-            for (var i = schoolSelect.options.length; i > 0; i--) {
-              schoolSelect.remove(i);
-            }
+  //FETCH CLUSTERS
+  const [clusters, setClusters] = useState([]);
 
-            for (var i = 0; i < data.length; i++) {
-              var option = document.createElement("option");
-              option.text = data[i].schoolName;
-              schoolSelect.appendChild(option);
-            }
-            
-        } catch (error) {
-            console.error('Error: ', error);
-        }
-    }
-    fetchSchools();
-}, []);
-  
+  useEffect(() => {
+      const fetchClusters = async () => {
+          try { 
+              const response = await (fetch('http://localhost:3001/cluster'));
+              if(!response.ok) {
+                  throw new Error('Error fetching clusters');
+              }
+              const data = await response.json();
+              console.log(data)
+
+              setClusters(data);
+              
+          } catch (error) {
+              console.error('Error: ', error);
+          }
+      }
+      fetchClusters();
+  }, []);
+
   return ( 
     <div id="demographic-box">
       <div id="demographic-box-container">
@@ -39,17 +54,22 @@ const DemographicBox = () => {
           <h3>School *</h3>
           <select id="school-select" name="school" class="select">
             <option value="" disabled selected hidden className="hidden">Select one</option>
+            {schools.map((school) => (
+                <option key={school.id} value={school.id} >
+                    {school.schoolName}
+                </option>
+            ))}
           </select>
         </div>
         <div class="demographic-item">
           <h3>Desired Career Field</h3>
           <select name="dField" class="select">
             <option value="" disabled selected hidden class="hidden">Select one</option>
-           <option value="finance">Finance</option>
-           <option value="medcare">Medical Care</option>
-           <option value="compsci">Computer Science</option>
-           <option value="bio">Biology</option>
-           <option value="bsiness">Business</option>
+            {clusters.map((cluster) => (
+                <option key={cluster.id} value={cluster.id} >
+                    {cluster.clusterName}
+                </option>
+            ))}
           </select>
         </div>
         <div class="demographic-item">
