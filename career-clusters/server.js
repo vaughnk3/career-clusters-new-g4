@@ -410,7 +410,7 @@ app.get('/cluster/subcluster/:clusterId', (req, res) => {
 app.get('/login/staffclusters/staffsubclusters/:clusterId', (req, res) => {
   const clusterId = req.params.clusterId;
   console.log(`Received GET request to /cluster/subcluster/${clusterId}`);
-  pool.query('SELECT * FROM Subcluster WHERE id = ?', [clusterId], (error, results, fields) => {
+  pool.query('SELECT * FROM Subcluster WHERE clusterId = ?', [clusterId], (error, results, fields) => {
     if(error) {
       console.error(error);
       console.log('Sad error fetching information from Subcluster table');
