@@ -18,7 +18,9 @@ const StaffSubClusters = () => {
     }
 
     const handleSubclusterManagementClick = () => {
-      navigate('/login/staffclusters/staffsubclusters/subclustermanagementpage')
+      navigate('/subclustermanagementpage')
+      ///subclustermanagementpage
+      //login/staffclusters/staffsubclusters/subclustermanagementpage
     }
 
     const { clusterId } = useParams();
