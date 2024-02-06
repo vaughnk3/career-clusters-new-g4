@@ -34,6 +34,46 @@ pool.getConnection((err, connection) => {
 
 
 //************************************************************************/
+//Excel sheet get cluster names and click rates. 
+app.get('/excel-clusters', (req, res) => {
+  console.log('Recieved GET request to /cluster')
+  pool.query('SELECT clusterName, clickCount FROM Cluster', (error, results, fields) => {
+    if(error) {
+      console.error(error);
+      console.log('Sad error fetching information from Cluster table')
+      res.status(500).send('Error fetching information from Cluster table in database')
+    } else {
+      res.json(results);
+      console.log('Cluster results: ', results)
+    }
+  })
+})
+//************************************************************************/
+
+
+
+//************************************************************************/
+//GENERAL VIEW SELECT ALL CLUSTERS
+app.get('/gen-subclusters', (req, res) => {
+  console.log('Recieved GET request to /cluster')
+  pool.query('SELECT subclusterName, clickCount FROM Subcluster', (error, results, fields) => {
+    if(error) {
+      console.error(error);
+      console.log('Sad error fetching information from Cluster table')
+      res.status(500).send('Error fetching information from Cluster table in database')
+    } else {
+      res.json(results);
+      console.log('Cluster results: ', results)
+    }
+  })
+})
+//************************************************************************/
+
+
+
+
+
+//************************************************************************/
 // Get list of schools for demographic page
 app.get('/school', (req, res) => {
   console.log('Recieved GET request to /school')
