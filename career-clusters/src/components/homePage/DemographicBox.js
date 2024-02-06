@@ -51,7 +51,7 @@ const DemographicBox = () => {
   const [school, setSchool] = useState('');
   const [gradeLevel, setGradeLevel] = useState('');
   const [desiredCareerField, setDesiredCareerField] = useState('');
-  const [currentAge, setCurrentAge] = useState('');
+  const [currentAge, setCurrentAge] = useState(null);
 
   const navigate = useNavigate();
 
@@ -60,19 +60,12 @@ const DemographicBox = () => {
     if (age > 0 && age <= 150)
       setCurrentAge(age);
   }
-  
-  const getAge = () => {
-    return currentAge;
-  }
 
   const sendDemographicInfo = async () => {
     if (school == "" || gradeLevel == "") {
       console.log("something missing!");
     }
     else {
-      // doesnt work yet
-      //var age = (currentAge != "" ? currentAge : 0); 
-
       try {
           const response = await(fetch('http://localhost:3001/demographicinfo', {
               method: 'POST',
