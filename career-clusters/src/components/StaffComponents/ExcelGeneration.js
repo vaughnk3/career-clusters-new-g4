@@ -128,6 +128,7 @@ export async function ExcelGenerationQueue()
 
     //This doesnt work dog idk why :()
 
+    /*
      //Set the colors of the column headers to chamber colors
      const lightBlue = { fill: { patternType:"solid", bgColor: { rgb: '59bab6' } } };
      setCellStyle(ws, 'A1', lightBlue);
@@ -139,8 +140,8 @@ export async function ExcelGenerationQueue()
      let newCellB = ' ' + numClusters;
      //setCellColor(ws, newCellA, lightBlue);
      //setCellColor(ws, newCellB, lightBlue);
+    */
 
- 
 
     adjustColumnWidth(ws, 0, 40);
     adjustColumnWidth(ws, 1, 40);
