@@ -17,6 +17,7 @@ import ModifyPermsPage from './components/StaffComponents/AdminPrivComponents/Mo
 import CreateStaffAccount from './components/StaffComponents/AdminPrivComponents/CreateStaffAccount';
 import ClusterManagementPage from './components/StaffComponents/ManagementPages/ClusterManagementPage';
 import SubClusterManagementPage from './components/StaffComponents/ManagementPages/SubClusterManagementPage';
+import ProtectedRoute from './components/StaffComponents/StaffClusters.js';
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
 
         <Route path="/login" element={<LoginPage />} />
 
-        <Route path="/login/staffclusters" element={<StaffClusters/>} />
+        <Route path="/login/staffclusters" element={<ProtectedRoute><StaffClusters/></ProtectedRoute>} />
         <Route path="/login/staffclusters/staffsubclusters/:clusterId" element={<StaffSubClusters/>} />
         <Route path="/login/staffclusters/staffsubclusters/staffsubclusterinfo/:subclusterId" element={<StaffSubFields/>} />
         <Route path="/login/staffclusters/staffsubclusters/staffsubclusterinfo/staffjoblistings" element={<StaffJobListingPage/>} />
