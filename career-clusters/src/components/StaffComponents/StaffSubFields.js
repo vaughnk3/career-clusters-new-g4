@@ -4,6 +4,8 @@ import OverlayRectangle from "./OverlayRectangle";
 import './StaffSubFields.css'
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
+import { getAuth, signOut } from "firebase/auth";
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
@@ -26,21 +28,69 @@ const StaffSubFields = () => {
       }
       fetchSubFields();
   }, [subclusterId])
+
+
+  const navigate = useNavigate();
+
+
+  const handleClusterClick = (SubID) => {
+      console.log(SubID)
+      navigate('/login/staffclusters/staffsubclusters/staffsubclusterinfo')
+      ///login/staffclusters/staffsubclusters/staffsubclusterinfo
+
+  }
+
+  const handleSubclusterManagementClick = () => {
+    navigate('/subclustermanagementpage')
+  }
+
+
+  const handleButtonClickClusterManagement = () => {
+    navigate('/login/staffclusters/clustermanagementpage');
+  };
+
+
+  const handleButtonClickLogout = async () => {
+    //Logout
+    const auth = getAuth();
+    try {
+      await signOut(auth);
+      console.log("Logout.");
+      navigate('/login');
+    } catch(error) {
+      console.error('Logout error:', error.message);
+    }
+  };
+
+
+  const handleButtonClickExportData = () => {
+    console.log("Export Data");
+  };
+
+
+  const handleButtonClickStaff = () => {
+    //Need to check whether or not user has correct permissions. 
+    navigate('/login/adminpage');
+  };
   
   const field = subFields.length > 0 ? subFields[0] : {};
 
     return (
         <div id="page">
           <div className="overlay">
-            <div class="staff-button-column">
-              <a class="staff-button">Field Management</a>
-              <a class="staff-button">Logout</a>
+            <div class="staff-button-column-one">
+              <a class="staff-button" onClick={handleButtonClickClusterManagement}>Cluster Management</a>
+              <a class="staff-button" onClick={handleButtonClickLogout}>Logout</a>
             </div>
-            <div class="staff-button-column">
-              <a class="staff-button">Staff Management</a>
-              <a class="staff-button">Export Data (.xlsx)</a>
-          </div>    
-          </div>   
+            <div class="staff-button-column-two">
+              <a class="staff-button" onClick={handleButtonClickStaff}>Admin Landing Page</a>
+              <a class="staff-button" onClick={handleButtonClickExportData}>Export Data (.xlsx)</a>
+            </div>
+            <div class="staff-button-column-three">
+              <a class="staff-button" onClick={handleSubclusterManagementClick}>SubCluster Management</a>
+              <a class="staff-button">Pathways Management</a>
+            </div>
+          </div>
           <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
             <div id="content">
                 <div id="row">

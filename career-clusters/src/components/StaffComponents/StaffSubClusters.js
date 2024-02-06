@@ -1,13 +1,11 @@
-//import SubClusterPage from "../subCluster_Components/SubClusterPage";
-//import OverlayRectangle from "./OverlayRectangle";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
-//import Cluster from "../cluster_Components/Cluster.js";
 import { useParams } from 'react-router-dom';
 import SubCluster_S from "./SubCluster_S";
+import { getAuth, signOut } from "firebase/auth";
 
 const StaffSubClusters = () => {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
 
     const handleClusterClick = (SubID) => {
@@ -19,9 +17,36 @@ const StaffSubClusters = () => {
 
     const handleSubclusterManagementClick = () => {
       navigate('/subclustermanagementpage')
-      ///subclustermanagementpage
-      //login/staffclusters/staffsubclusters/subclustermanagementpage
     }
+
+
+    const handleButtonClickClusterManagement = () => {
+      navigate('/login/staffclusters/clustermanagementpage');
+    };
+
+
+    const handleButtonClickLogout = async () => {
+      //Logout
+      const auth = getAuth();
+      try {
+        await signOut(auth);
+        console.log("Logout.");
+        navigate('/login');
+      } catch(error) {
+        console.error('Logout error:', error.message);
+      }
+    };
+
+
+    const handleButtonClickExportData = () => {
+      console.log("Export Data");
+    };
+
+
+    const handleButtonClickStaff = () => {
+      //Need to check whether or not user has correct permissions. 
+      navigate('/login/adminpage');
+    };
 
     const { clusterId } = useParams();
     const [subclusters, setSubclusters] = useState([]);
@@ -56,13 +81,17 @@ const StaffSubClusters = () => {
                 ))}
             </ul>
             <div className="overlay">
-            <div class="staff-button-column">
-              <a class="staff-button" onClick={handleSubclusterManagementClick} >Sub-Cluster Management</a>
-              <a class="staff-button" >Logout</a>
+            <div class="staff-button-column-one">
+              <a class="staff-button" onClick={handleButtonClickClusterManagement}>Cluster Management</a>
+              <a class="staff-button" onClick={handleButtonClickLogout}>Logout</a>
             </div>
-            <div class="staff-button-column">
-              <a class="staff-button">Staff Management</a>
-              <a class="staff-button">Export Data (.xlsx)</a>
+            <div class="staff-button-column-two">
+              <a class="staff-button" onClick={handleButtonClickStaff}>Admin Landing Page</a>
+              <a class="staff-button" onClick={handleButtonClickExportData}>Export Data (.xlsx)</a>
+            </div>
+            <div class="staff-button-column-three">
+              <a class="staff-button" onClick={handleSubclusterManagementClick}>SubCluster Management</a>
+              <a class="staff-button">Pathways Management</a>
             </div>
           </div>
         </div>

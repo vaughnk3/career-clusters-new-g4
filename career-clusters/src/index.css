@@ -27,27 +27,3 @@ html, body {
 
 }
 
-.staff-button-column {
-  float: right;
-  width: 220px;
-  height: 100%;
-  margin-right: 20px;
-  margin-top: 12px;
-}
-
-.staff-button {
-  display: block;
-  text-align: center;
-  background-color: var(--green);
-  color: black;
-
-  font-size: .8rem;
-
-  padding: 10px 20px;
-  margin-bottom: 12px;
-  border: none;
-  border-radius: 10px;
-
-  text-decoration: none;
-  cursor: pointer;
-}

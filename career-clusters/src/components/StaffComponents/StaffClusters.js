@@ -7,6 +7,7 @@ import Cluster_S from "./Cluster_S";
 import './Cluster_S.css'
 import BottomRectangle from "../page_Components/BottomRectangle";
 import { getAuth, signOut } from "firebase/auth";
+import './StaffClusters.css'
 
 const StaffClusters = () => {
 
@@ -61,8 +62,12 @@ const StaffClusters = () => {
   };
   const handleButtonClickStaff = () => {
     //Need to check whether or not user has correct permissions. 
-    navigate('/login/adminpage/modifyperms');
+    navigate('/login/adminpage');
   };
+
+  const handleSubclusterManagementClick = () => {
+    navigate('/subclustermanagementpage');
+  }
 
 
     return (
@@ -76,13 +81,17 @@ const StaffClusters = () => {
                 ))}
             </li>
           <div className="overlay">
-            <div class="staff-button-column">
+            <div class="staff-button-column-one">
               <a class="staff-button" onClick={handleButtonClickClusterManagement}>Cluster Management</a>
               <a class="staff-button" onClick={handleButtonClickLogout}>Logout</a>
             </div>
-            <div class="staff-button-column">
-              <a class="staff-button" onClick={handleButtonClickStaff}>Staff Management</a>
+            <div class="staff-button-column-two">
+              <a class="staff-button" onClick={handleButtonClickStaff}>Admin Landing Page</a>
               <a class="staff-button" onClick={handleButtonClickExportData}>Export Data (.xlsx)</a>
+            </div>
+            <div class="staff-button-column-three">
+              <a class="staff-button" onClick={handleSubclusterManagementClick}>SubCluster Management</a>
+              <a class="staff-button">Pathways Management</a>
             </div>
           </div>
           <BottomRectangle/>

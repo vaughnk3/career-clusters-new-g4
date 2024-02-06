@@ -10,10 +10,6 @@ body {
 	flex-direction: column;
 }
 
-#test{
-    border: 20px solid red;
-}
-
 #_topRectangle {
     background-color: var(--darkblue);
     color: white;
