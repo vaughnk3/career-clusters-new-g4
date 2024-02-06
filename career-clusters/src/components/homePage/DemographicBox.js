@@ -62,12 +62,16 @@ const DemographicBox = () => {
   }
 
   const sendDemographicInfo = async () => {
-    if (school == "" || gradeLevel == "") {
-      var outlineStyle = '2px solid red';
-      document.getElementById("school-select").style.outline = outlineStyle;
-      document.getElementById("grade").style.outline = outlineStyle;
+    var canSend = true;
+    if (school == "") {
+      document.getElementById("school-select").style.outline = '2px solid red';
+      canSend = false;
     }
-    else {
+    if (gradeLevel == "") {
+      document.getElementById("grade").style.outline = '2px solid red';
+      canSend = false;
+    }
+    if (canSend) {
       try {
           const response = await(fetch('http://localhost:3001/demographicinfo', {
               method: 'POST',
