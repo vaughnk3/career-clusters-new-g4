@@ -1,8 +1,6 @@
-import ClusterPage from "../cluster_Components/ClusterPage";
 import './StaffClusters.css';
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
-import OverlayRectangle from "./OverlayRectangle";
 import './OverlayRectangle.css'
 import { useState , useEffect} from "react";
 import Cluster_S from "./Cluster_S";

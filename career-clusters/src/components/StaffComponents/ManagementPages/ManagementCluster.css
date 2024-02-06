@@ -14,12 +14,13 @@
 }
 
 
+
 .cluster_m:hover {
 	background-color: var(--darkblue);
 	color:white;
 }
 
-.cluster_m h4 {
+.cluster_m h2 {
     width:30%;
     align-self: center;
     margin-left:3%;
