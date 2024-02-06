@@ -51,19 +51,21 @@ const DemographicBox = () => {
   const [school, setSchool] = useState('');
   const [gradeLevel, setGradeLevel] = useState('');
   const [desiredCareerField, setDesiredCareerField] = useState('');
-  const [currentAge, setCurrentAge] = useState(null);
+  const [currentAge, setCurrentAge] = useState(undefined);
 
   const navigate = useNavigate();
 
   const handleAgeChange = (event) => {
     var age = event.target.value;
-    if (age > 0 && age <= 150)
+    if (age > 0 && age <= 200)
       setCurrentAge(age);
   }
 
   const sendDemographicInfo = async () => {
     if (school == "" || gradeLevel == "") {
-      console.log("something missing!");
+      var outlineStyle = '2px solid red';
+      document.getElementById("school-select").style.outline = outlineStyle;
+      document.getElementById("grade").style.outline = outlineStyle;
     }
     else {
       try {
@@ -112,7 +114,7 @@ const DemographicBox = () => {
         </div>
         <div class="demographic-item">
           <h3>Grade *</h3>
-          <select name="grade" class="select" onChange={(e) => setGradeLevel(e.target.value)}>
+          <select id="grade" class="select" onChange={(e) => setGradeLevel(e.target.value)}>
           <option value="" disabled selected hidden class="hidden">Select one</option>
            <option value="1">1</option>
            <option value="2">2</option>
