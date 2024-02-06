@@ -19,7 +19,7 @@ export async function ExcelGenerationQueue()
 
      // Create a new workbook
      const wb = XLSX.utils.book_new();
-     var ws = XLSX.utils.aoa_to_sheet('');
+     let ws = XLSX.utils.aoa_to_sheet('');
      const wsData = [];
 
    
@@ -58,21 +58,8 @@ export async function ExcelGenerationQueue()
     */
     
     //temporary padding
-    wsData.push('', '')
-
-
-/*
-    //Set the colors of the column headers to chamber colors
-    const lightBlue = { fill: { bgColor: { rgb: '59bab6' } } };
-    setCellStyle(ws, 'A1', lightBlue);
-    setCellStyle(ws, 'B1', lightBlue);
-
-    numClusters += 2;
-    let newCellA = 'A' + numClusters;
-    let newCellB = ' ' + numClusters;
-    //setCellColor(ws, newCellA, lightBlue);
-    //setCellColor(ws, newCellB, lightBlue);
-    */
+    wsData.push('', ''); 
+    wsData.push('', '');
 
     console.log(wsData);
     //Now we get the subcluster information and their corresponding click rates. 
@@ -98,8 +85,61 @@ export async function ExcelGenerationQueue()
     }
 
 
+    wsData.push('', '');
+    wsData.push('', '');
+
+
+    try {
+        const dbResponse = await fetch('http://localhost:3001/dem-info');
+        if(!dbResponse.ok) {
+            throw new Error('Error fetching clusters');
+        }
+        const data = await dbResponse.json();
+        console.log(data)
+
+        //Push new column headers
+
+        wsData.push(['Demograpic Information'])
+        wsData.push(['User #', 'School', 'Grade Level', 'Desired Career', 'Age']);
+
+        data.forEach(row => {
+            wsData.push([row.userID, row.school, row.gradeLevel, row.desiredCareerField, row.currentAge])
+        })
+
+        console.log(wsData)
+    } catch (error) 
+    {
+        console.error('Error: ', error);
+    }
+
+
+
+
+
+
+
+
+
+
    
     ws = XLSX.utils.aoa_to_sheet(wsData);
+
+
+
+    //This doesnt work dog idk why :()
+
+     //Set the colors of the column headers to chamber colors
+     const lightBlue = { fill: { fgColor: { rgb: 'FF59bab6' } } };
+     setCellStyle(ws, 'A1', lightBlue);
+     setCellStyle(ws, 'B1', lightBlue);
+ 
+     numClusters += 2;
+     let newCellA = 'A' + numClusters;
+     let newCellB = ' ' + numClusters;
+     //setCellColor(ws, newCellA, lightBlue);
+     //setCellColor(ws, newCellB, lightBlue);
+
+ 
 
     adjustColumnWidth(ws, 0, 50);
 
