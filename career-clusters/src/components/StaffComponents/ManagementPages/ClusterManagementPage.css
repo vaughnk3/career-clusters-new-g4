@@ -72,6 +72,7 @@
         flex-direction:column;
         justify-content: center;
         width:50%;
+        margin-top:-5%;
     }
 
     /*#popupLeft h2 {
@@ -100,16 +101,51 @@
         border-radius: 40px;
         border-color:#98ca41;
         border:3px solid var(--green);
-        width:25%;
+        width:38%;
+        height:180%;
+        margin-right:5%;
     }
 
     .addButton {
         border-radius: 40px;
         border-color:#98ca41;
         border:3px solid var(--green);
-        width:25%;
+        width:38%;
         background-color:var(--green);
+        height:180%;
+        margin-left:5%;
     }
+
+    .popup-content h4 {
+        margin-left:20%;
+        margin-bottom:20%;
+        font-size:25px;
+       
+    }
+
+
+    #clusterName {
+        margin-left:-20%;
+        margin-top:-17%;
+    }
+
+
+    #img {
+        margin-left:-20%;
+        margin-top:-14%;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     .button-row {
         display:flex;
