@@ -111,17 +111,17 @@ export async function ExcelGenerationQueue()
     {
         console.error('Error: ', error);
     }
-
-
-
-
-
-
-
-
-
-
    
+
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString(); // Format date as needed
+    const formattedTime = currentDate.toLocaleTimeString();
+
+
+    wsData[0][3] = 'Current Date: ' + formattedDate;
+    wsData[1][3] = 'Current Time: ' + formattedTime;
+
+
     ws = XLSX.utils.aoa_to_sheet(wsData);
 
 
@@ -129,9 +129,10 @@ export async function ExcelGenerationQueue()
     //This doesnt work dog idk why :()
 
      //Set the colors of the column headers to chamber colors
-     const lightBlue = { fill: { fgColor: { rgb: 'FF59bab6' } } };
+     const lightBlue = { fill: { patternType:"solid", bgColor: { rgb: '59bab6' } } };
      setCellStyle(ws, 'A1', lightBlue);
      setCellStyle(ws, 'B1', lightBlue);
+
  
      numClusters += 2;
      let newCellA = 'A' + numClusters;
@@ -141,7 +142,9 @@ export async function ExcelGenerationQueue()
 
  
 
-    adjustColumnWidth(ws, 0, 50);
+    adjustColumnWidth(ws, 0, 40);
+    adjustColumnWidth(ws, 1, 40);
+    adjustColumnWidth(ws, 3, 40);
 
     // Add the worksheet to the workbook
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
