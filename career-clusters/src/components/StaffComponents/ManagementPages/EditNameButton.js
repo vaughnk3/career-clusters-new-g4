@@ -47,10 +47,12 @@ const EditNameButton = ({ID, ClusterName}) => {
                 {isOpen && (
                     <div className="popup">
                         <div className="popup-content">  
-                            <h2>Test Edit</h2>
+                            <h2>New Name</h2>
                             <input type="text" id="clusterName" name="clusterName" placeholder="Enter the changed cluster name." value={clusterName} onChange={(e) => setClusterName(e.target.value)}></input>
-                            <button id="submitName" onClick={changeClusterName}>Submit</button>
+                            <div class="editbuttonrow">
                             <button onClick={closePopup} className="cancelButton">Cancel</button>
+                            <button id="submitName" onClick={changeClusterName}>Submit</button>
+                            </div>
                         </div>
                     </div>
                 )}

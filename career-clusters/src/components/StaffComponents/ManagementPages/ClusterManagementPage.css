@@ -63,6 +63,8 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         position: relative;
         z-index: 10000;
+        display:flex;
+        flex-flow:row nowrap;
     }
 
 
@@ -101,8 +103,8 @@
         border-radius: 40px;
         border-color:#98ca41;
         border:3px solid var(--green);
-        width:38%;
-        height:180%;
+        width:100px;
+        height:35px;
         margin-right:5%;
     }
 
@@ -110,17 +112,16 @@
         border-radius: 40px;
         border-color:#98ca41;
         border:3px solid var(--green);
-        width:38%;
+        width:100px;
         background-color:var(--green);
-        height:180%;
+        height:35px;
         margin-left:5%;
     }
 
     .popup-content h4 {
         margin-left:20%;
         margin-bottom:20%;
-        font-size:25px;
-       
+        font-size:20px;
     }
 
 
@@ -134,18 +135,6 @@
         margin-left:-20%;
         margin-top:-14%;
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
     .button-row {
         display:flex;

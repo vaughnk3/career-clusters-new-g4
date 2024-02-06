@@ -45,10 +45,12 @@ const DeleteClusterButton = ({ID}) => {
                 <button id="delete" onClick={openPopup}>Delete</button>
                 {isOpen && (
                     <div className="popup">
-                        <div className="popup-content">  
-                            <h2>Test Delete</h2>
+                        <div className="delete-popup-content">  
+                            <h2 id="deleteheader">Test Delete</h2>
+                            <div class="deletebuttonrow">
                             <button onClick={closePopup} className="cancelButton">Cancel</button>
                             <button id="deleteCluster" onClick={deleteCluster}>Delete</button>
+                            </div>
                         </div>
                     </div>
                 )}

@@ -142,12 +142,13 @@
 }
 
 .deleteButton {
-    width:100%;
-    border-radius:20px;
-    border-color: var(--green);
+    border-radius: 40px;
+    border-color:#98ca41;
     border:3px solid var(--green);
-    height:50%;
-    margin-top:25%;
+    width:100px;
+    background-color:var(--green);
+    height:35px;
+    margin-left:5%;
 }
 
 .deleteButton:hover {

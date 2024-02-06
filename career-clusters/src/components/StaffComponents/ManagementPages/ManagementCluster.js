@@ -18,9 +18,11 @@ const ManagementCluster = ({ ID, clusterName, onClick }) => {
         <div className='cluster_m'>
             <img src={require('../../Cluster_Pictures/Mathematics.png')} className="cluster-pics" />
             <h2>{clusterName}</h2>
+            <div class="mgmt_list_right"> 
             <EditNameButton ID={ID} clusterName={clusterName}/>
             <ReplaceImageButton/>
             <DeleteClusterButton ID={ID}/>
+            </div>
         </div>
     )
 }

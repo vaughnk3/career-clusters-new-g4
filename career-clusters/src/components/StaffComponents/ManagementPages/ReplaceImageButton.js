@@ -44,8 +44,10 @@ const ReplaceImageButton = ({ID}) => {
                     <div className="popup-content">  
                         <h2>Test Replace</h2>
                         <input type="file" id="img" name="img" accept="image/*" value={newImage} onChange={(e) => setNewImage(e.target.value)}></input>
-                        <button id="submitImg" onClick={changeClusterImage}>Submit</button>
+                        <div class="replacebuttonrow">
                         <button onClick={closePopup} className="cancelButton">Cancel</button>
+                        <button id="submitImg" onClick={changeClusterImage}>Submit</button>
+                        </div>
                     </div>
                 </div>
             )}

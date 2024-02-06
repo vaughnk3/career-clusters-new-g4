@@ -97,7 +97,7 @@ const ClusterManagementPage = () => {
             </div>
             
             <br></br><br></br><br></br><br></br><br></br><br></br>
-            <ul>
+            <ul class="mgmt_list">
                 {clusters.map((cluster) => (
                     <li>
                         <ManagementCluster key={cluster.id} ID={cluster.id} clusterName={cluster.clusterName} onClick="" />

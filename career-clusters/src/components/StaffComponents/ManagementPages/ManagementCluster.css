@@ -1,19 +1,16 @@
 .cluster_m {
     width: 90%;
-    height: 7rem;
+    height: 5rem;
     margin-bottom:2.5%;
     background-color: #D9D9D9;
     border: 6px solid var(--green);
 	border-radius: 60px;
     margin-left:auto;
     margin-right:auto;
-    
 	display:flex;
 	flex-direction: row;
 	cursor: pointer;
 }
-
-
 
 .cluster_m:hover {
 	background-color: var(--darkblue);
@@ -21,10 +18,12 @@
 }
 
 .cluster_m h2 {
-    width:30%;
+    display:inline-flex;
+    width:50%;
     align-self: center;
-    margin-left:3%;
-    font-size: 25px;
+    justify-content:left;
+    margin-left:5px;
+    font-size: 21px;
     font-family:Arial, Helvetica, sans-serif
     /*color: var(--darkblue);*/
 }
@@ -33,14 +32,20 @@
 	display:flex;
 	flex-direction: row;
 	margin-top:0.25%;
-	margin-left: 8%;
-    height:100px;
-    width:140px;
+	margin-left: 4.2%;
+    margin-right:20px;
+    height:75px;
+    width:120px;
 	border-radius: 30px;
-    
 	border:2px solid var(--green);
 }
 
+.mgmt_list_right {
+    display:inline-flex;
+    width:30%;
+    justify-content:space-around;
+    margin-right:2.5%;
+}
 
 #edit_Name {
     color: var(--darkblue);
@@ -79,8 +84,7 @@
     border-color:#98ca41;
     border:3px solid var(--green);
     margin-top:25%;
-    width:100%;
-    
+    width:100%; 
 }
 
 #delete:hover{
@@ -103,12 +107,29 @@
     background-color:white;
     border:3px solid var(--green);
     border-radius:20px;
-    position:relative;
+    position:absolute;
     display:flex;
     color:black;
     flex-flow:row wrap;
     justify-content:center;
     align-content:center;
+  }
+
+  .delete-popup-content {
+    background-color:white;
+    border:3px solid var(--green);
+    border-radius:20px;
+    display:flex;
+    color:black;
+    flex-flow:column wrap;
+    justify-content:center;
+    align-content:center;
+    width:40%;
+    height:30%;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 10000;
   }
   
 
@@ -161,37 +182,73 @@
 
 
 #name{
-    margin:auto;
-    width:10%;
+    width:90px;
     height:100%;
 }
 
 
 #replace{
-    margin:auto;
-    width:10%;
+    width:90px;
     height:100%;
 }
 
 
 #deleteB{
-    margin:auto;
-    width:10%;
+    width:90px;
     height:100%
 }
 
 #submitName{
     background-color: #98ca41;
-    border-radius:20px;
+    border-radius:40px;
+    border:3px solid var(--green);
+    width:100px;
+    background-color:var(--green);
+    height:35px;
+    margin-left:5%;
 }
 
 #submitImg {
     background-color: #98ca41;
-    border-radius:20px;
+    border-radius:40px;
+    border:3px solid var(--green);
+    width:100px;
+    background-color:var(--green);
+    height:35px;
+    margin-left:5%;
 }
 
 
 #deleteCluster {
     background-color: #98ca41;
-    border-radius:20px;
+    border-radius:40px;
+    border:3px solid var(--green);
+    width:100px;
+    background-color:var(--green);
+    height:35px;
+}
+
+.mgmt_list {
+    margin-top:120px;
+}
+
+.editbuttonrow {
+    display:inline-flex;
+    margin-top:50px;
+}
+
+.replacebuttonrow {
+    display:inline-flex;
+    margin-top:50px;
+}
+
+.deletebuttonrow {
+    display:inline-flex;
+    justify-content: center;
+    margin-top:50px;
+}
+
+#deleteheader {
+    display:flex;
+    justify-content: center;
 }
