@@ -10,8 +10,10 @@ import './Cluster.css';
 
 const Cluster = ( {id, clusterName, onClick} ) => {
 
+   //This will get the image from the database as a blob, 
+  //Then be read as a data URL to put into the src{} tag.  
     const [imageSrc, setImageSrc] = useState('');
-    console.log("INSIDE FUNC: ID  ", id)
+    //console.log("INSIDE FUNC: ID  ", id)
     useEffect(() => {
       const fetchImage = async () => {
         const response = await (fetch(`/n-image/${id}`));
