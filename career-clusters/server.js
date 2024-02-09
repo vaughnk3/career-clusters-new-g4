@@ -65,11 +65,10 @@ app.get('/n-image/:id', async (req, res) => {
     }
     if (results.length > 0) {
       const image = results[0].img;
-      /*res.writeHead(200, {
+      res.writeHead(200, {
         'Content-Type': 'image/png', // Or the correct content type for your image
-        'Content-Length': image.length
       });
-      res.end(image);*/
+      res.end(image);
     } else {
       res.status(404).send('Image not found');
     }
