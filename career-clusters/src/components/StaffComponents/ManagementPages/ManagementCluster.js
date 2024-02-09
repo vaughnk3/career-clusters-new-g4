@@ -20,7 +20,7 @@ const ManagementCluster = ({ ID, clusterName, onClick }) => {
             <h2>{clusterName}</h2>
             <div class="mgmt_list_right"> 
             <EditNameButton ID={ID} clusterName={clusterName}/>
-            <ReplaceImageButton/>
+            <ReplaceImageButton ID={ID}/>
             <DeleteClusterButton ID={ID}/>
             </div>
         </div>

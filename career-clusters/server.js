@@ -3,7 +3,9 @@ const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
 const app = express();
+const multer = require('multer');
 
+const upload = multer({ storage: multer.memoryStorage() });
 // Use the mysqlConnection object to perform database operations
 // ...
 
@@ -31,6 +33,55 @@ pool.getConnection((err, connection) => {
     connection.release();
   }
 })
+
+
+
+//IMAGE POST FROM CLUSTER MANAGEMENT
+app.post('/imag-cluster-replace', upload.single('image'), (req, res) => {
+  const image = req.file.buffer;
+  const clusterId = req.body.id;
+  pool.query('UPDATE Cluster SET img = ? WHERE id = ?', 
+  [image, clusterId], 
+  (error, results, fields) => {
+    if(error) {
+      console.error("Error adding demographic information: ", error);
+      res.status(500).send("Error adding demographic information");
+    } else {
+      console.log("Added demographic information successfully");
+      res.status(200).send("Added demographic information successfully");
+    }
+  }
+  )
+})
+
+
+app.get('/n-image/:id', async (req, res) => {
+  const { id } = req.params;
+  console.log("id: ", id)
+  pool.query('SELECT img FROM Cluster WHERE id = ?', [id], (error, results) => {
+    if (error) {
+      console.error("Error fetching image: ", error);
+      return res.status(500).send("Error fetching image");
+    }
+    if (results.length > 0) {
+      const image = results[0].img;
+      /*res.writeHead(200, {
+        'Content-Type': 'image/png', // Or the correct content type for your image
+        'Content-Length': image.length
+      });
+      res.end(image);*/
+    } else {
+      res.status(404).send('Image not found');
+    }
+  });
+});
+
+
+
+
+
+
+
 
 
 //************************************************************************/

@@ -65,9 +65,13 @@ const ClusterManagementPage = () => {
     }, []);
 
 
-    const backButtonHandler = () => {
+    const backButtonHandler = () => 
+    {
         navigate('/login/staffclusters');
     }
+
+    //const [selectedFile, setSelectedFile] = useState(null);
+
     return (
         <div id="page">
             <div id="_topRectangle">

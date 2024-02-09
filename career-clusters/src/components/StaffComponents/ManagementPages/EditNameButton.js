@@ -41,6 +41,9 @@ const EditNameButton = ({ID, ClusterName}) => {
         refreshPage();
     }
 
+
+    
+
     return (
         <div id="name">
                 <button id="edit_Name" onClick={openPopup}>Edit Name</button>
