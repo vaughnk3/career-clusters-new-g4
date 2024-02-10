@@ -17,7 +17,7 @@ import ModifyPermsPage from './components/StaffComponents/AdminPrivComponents/Mo
 import CreateStaffAccount from './components/StaffComponents/AdminPrivComponents/CreateStaffAccount';
 import ClusterManagementPage from './components/StaffComponents/ManagementPages/ClusterManagementPage';
 import SubClusterManagementPage from './components/StaffComponents/ManagementPages/SubClusterManagementPage';
-import ProtectedRoute from './components/StaffComponents/StaffClusters.js';
+import ProtectedRoute from './components/StaffComponents/ProtectedRoute.js';
 
 function App() {
   return (

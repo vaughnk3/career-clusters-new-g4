@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';4
+import { Navigate, useLocation } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const ProtectedRoute = ({ children }) => {
@@ -22,12 +22,11 @@ const ProtectedRoute = ({ children }) => {
 
 
     if(loading) {
-        return <h1>Loading!!! I guess</h1>
+        return <h1>gabbagool</h1>
     }
 
     if(!user){
         console.log("user not logged in")
-        sleep(2000);
         return <Navigate to="/login" state={{ from: location }} replace />;
     }
     return children;
