@@ -32,16 +32,16 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
 
         <Route path="/login/staffclusters" element={<ProtectedRoute><StaffClusters/></ProtectedRoute>} />
-        <Route path="/login/staffclusters/staffsubclusters/:clusterId" element={<StaffSubClusters/>} />
-        <Route path="/login/staffclusters/staffsubclusters/staffsubclusterinfo/:subclusterId" element={<StaffSubFields/>} />
-        <Route path="/login/staffclusters/staffsubclusters/staffsubclusterinfo/staffjoblistings" element={<StaffJobListingPage/>} />
+        <Route path="/login/staffclusters/staffsubclusters/:clusterId" element={<ProtectedRoute><StaffSubClusters/></ProtectedRoute>} />
+        <Route path="/login/staffclusters/staffsubclusters/staffsubclusterinfo/:subclusterId" element={<ProtectedRoute><StaffSubFields/></ProtectedRoute>} />
+        <Route path="/login/staffclusters/staffsubclusters/staffsubclusterinfo/staffjoblistings" element={<ProtectedRoute><StaffJobListingPage/></ProtectedRoute>} />
 
-        <Route path="/login/adminpage" element={<AdminLandingPage/>} />
-        <Route path="/login/adminpage/modifyperms" element={<ModifyPermsPage/>} />
-        <Route path="/login/adminpage/createstaffpage" element={<CreateStaffAccount/>} />
+        <Route path="/login/adminpage" element={<ProtectedRoute><AdminLandingPage/></ProtectedRoute>} />
+        <Route path="/login/adminpage/modifyperms" element={<ProtectedRoute><ModifyPermsPage/></ProtectedRoute>} />
+        <Route path="/login/adminpage/createstaffpage" element={<ProtectedRoute><CreateStaffAccount/></ProtectedRoute>} />
 
-        <Route path="/login/staffclusters/clustermanagementpage" element={<ClusterManagementPage/>} />
-        <Route path="/subclustermanagementpage" element={<SubClusterManagementPage/>} />
+        <Route path="/login/staffclusters/clustermanagementpage" element={<ProtectedRoute><ClusterManagementPage/></ProtectedRoute>} />
+        <Route path="/subclustermanagementpage" element={<ProtectedRoute><SubClusterManagementPage/></ProtectedRoute>} />
       </Routes>
     </Router>
   );
