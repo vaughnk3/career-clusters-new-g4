@@ -26,7 +26,7 @@ const ProtectedRoute = ({ children }) => {
     }
 
     if(!user){
-        console.log("user not logged in")
+        console.log("user not logged in. byeeee nerd")
         return <Navigate to="/login" state={{ from: location }} replace />;
     }
     return children;
