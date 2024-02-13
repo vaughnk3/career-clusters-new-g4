@@ -6,9 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import TopRectangle from "../page_Components/TopRectangle.js";
 import './ClusterPage.css';
 
+
 const ClusterPage = () => {
     const navigate = useNavigate();
     const [clusters, setClusters] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchClusters = async () => {
@@ -19,13 +21,16 @@ const ClusterPage = () => {
                 }
                 const data = await response.json();
                 setClusters(data);
+                setLoading(false);
             } catch (error) {
                 console.error('Error: ', error);
             }
         }
         fetchClusters();
     }, []);
-
+     if (loading) {
+        return <h1>OOOOH Dat page be loadinnggggg</h1>
+     }
 
     const handleClusterClick = (ID) => {
         console.log(ID)
