@@ -60,8 +60,7 @@ const SubClusterPage = ({ }) => {
                 <br></br>
                 <br></br>
                 <br></br><br></br>
-                <h2>SubCluster Page</h2>
-                <p>Cluster ID: {clusterId}</p>
+                <br></br><br></br>
                 <ul>
                     {subclusters.map((subcluster) => (
                         <li>
