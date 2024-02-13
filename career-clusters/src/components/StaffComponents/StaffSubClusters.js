@@ -50,6 +50,7 @@ const StaffSubClusters = () => {
 
     const { clusterId } = useParams();
     const [subclusters, setSubclusters] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchSubclusters = async () => {
@@ -60,6 +61,7 @@ const StaffSubClusters = () => {
                 }
                 const data = await response.json();
                 setSubclusters(data);
+                setLoading(false);
             } catch (error) {
                 console.error('Error: ', error);
             }
@@ -68,6 +70,9 @@ const StaffSubClusters = () => {
         fetchSubclusters();
     }, [clusterId])
 
+    if (loading) {
+      return <h1>This page loading</h1>
+    }
     //const subclusterF = subclusters.length > 0 ? subclusters[0] : {};
 
     return (

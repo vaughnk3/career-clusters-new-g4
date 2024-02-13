@@ -14,6 +14,7 @@ const StaffClusters = () => {
 
     const navigate = useNavigate();
     const [clusters, setClusters] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchClusters = async () => {
@@ -24,6 +25,7 @@ const StaffClusters = () => {
                 }
                 const data = await response.json();
                 setClusters(data);
+                setLoading(false);
             } catch (error) {
                 console.error('Error: ', error);
             }
@@ -31,6 +33,9 @@ const StaffClusters = () => {
         fetchClusters();
     }, []);
 
+    if (loading) {
+      return <h1>Oooh dis page loading toooo</h1>
+    }
 
   const handleClusterClick = (ID) => {
       console.log(ID)
