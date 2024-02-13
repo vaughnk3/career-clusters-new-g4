@@ -28,7 +28,8 @@ const ClusterPage = () => {
         }
         fetchClusters();
     }, []);
-     if (loading) {
+
+    if (loading) {
         return <h1>OOOOH Dat page be loadinnggggg</h1>
      }
 
