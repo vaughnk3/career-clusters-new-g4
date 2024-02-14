@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import SubCluster_S from "./SubCluster_S";
 import { getAuth, signOut } from "firebase/auth";
@@ -37,20 +37,6 @@ const StaffSubClusters = () => {
         console.error('Logout error:', error.message);
       }
     };
-
-    useEffect(() => {
-      const handleBrowserBackReroute = () => {
-        navigate ('/login/staffclusters')
-      }
-  
-      //Add event listener for user clicking the back button
-      window.addEventListener('popstate', handleBrowserBackReroute);
-  
-      //Clean up the listener to avoid memory leak possibility
-      return () => window.removeEventListener('popstate', handleBrowserBackReroute);
-  
-    }, [navigate]);
-  
 
 
     const handleButtonClickStaff = () => {

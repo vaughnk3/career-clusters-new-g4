@@ -31,21 +31,7 @@ const StaffSubFields = () => {
 
   //Navigate hook for forceful navigation
   const navigate = useNavigate();
-
-
-  useEffect(() => {
-    const handleBrowserBackReroute = () => {
-      navigate ('/login/staffclusters')
-    }
-
-    //Add event listener for user clicking the back button
-    window.addEventListener('popstate', handleBrowserBackReroute);
-
-    //Clean up the listener to avoid memory leak possibility
-    return () => window.removeEventListener('popstate', handleBrowserBackReroute);
-
-  }, [navigate]);
-
+ 
 
   const handleClusterClick = (SubID) => {
       console.log(SubID)
