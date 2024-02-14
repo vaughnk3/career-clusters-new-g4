@@ -11,7 +11,7 @@ const ManagementCluster = ({ ID, clusterName, onClick }) => {
     //console.log("INSIDE FUNC: ID  ", id)
     useEffect(() => {
       const fetchImage = async () => {
-        const response = await (fetch(`/n-image/${ID}`));
+        const response = await (fetch(`http://localhost:3001/n-image/${ID}`));
         const blob = await response.blob();
         const reader = new FileReader();
         reader.onloadend = function() {

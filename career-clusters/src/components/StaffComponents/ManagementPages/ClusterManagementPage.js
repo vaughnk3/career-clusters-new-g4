@@ -10,44 +10,58 @@ import './ManagementCluster.css';
 
 
 const ClusterManagementPage = () => {
+    //Set all useState variables to be used in the file. 
     const navigate = useNavigate();
     const [clusters, setClusters] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     const [clusterName, setClusterName] = useState('');
+    const [newImage, setNewImage] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    //Open the popup
     const openPopup = () => {
         setIsOpen(true);
     }
 
+    //Close the popup
     const closePopup = () => {
         setIsOpen(false);
     }
 
+    //Refresh the page function when an add is done
     const refreshPage = () => {
         window.location.reload();
       }
 
+
+    // Post request for adding a cluster
     const addCluster = async () => {
         try {
-            const response = await(fetch('http://localhost:3001/login/staffclusters/clustermanagementpage/add-cluster', {
+            const formData = new FormData();
+            formData.append('image', newImage); // Append the file
+            formData.append('clusterName', clusterName); // Append the clusterName as a text field
+    
+            const response = await fetch('http://localhost:3001/login/staffclusters/clustermanagementpage/add-cluster', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ clusterName })
-            }));
+                body: formData,
+               
+            });
+    
             if (response.ok) {
-                console.log('Cluster added successfully');
+                console.log('Cluster and image added successfully');
+
             } else {
-                console.error('Failed to add cluster');
-            } 
-        }   catch (error) {
-            console.error('Error adding cluster: ', error);
+                console.error('Failed to add cluster and upload image');
+            }
+        } catch (error) {
+            console.error('Error adding cluster and uploading image: ', error);
         }
-        console.log('POST request sent from add button')
         setIsOpen(false);
         refreshPage();
-    }
+    };
+    
 
+    //Grab all the cluster information to display on the page
     useEffect(() => {
         const fetchClusters = async () => {
             try {
@@ -57,6 +71,7 @@ const ClusterManagementPage = () => {
                 }
                 const data = await response.json();
                 setClusters(data);
+                setLoading(false);
             } catch (error) {
                 console.error('Error: ', error);
             }
@@ -64,13 +79,22 @@ const ClusterManagementPage = () => {
         fetchClusters();
     }, []);
 
+    //If the page takes a while to load, display loading image.
+    if (loading) {
+        return <h1>Still loading</h1>
+    }
 
+    //Navigation for a user clicking the back button
     const backButtonHandler = () => 
     {
         navigate('/login/staffclusters');
     }
 
-    //const [selectedFile, setSelectedFile] = useState(null);
+    //Set the image when the user selects an image file to input
+    const handleFileInputChange = (e) => 
+    {
+        setNewImage(e.target.files[0]);
+    }
 
     return (
         <div id="page">
@@ -87,7 +111,7 @@ const ClusterManagementPage = () => {
                             </div>
                             <div id="popupRight">
                                 <input type="text" id="clusterNamePop" name="clusterName" placeholder="Enter the name of new cluster" value={clusterName} onChange={(e) => setClusterName(e.target.value)}></input>
-                                <input type="file" id="imgN" name="imgN" accept="image/*"></input>
+                                <input type="file" id="imgN" name="imgN" accept="image/*" onChange={handleFileInputChange}></input>
                             </div>
                             <div className="button-row">
                                 <button className="cancelButton" onClick={closePopup}>Cancel</button>
@@ -120,27 +144,4 @@ const ClusterManagementPage = () => {
 
 
 export default ClusterManagementPage;
-//<button id="add_cluster" >Add Cluster</button>
 
-/*
-<div>
-                <button onClick={openPopup} id="add_cluster">Open Popup</button>
-                {isOpen && (
-                    <div className="popup">
-                        <div className="popup-content">
-                            <span className="close" onClick={closePopup}>&times;</span>                            
-                            <div id="popupLeft">
-                                <h2> Name </h2>
-                                <h2> Image </h2>
-                            </div>
-                            <div id="popupRight">
-                                <p>placeholder text</p>
-                                <p>placeholder img</p>
-                            </div>
-                        </div>
-                    </div>
-                )}
-            </div>
-
-
-*/

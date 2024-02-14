@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { getAuth, signOut } from "firebase/auth";
 import { Link, useNavigate } from 'react-router-dom';
-
+import { ExcelGenerationQueue } from './ExcelGeneration';
 
 
 const StaffSubFields = () => {
@@ -62,12 +62,6 @@ const StaffSubFields = () => {
     }
   };
 
-
-  const handleButtonClickExportData = () => {
-    console.log("Export Data");
-  };
-
-
   const handleButtonClickStaff = () => {
     //Need to check whether or not user has correct permissions. 
     navigate('/login/adminpage');
@@ -84,7 +78,7 @@ const StaffSubFields = () => {
             </div>
             <div class="staff-button-column-two">
               <a class="staff-button" onClick={handleButtonClickStaff}>Admin Landing Page</a>
-              <a class="staff-button" onClick={handleButtonClickExportData}>Export Data (.xlsx)</a>
+              <a class="staff-button" onClick={ExcelGenerationQueue}>Export Data (.xlsx)</a>
             </div>
             <div class="staff-button-column-three">
               <a class="staff-button" onClick={handleSubclusterManagementClick}>SubCluster Management</a>

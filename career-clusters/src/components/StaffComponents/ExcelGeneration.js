@@ -156,8 +156,10 @@ export async function ExcelGenerationQueue()
     // Convert the binary data to a Blob
     const blob = new Blob([s2ab(wbout)], { type: 'application/octet-stream' });
 
+
+    const fileName = `ChamberCareerAppReport  ${formattedDate}.xlsx`
     // Save the Blob as a file
-    saveAs(blob, 'MickeyExcelReport.xlsx');
+    saveAs(blob, fileName);
 
     function s2ab(s) {
         const buf = new ArrayBuffer(s.length);

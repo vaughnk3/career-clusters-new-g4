@@ -54,7 +54,47 @@ app.post('/imag-cluster-replace', upload.single('image'), (req, res) => {
   )
 })
 
+//SUBCLUSTER UPDATE IMAGE
+app.post('/subimage-replace', upload.single('image'), (req, res) => {
+  const image = req.file.buffer;
+  const subClusterId = req.body.id;
+  pool.query('UPDATE Subcluster SET img = ? WHERE id = ?', 
+  [image, subClusterId], 
+  (error, results, fields) => {
+    if(error) {
+      console.error("Error adding demographic information: ", error);
+      res.status(500).send("Error adding demographic information");
+    } else {
+      console.log("Added demographic information successfully");
+      res.status(200).send("Added demographic information successfully");
+    }
+  }
+  )
+})
 
+// Get subcluster image
+app.get('/subclust-img-pull/:id', async (req, res) => {
+  const { id } = req.params;
+  console.log("idddddddd: ", id)
+  pool.query('SELECT img FROM Subcluster WHERE id = ?', [id], (error, results) => {
+    if (error) {
+      console.error("Error fetching image: ", error);
+      return res.status(500).send("Error fetching image");
+    }
+    if (results.length > 0) {
+      const image = results[0].img;
+      res.writeHead(200, {
+        'Content-Type': 'image/png', // Or the correct content type for your image
+      });
+      res.end(image);
+    } else {
+      res.status(404).send('Image not found');
+    }
+  });
+});
+
+
+// get the cluster images for a particular cluster
 app.get('/n-image/:id', async (req, res) => {
   const { id } = req.params;
   console.log("id: ", id)
@@ -74,13 +114,6 @@ app.get('/n-image/:id', async (req, res) => {
     }
   });
 });
-
-
-
-
-
-
-
 
 
 //************************************************************************/
@@ -252,14 +285,14 @@ app.get('/subclustermanagementpage', (req, res) => {
 
 //************************************************************************/
 
-
 //************************************************************************/
 //ADD CLUSTER
-app.post('/login/staffclusters/clustermanagementpage/add-cluster', (req, res) => {
-  const { clusterName } = req.body;
+app.post('/login/staffclusters/clustermanagementpage/add-cluster', upload.single('image'), (req, res) => {
+  const image = req.file.buffer;
+  const clusterName = req.body.clusterName;
   pool.query(
-    'INSERT INTO Cluster (clusterName) VALUES (?)',
-    [clusterName],
+    'INSERT INTO Cluster (clusterName, img) VALUES (?, ?)',
+    [clusterName, image],
     (error, results, fields) => {
       if(error) {
         console.error('Error adding Cluster:', error);

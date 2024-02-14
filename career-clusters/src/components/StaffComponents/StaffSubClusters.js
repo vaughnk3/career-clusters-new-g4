@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import SubCluster_S from "./SubCluster_S";
 import { getAuth, signOut } from "firebase/auth";
+import { ExcelGenerationQueue } from './ExcelGeneration';
 
 const StaffSubClusters = () => {
     const navigate = useNavigate();
@@ -38,9 +39,7 @@ const StaffSubClusters = () => {
     };
 
 
-    const handleButtonClickExportData = () => {
-      console.log("Export Data");
-    };
+  
 
 
     const handleButtonClickStaff = () => {
@@ -92,7 +91,7 @@ const StaffSubClusters = () => {
             </div>
             <div class="staff-button-column-two">
               <a class="staff-button" onClick={handleButtonClickStaff}>Admin Landing Page</a>
-              <a class="staff-button" onClick={handleButtonClickExportData}>Export Data (.xlsx)</a>
+              <a class="staff-button" onClick={ExcelGenerationQueue}>Export Data (.xlsx)</a>
             </div>
             <div class="staff-button-column-three">
               <a class="staff-button" onClick={handleSubclusterManagementClick}>SubCluster Management</a>

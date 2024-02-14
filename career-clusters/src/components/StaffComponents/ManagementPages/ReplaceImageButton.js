@@ -22,7 +22,7 @@ const ReplaceImageButton = ({ID}) => {
             formData.append('image', file);
             formData.append('id', id);
             
-            const dbResponse = await fetch ('/imag-cluster-replace', {
+            const dbResponse = await fetch ('http://localhost:3001/imag-cluster-replace', {
             method: 'POST',
 
             body: formData,
@@ -78,3 +78,5 @@ const ReplaceImageButton = ({ID}) => {
 export default ReplaceImageButton;
 
 //<input type="file" id="imgN" name="imgN" accept="image/*" onChange={handleFileInputChange}></input>
+
+

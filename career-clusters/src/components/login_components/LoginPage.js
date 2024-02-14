@@ -39,7 +39,7 @@ const LoginPage = () => {
           const user = userCredential.user;
           console.log('User logged in: ', user);
 
-          navigate('/login/staffclusters/clustermanagementpage')
+          navigate('/login/staffclusters')
         } catch (error) {
           console.error('Login error:', error.message);
         }

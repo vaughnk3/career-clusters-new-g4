@@ -34,7 +34,7 @@ const StaffClusters = () => {
     }, []);
 
     if (loading) {
-      return <h1>Oooh dis page loading toooo</h1>
+      return <h1>cum</h1>
     }
 
   const handleClusterClick = (ID) => {
