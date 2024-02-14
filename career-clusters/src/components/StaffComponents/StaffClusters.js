@@ -34,7 +34,7 @@ const StaffClusters = () => {
     }, []);
 
     if (loading) {
-      return <h1></h1>
+      return <div id="loading-animation"></div>
     }
 
   const handleClusterClick = (ID) => {
