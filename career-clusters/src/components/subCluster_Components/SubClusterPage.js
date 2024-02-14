@@ -44,7 +44,7 @@ const SubClusterPage = ({ }) => {
     }, [clusterId])
 
     if (loading) {
-        return <h1>This page loading</h1>
+        return <div id="loading-animation"></div>
     }
 
     const subclusterF = subclusters.length > 0 ? subclusters[0] : {};

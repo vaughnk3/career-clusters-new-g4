@@ -21,13 +21,13 @@ const ProtectedRoute = ({ children }) => {
         });
     }, []);
 
-
+    //Loading animation
     if(loading) {
         return <div id="loading-animation"></div>
     }
 
     if(!user){
-        console.log("user not logged in. byeeee nerd")
+        console.log("user not logged in. byeeee nerd back to the lobby")
         return <Navigate to="/login" state={{ from: location }} replace />;
     }
     return children;

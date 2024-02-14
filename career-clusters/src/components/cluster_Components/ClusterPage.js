@@ -30,7 +30,7 @@ const ClusterPage = () => {
     }, []);
 
     if (loading) {
-        return <h1>OOOOH Dat page be loadinnggggg</h1>
+        return <div id="loading-animation"></div>
      }
 
     const handleClusterClick = (ID) => {

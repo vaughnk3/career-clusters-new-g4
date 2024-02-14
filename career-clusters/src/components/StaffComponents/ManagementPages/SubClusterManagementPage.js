@@ -77,6 +77,7 @@ const SubClusterManagementPage = () => {
     const [newSCGrowthRate, setNewGrowthRate] = useState('');
     const [clusterID, setClusterID] = useState('');
     const [newImage, setNewImage] = useState(null);
+    const [loading, setLoading] = useState(true);
 
 
 
@@ -137,6 +138,21 @@ const SubClusterManagementPage = () => {
     {
         setNewImage(e.target.files[0]);
     }
+
+    //Sets a 5 second limit for the which the loading animation while display
+    useEffect(() => {
+        const timer = setTimeout(() => {
+          setLoading(false); // This will hide the loading animation after the timeout
+        }, 5000); // Set the timeout duration here (5000ms = 5 seconds)
+    
+        return () => clearTimeout(timer); // Cleanup the timeout on component unmount
+      }, []);
+
+
+    //Loading animation
+    if (loading) {
+        return <div id="loading-animation"></div>
+      }
 
 
     return (
