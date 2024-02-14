@@ -475,29 +475,6 @@ app.post('/subclustermanagementpage/edit-subcluster-growthrate', (req, res) => {
 //************************************************************************/
 
 
-
-//************************************************************************/
-//ADD CLUSTER
-app.post('/login/staffclusters/clustermanagementpage/add-cluster', upload.single('image'), (req, res) => {
-  const image = req.file.buffer;
-  const clusterName = req.body.clusterName;
-  pool.query(
-    'INSERT INTO Cluster (clusterName, img) VALUES (?, ?)',
-    [clusterName, image],
-    (error, results, fields) => {
-      if(error) {
-        console.error('Error adding Cluster:', error);
-        res.status(500).send('Error adding Cluster');
-      } else {
-        console.log('Cluster added successfully');
-        res.status(200).send('Cluster added successfully')
-      }
-    }
-  )
-})
-//*********************************************************************kek***/
-
-
 //************************************************************************/
 // Insert request for adding subcluster into subcluster table
 app.post('/subclustermanagementpage/add-subcluster', upload.single('image'), (req, res) => {
