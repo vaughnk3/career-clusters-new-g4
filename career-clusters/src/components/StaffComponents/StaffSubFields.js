@@ -5,7 +5,7 @@ import './StaffSubFields.css'
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { getAuth, signOut } from "firebase/auth";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation} from 'react-router-dom';
 import { ExcelGenerationQueue } from './ExcelGeneration';
 
 
@@ -29,9 +29,9 @@ const StaffSubFields = () => {
       fetchSubFields();
   }, [subclusterId])
 
-
+  //Navigate hook for forceful navigation
   const navigate = useNavigate();
-
+ 
 
   const handleClusterClick = (SubID) => {
       console.log(SubID)
@@ -67,6 +67,18 @@ const StaffSubFields = () => {
     navigate('/login/adminpage');
   };
   
+
+  
+
+
+
+
+
+
+
+
+
+
   const field = subFields.length > 0 ? subFields[0] : {};
 
     return (
