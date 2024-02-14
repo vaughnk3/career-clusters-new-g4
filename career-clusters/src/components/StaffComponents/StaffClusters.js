@@ -34,7 +34,12 @@ const StaffClusters = () => {
     }, []);
 
     if (loading) {
-      return <h1></h1>
+      return <div class="fancy-spinner">
+      <div class="ring"></div>
+      <div class="ring"></div>
+      <div class="dot"></div>
+    </div>
+    
     }
 
   const handleClusterClick = (ID) => {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import './ProtectedRoutes.css'
 
 const ProtectedRoute = ({ children }) => {
     const [ user, setUser ] = useState(null);
@@ -22,7 +23,12 @@ const ProtectedRoute = ({ children }) => {
 
 
     if(loading) {
-        return <h1>gabbagool</h1>
+        return <div class="fancy-spinner">
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="dot"></div>
+      </div>
+      
     }
 
     if(!user){
