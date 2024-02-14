@@ -23,7 +23,7 @@ const EditImageSubCluster = ({ID}) => {
             formData.append('image', file);
             formData.append('id', id);
             
-            const dbResponse = await fetch ('http://localhost:3001/imag-cluster-replace', {
+            const dbResponse = await fetch ('http://localhost:3001/subimage-replace', {
             method: 'POST',
 
             body: formData,

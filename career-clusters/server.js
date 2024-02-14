@@ -304,7 +304,7 @@ app.post('/login/staffclusters/clustermanagementpage/add-cluster', upload.single
     }
   )
 })
-//*********************************************************************kek***/
+//************************************************************************/
 
 
 //************************************************************************/
@@ -477,11 +477,13 @@ app.post('/subclustermanagementpage/edit-subcluster-growthrate', (req, res) => {
 
 //************************************************************************/
 // Insert request for adding subcluster into subcluster table
-app.post('/subclustermanagementpage/add-subcluster', (req, res) => {
-  const { newSCName, clusterID} = req.body;
+app.post('/subclustermanagementpage/add-subcluster', upload.single('image'), (req, res) => {
+  const image = req.file.buffer;
+  const newSCName = req.body.subclusterName;
+  const clusterID = req.body.clusterID;
   pool.query(
-    'INSERT INTO Subcluster (clusterId, subclusterName) VALUES (?, ?)',
-    [clusterID, newSCName],
+    'INSERT INTO Subcluster (clusterId, subclusterName, img) VALUES (?, ?, ?)',
+    [clusterID, newSCName, image],
     (error, results, fields) => {
       if(error) {
         console.error('Error inserting subcluster: ', error);
@@ -506,7 +508,7 @@ app.post('/subclustermanagementpage/add-subcluster-field', (req, res) => {
         console.error("Error inserting field: ", error);
         res.status(500).send('Error inserting field :(');
       } else {
-        console.log('Inserted into field successfully :)', newSCName);
+        console.log('Inserted into field successfully :)', newSCName, "  ", newSCDescrip, "   ", newSCEdLevel);
         res.status(200).send('Field inserted successfully!!');
       }
     }

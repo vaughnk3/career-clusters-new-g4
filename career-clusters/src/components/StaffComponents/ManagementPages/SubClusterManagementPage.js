@@ -76,54 +76,67 @@ const SubClusterManagementPage = () => {
     const [newSCEdLevel, setNewEdLevel] = useState('');
     const [newSCGrowthRate, setNewGrowthRate] = useState('');
     const [clusterID, setClusterID] = useState('');
+    const [newImage, setNewImage] = useState(null);
 
-    const addSubCluster = async () => {
-        const subclusterID = 0;
-        try {
-            const response = await(fetch('http://localhost:3001/subclustermanagementpage/add-subcluster', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ newSCName, newSCDescrip, newSCSalary, newSCEdLevel, newSCGrowthRate, clusterID })
-            }));
-            if (response.ok) {
-                const data = await response.json();
-                subclusterID = data.subclusterID;
-                console.log('SubCluster added successfully with ID: ', subclusterID);
-            } else {
-                console.error('Failed to add subcluster');
-            } 
-        }   catch (error) {
-            console.error('Error adding subcluster: ', error);
-        }
-        console.log('POST request sent from add subcluster button')
 
-        console.log('SubCluster added successfully with ID between: ', subclusterID);
 
-        try {
-            const response = await(fetch('http://localhost:3001/subclustermanagementpage/add-subcluster-field', {
-                method: 'POST',
-                headers: {
-                    'Content-Type' : 'application/json'
-                },
-                body: JSON.stringify({subclusterID, newSCName, newSCDescrip, newSCSalary, newSCEdLevel, newSCGrowthRate})
-            }));
-            console.log(subclusterID, " INSIDE SECOND REQUEST");
-            if(response.ok) {
-                console.log('Field data added successfully');
-            } else {
-                console.error('Failed to add field data');
+            const addSubCluster = async () => {
+                let subclusterID = 0;
+                try {
+                    const formData = new FormData();
+                    formData.append('image', newImage);
+                    formData.append('subclusterName', newSCName)
+                    formData.append('clusterID', clusterID)
+
+                    const response = await(fetch('http://localhost:3001/subclustermanagementpage/add-subcluster', {
+                        method: 'POST',
+                        
+                        body: formData
+                    }));
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        subclusterID = data.subclusterID;
+                        console.log('SubCluster added successfully with ID: ', subclusterID);
+                    } else {
+                        console.error('Failed to add subcluster');
+                    } 
+                }   catch (error) {
+                    console.error('Error adding subcluster: ', error);
+                }
+                
+                console.log('POST request sent from add subcluster button')
+        
+                console.log('SubCluster added successfully with ID between: ', subclusterID);
+        
+                try {
+                    const response = await(fetch('http://localhost:3001/subclustermanagementpage/add-subcluster-field', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type' : 'application/json'
+                        },
+                        body: JSON.stringify({subclusterID, newSCName, newSCDescrip, newSCSalary, newSCEdLevel, newSCGrowthRate})
+                    }));
+                    console.log(subclusterID, " INSIDE SECOND REQUEST");
+                    if(response.ok) {
+                        console.log('Field data added successfully');
+                    } else {
+                        console.error('Failed to add field data');
+                    }
+                } catch(error) {
+                    console.error('Error adding field: ', error);
+                }
+                console.log('POST request sent from add subcluster button for field information')
+                setIsOpen(false);
+                refreshPage();
             }
-        } catch(error) {
-            console.error('Error adding field: ', error);
-        }
-        console.log('POST request sent from add subcluster button for field information')
-        setIsOpen(false);
-        refreshPage();
-    }
 
     /********************************************* */
+
+    const handleFileInputChange = (e) => 
+    {
+        setNewImage(e.target.files[0]);
+    }
 
 
     return (
@@ -150,7 +163,7 @@ const SubClusterManagementPage = () => {
                                 <option value="Low">Low</option>
                             </select>
 
-                            <input type="file" id="img" name="img" accept="image/*"></input>
+                            <input type="file" id="img" name="img" accept="image/*" onChange={handleFileInputChange}></input>
 
                             <button id="submitName" onClick={addSubCluster}>Submit</button>
                             <button onClick={closePopup} className="cancelButton">Cancel</button>
