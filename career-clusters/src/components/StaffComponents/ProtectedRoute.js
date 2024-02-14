@@ -23,12 +23,7 @@ const ProtectedRoute = ({ children }) => {
 
 
     if(loading) {
-        return <div class="fancy-spinner">
-        <div class="ring"></div>
-        <div class="ring"></div>
-        <div class="dot"></div>
-      </div>
-      
+        return <div id="loading-animation"></div>
     }
 
     if(!user){
