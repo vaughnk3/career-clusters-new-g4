@@ -180,14 +180,15 @@
 .addsc-container {
     background-color:white;
     border:3px solid var(--green);
-    border-radius:100px;
+    border-radius:25px;
     position:absolute;
     color:black;
     flex-flow:row wrap;
     justify-content:center;
     align-content:center;
     display:flex;
-    height:350px;
+    height:320px;
+    width:650px;
 }
 
 .newsc-left {
@@ -216,7 +217,7 @@
 .newsc-buttonrow {
     display:inline-flex;
     justify-content: center;
-    margin-top:50px;
+    margin-top:30px;
     flex-flow:row nowrap;
     justify-content:center;
     align-content:center;
