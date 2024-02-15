@@ -11,7 +11,7 @@ const StaffSubClusters = () => {
 
     const handleClusterClick = (ID) => {
         console.log(ID)
-        navigate('/login/staffclusters/staffsubclusters/staffsubclusterinfo')
+        //navigate('/login/staffclusters/staffsubclusters/staffsubclusterinfo')
         ///login/staffclusters/staffsubclusters/staffsubclusterinfo
 
     }

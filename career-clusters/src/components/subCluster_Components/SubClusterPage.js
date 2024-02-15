@@ -57,7 +57,7 @@ const SubClusterPage = ({ }) => {
         // Call the update click count function
         updateSubClusterClickCount();
 
-        navigate('/cluster/subcluster/subclusterinfo')
+        //navigate('/cluster/subcluster/subclusterinfo')
 
     }
 
