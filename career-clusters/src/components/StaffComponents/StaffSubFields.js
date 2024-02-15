@@ -67,15 +67,9 @@ const StaffSubFields = () => {
     navigate('/login/adminpage');
   };
   
-
-  
-
-
-
-
-
-
-
+  const handlePathwaysClick = () => {
+    navigate('/login/staffclusters/staffsubclusters/staffsubclusterinfo/staffjoblistings')
+  }
 
 
 
@@ -104,7 +98,7 @@ const StaffSubFields = () => {
                         <h2 id="fName">{field.fieldName}</h2>
                         <h2 id="fDesc">{field.description} </h2>
                     </div>
-                    <a id="view-button">View Job Postings</a>
+                    <a id="view-button" onClick={handlePathwaysClick} >View Job Postings</a>
                 </div>
                 <div id="bottomMiddle">
                     <div class="field-statistic">
