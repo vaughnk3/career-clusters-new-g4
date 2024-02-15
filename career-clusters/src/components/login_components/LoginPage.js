@@ -5,29 +5,26 @@ import './LoginPage.css'
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import {initializeApp} from 'firebase/app';
 import { getAnalytics } from "firebase/analytics";
-import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
-//Kek
+import {getAuth, sendPasswordResetEmail, signInWithEmailAndPassword} from "firebase/auth";
+import app from "./FirebaseConfig"; 
 
-//Replace this with firebase config info :) (Not sure what some of these fields would be)
-const firebaseConfig = {
-  apiKey: "AIzaSyD1npOwsCve7cKnLGk7mwtUuesAmI_hwdU",
-  authDomain: "career-clusters-9dcc3.firebaseapp.com",
-  projectId: "career-clusters-9dcc3",
-  storageBucket: "career-clusters-9dcc3.appspot.com",
-  messagingSenderId: "884985748554",
-  appId: "1:884985748554:web:29c9f24c69dd1cd8fcdab3",
-  measurementId: "G-GJMD49N4ES"
-};
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-//Initialize Firebase Auth
+
+
+// Initialize auth
 const auth = getAuth(app);
-
 
 
 const LoginPage = () => {
     const[username, setUsername] = useState('');
     const[password, setPassword] = useState('');
+    const[email, setEmail] = useState('')
+
+    //Define state methods for popup
+    const [isOpen, setIsOpen] = useState(false);
+
+    const openPopup = () => { setIsOpen(true) }
+    const closePopup = () => { setIsOpen(false) }
+
 
     const navigate = useNavigate();
     
@@ -43,7 +40,20 @@ const LoginPage = () => {
         } catch (error) {
           console.error('Login error:', error.message);
         }
-    }
+    };
+
+
+
+    const handleForgotPassSubmit = async (event) => {
+      event.preventDefault();
+       try {
+        await sendPasswordResetEmail(auth, email);
+       }
+       catch (error) {
+        console.error("Error sending password reset email: ", error);
+       }
+       setIsOpen(false);
+    };
 
     return (
         <div id="page">
@@ -69,7 +79,20 @@ const LoginPage = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 /><br />
-                <p>Forgot Password?</p>
+                <p onClick={openPopup} >Forgot Password?</p>
+                {isOpen && (
+                  <div className="pass-popup"> 
+                    <div className="pass-popup-content">
+                        <label>
+                          <h2 className="title">Email</h2>
+                          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required></input>
+                        </label>
+                        <button className="forgot-submit" type="submit" onClick={handleForgotPassSubmit}>Send Password Reset Email</button>
+                        <button onClick={closePopup}>Cancel</button>
+                    
+                    </div>
+                  </div>
+                )}
                 <button type="submit" id="login-button">Login</button>
               </form>
             </div>

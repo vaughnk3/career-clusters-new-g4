@@ -4,10 +4,29 @@ import TopRectangle from "../page_Components/TopRectangle.js";
 import './SubFieldPage.css'
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const SubFieldsPage = () => {
     const { subclusterId } = useParams();
     const [ subFields, setSubFields] = useState([]);
+
+
+    /*
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const handleBroswerBackClick = (event) => {
+            event.preventDefault();
+            navigate('/cluster')
+        }
+
+        window.addEventListener('popstate', handleBroswerBackClick);
+
+    return () => window.removeEventListener('popstate', handleBroswerBackClick);
+    }, [navigate]);
+    */
+
+
 
     useEffect(() => {
         const fetchSubFields = async () => {

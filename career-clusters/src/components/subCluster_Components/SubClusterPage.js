@@ -14,6 +14,21 @@ import { useParams } from 'react-router-dom';
 const SubClusterPage = ({ }) => {
     const navigate = useNavigate();
 
+    /*
+    useEffect(() => {
+        const handleBroswerBackClick = (event) => {
+            event.preventDefault();
+            navigate('/cluster')
+        }
+
+        window.addEventListener('popstate', handleBroswerBackClick);
+
+    return () => window.removeEventListener('popstate', handleBroswerBackClick);
+    }, [navigate]);
+    */
+    
+    
+    
 
     const handleSubClusterClick = (ID) => {
         console.log(ID)
