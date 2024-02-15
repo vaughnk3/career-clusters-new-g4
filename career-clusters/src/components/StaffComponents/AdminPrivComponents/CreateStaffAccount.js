@@ -3,11 +3,18 @@ import BottomRectangle from "../../page_Components/BottomRectangle";
 import React, { useState } from 'react'
 import app from "../../login_components/FirebaseConfig";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { useNavigate } from 'react-router-dom'
 
 const CreateStaffAccount = () => {
     const [email, setUserEmail] = useState('');
     const [password, setPassword] = useState('');
     const auth = getAuth(app);
+
+    const refreshPage = () => {
+        window.location.reload();
+    }
+
+    const navigate = useNavigate();
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -17,6 +24,9 @@ const CreateStaffAccount = () => {
         } catch (error) {
             console.error("Error creating account:", error.message);
         }
+
+        refreshPage();
+        navigate('/login/adminpage')
     }
 
     return (
