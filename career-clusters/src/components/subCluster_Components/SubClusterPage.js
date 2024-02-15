@@ -15,8 +15,33 @@ const SubClusterPage = ({ }) => {
     const navigate = useNavigate();
 
 
-    const handleClusterClick = (SubID) => {
-        console.log(SubID)
+    const handleSubClusterClick = (ID) => {
+        console.log(ID)
+
+        // Update the click count for subclusters
+        const updateSubClusterClickCount = async () => {
+            try {
+                console.log("SUB   IDDDDDD, ", ID)
+                const response = await (fetch('http://localhost:3001/updates-subclust-clickCnt', {
+                    method: 'POST', 
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify( { subclusterID: ID })
+                }));
+                if (response.ok) {
+                    console.log('SubCluster click count updated successfully');
+                } else {
+                    console.error('Failed to update subcluster clickount')
+                }
+            } catch (error) {
+                console.error('Error updating subcluster clickcount: ', error)
+            }
+        }
+
+        // Call the update click count function
+        updateSubClusterClickCount();
+
         navigate('/cluster/subcluster/subclusterinfo')
 
     }
@@ -64,7 +89,7 @@ const SubClusterPage = ({ }) => {
                 <ul>
                     {subclusters.map((subcluster) => (
                         <li>
-                            <SubCluster key={subcluster.id} ID={subcluster.id} subID={subcluster.clusterID} subclusterName={subcluster.subclusterName} onClick={handleClusterClick}/>
+                            <SubCluster key={subcluster.id} ID={subcluster.id} subID={subcluster.clusterID} subclusterName={subcluster.subclusterName} onClick={handleSubClusterClick}/>
                         </li>
                     ))}
                 </ul>

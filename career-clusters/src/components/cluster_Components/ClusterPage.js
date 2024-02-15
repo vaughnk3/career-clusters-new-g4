@@ -34,10 +34,36 @@ const ClusterPage = () => {
      }
 
     const handleClusterClick = (ID) => {
-        console.log(ID)
+        //console.log("IDDDDDD, ", ID)
+        // Define method for updatinng cluster click count
+        const updateClusterClickCount = async () => {
+            try {
+                console.log("IDDDDDD, ", ID)
+                const response = await (fetch('http://localhost:3001/update-clust-clickCnt', {
+                    method: 'POST', 
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify( { clusterID: ID })
+                }));
+                if (response.ok) {
+                    console.log('Cluster click count updated successfully');
+                } else {
+                    console.error('Failed to update cluster clickount')
+                }
+            } catch (error) {
+                console.error('Error updating cluster clickcount: ', error)
+            }
+        }
+
+        // Call the update cluster click count method
+        updateClusterClickCount();
+
+        // Navigate to subcluster page
         navigate(`/cluster/subcluster/${ID}`);
-        return ID;
     }
+
+    
 
     const handleFormSubmit =(e) => {
         e.preventDefault();

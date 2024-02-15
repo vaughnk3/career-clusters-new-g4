@@ -33,7 +33,7 @@
 
         return (
             <Link to={`/cluster/subcluster/subclusterinfo/${ID}`}>
-            <div onClick={() => onClick(subID)} class="subcluster"> 
+            <div onClick={() => onClick(ID)} class="subcluster"> 
             <img src={ imageSrc } alt="SubCluster Picture" className="subcluster-pics"></img>
             <h2>{subclusterName}</h2>
             </div>

@@ -270,7 +270,6 @@ app.get('/login/staffclusters', (req, res) => {
 //************************************************************************/
 // Gets all the subclusters to be displayed on subcluster managment page
 app.get('/subclustermanagementpage', (req, res) => {
-  console.log('JDFSJFDLKFHJSKDFHKJDSHFK')
   pool.query('SELECT * FROM Subcluster', (error, results, fields) => {
     if(error) {
       console.error(error);
@@ -305,6 +304,43 @@ app.post('/login/staffclusters/clustermanagementpage/add-cluster', upload.single
   )
 })
 //************************************************************************/
+
+
+app.post('/update-clust-clickCnt', (req, res) => {
+  const { clusterID } = req.body;
+  pool.query(
+    'UPDATE Cluster SET clickCount = clickCount + 1 where id = ?', 
+    [clusterID], 
+    (error, results, fields) => {
+      if(error) {
+        console.error('Error updating Cluster click count', error);
+        res.status(500).send('Error updatingCluster click count');
+      } else {
+        console.log('Cluster click count updated successfully, new val:   ');
+        res.status(200).send('Cluster click count updated successfully')
+      }
+    }
+  )
+})
+
+
+
+app.post('/updates-subclust-clickCnt', (req, res) => {
+  const { subclusterID } = req.body;
+  pool.query(
+    'UPDATE Subcluster SET clickCount = clickCount + 1 where id = ?', 
+    [subclusterID], 
+    (error, results, fields) => {
+      if(error) {
+        console.error('Error updating SubCluster click count', error);
+        res.status(500).send('Error updating SubCluster click count');
+      } else {
+        console.log('Sub Cluster click count updated successfully, new val:   ');
+        res.status(200).send('Sub Cluster click count updated successfully')
+      }
+    }
+  )
+})
 
 
 //************************************************************************/
