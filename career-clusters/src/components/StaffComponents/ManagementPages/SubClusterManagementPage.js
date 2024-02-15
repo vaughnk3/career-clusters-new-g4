@@ -162,28 +162,19 @@ const SubClusterManagementPage = () => {
                 <button id="add_cluster" onClick={openPopup}>Add SubCluster</button>
                 {isOpen && (
                     <div className="popup">
-                        <div className="popup-content">  
-                            <h2>Test Add SubCluster</h2>
+                        <div className="addsc-container">  
+                            <div className="newsc-left">
+                            
+                            <label class="label-addsc" for="subclusterName">Name</label>
                             <input type="text" id='subclusterName' name="subclusterName" placeholder='Enter new Name'  value={newSCName} onChange={(e) => setNewName(e.target.value)}></input>
-
-                            <input type="text" id="subclusterDescrip" name="subclusterDescrip" placeholder="Enter new description." value={newSCDescrip} onChange={(e) => setNewDescrip(e.target.value)}></input>
-
+                            <br/>
+                            <label class="label-addsc" for="subclusterSalary">Salary</label>
                             <input type="text" id="subclusterSalary" name="subclusterSalary" placeholder="Enter new Salary" value={newSCSalary} onChange={(e) => setNewSalary(e.target.value)}></input>
-
+                            <br/>
+                            <label class="label-addsc" for="subclusterEducation">Education Level</label>
                             <input type="text" id="subclusterEducation" name="subclusterEducation" placeholder="Enter new ed level" value={newSCEdLevel} onChange={(e) => setNewEdLevel(e.target.value)}></input>
 
-                            <select id="growth-rate" name="rate" value={newSCGrowthRate} onChange={(e) => setNewGrowthRate(e.target.value)} >
-                                <option>Select Growth Rate</option>
-                                <option value="High">High</option>
-                                <option value="Medium">Medium</option>
-                                <option value="Low">Low</option>
-                            </select>
-
-                            <input type="file" id="img" name="img" accept="image/*" onChange={handleFileInputChange}></input>
-
-                            <button id="submitName" onClick={addSubCluster}>Submit</button>
-                            <button onClick={closePopup} className="cancelButton">Cancel</button>
-
+                            <label class="label-addsc">Parent Cluster</label>
                             <select id="select-cluster" value={clusterID} onChange={(e) => setClusterID(e.target.value)} >
                                 <option value="" disabled selected hidden className="hidden">Select one</option>
                                 {clusters.map((cluster) => (
@@ -193,6 +184,27 @@ const SubClusterManagementPage = () => {
                                 ))}
                             </select>
 
+                            </div>
+                            <div className="newsc-right">
+                            <label class="label-addsc" for="subclusterDescrip">Description</label>
+                            <input type="text" id="subclusterDescrip" name="subclusterDescrip" placeholder="Enter new description." value={newSCDescrip} onChange={(e) => setNewDescrip(e.target.value)}></input>
+                            
+                            <label class="label-addsc" for="rate">Growth Rate</label>
+                            <select id="growth-rate" name="rate" value={newSCGrowthRate} onChange={(e) => setNewGrowthRate(e.target.value)} >
+                                <option>Select Growth Rate</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+
+                            <label class="label-addsc" for="img">Image</label>
+                            <input type="file" id="img" name="img" accept="image/*" onChange={handleFileInputChange}></input>
+                            </div>
+                            <br/>
+                            <div className="newsc-buttonrow">
+                            <button id="submitName" onClick={addSubCluster}>Submit</button>
+                            <button onClick={closePopup} className="cancelButton">Cancel</button>
+                            </div>
                         </div>
                     </div>
                  )}  
