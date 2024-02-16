@@ -3,7 +3,6 @@ import Cluster from './Cluster.js'
 import BottomRectangle from "../page_Components/BottomRectangle.js"
 import UserIcon from "../page_Components/UserIcon.js";
 import { useNavigate } from 'react-router-dom';
-import TopRectangle from "../page_Components/TopRectangle.js";
 import './ClusterPage.css';
 
 
@@ -34,7 +33,6 @@ const ClusterPage = () => {
      }
 
     const handleClusterClick = (ID) => {
-        //console.log("IDDDDDD, ", ID)
         // Define method for updatinng cluster click count
         const updateClusterClickCount = async () => {
             try {

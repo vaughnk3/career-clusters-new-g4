@@ -1,11 +1,9 @@
-import SubFieldsPage from "../SubFieldInfo/SubFieldPage";
 import BottomRectangle from "../page_Components/BottomRectangle";
-import OverlayRectangle from "./OverlayRectangle";
 import './StaffSubFields.css'
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { getAuth, signOut } from "firebase/auth";
-import { Link, useNavigate, useLocation} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ExcelGenerationQueue } from './ExcelGeneration';
 
 
@@ -32,13 +30,6 @@ const StaffSubFields = () => {
   //Navigate hook for forceful navigation
   const navigate = useNavigate();
  
-
-  const handleClusterClick = (SubID) => {
-      console.log(SubID)
-      navigate('/login/staffclusters/staffsubclusters/staffsubclusterinfo')
-      ///login/staffclusters/staffsubclusters/staffsubclusterinfo
-
-  }
 
   const handleSubclusterManagementClick = () => {
     navigate('/subclustermanagementpage')
@@ -67,12 +58,7 @@ const StaffSubFields = () => {
     navigate('/login/adminpage');
   };
   
-  const handlePathwaysClick = () => {
-    navigate('/login/staffclusters/staffsubclusters/staffsubclusterinfo/staffjoblistings')
-  }
-
-
-
+  
   const field = subFields.length > 0 ? subFields[0] : {};
 
     return (
@@ -84,11 +70,10 @@ const StaffSubFields = () => {
             </div>
             <div class="staff-button-column-two">
               <a class="staff-button" onClick={handleButtonClickStaff}>Admin Landing Page</a>
-              <a class="staff-button" onClick={ExcelGenerationQueue}>Export Data (.xlsx)</a>
             </div>
             <div class="staff-button-column-three">
               <a class="staff-button" onClick={handleSubclusterManagementClick}>SubCluster Management</a>
-              <a class="staff-button">Pathways Management</a>
+              <a class="staff-button" onClick={ExcelGenerationQueue}>Export Data (.xlsx)</a>
             </div>
           </div>
           <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
@@ -98,7 +83,7 @@ const StaffSubFields = () => {
                         <h2 id="fName">{field.fieldName}</h2>
                         <h2 id="fDesc">{field.description} </h2>
                     </div>
-                    <a id="view-button" onClick={handlePathwaysClick} >View Job Postings</a>
+                    <a id="view-button" href="https://business.yorkcountychamber.com/jobs" >View Job Postings</a>
                 </div>
                 <div id="bottomMiddle">
                     <div class="field-statistic">

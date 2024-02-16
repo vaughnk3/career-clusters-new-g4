@@ -147,5 +147,3 @@ const DemographicBox = () => {
 };
 
 export default DemographicBox;
-
-//<button class="submit-button">Submit</button>

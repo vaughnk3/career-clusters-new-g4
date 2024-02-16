@@ -3,17 +3,11 @@ import { useState, useEffect } from 'react';
 import './Cluster.css';
 
 
-
-
-
-
-
 const Cluster = ( {id, clusterName, onClick} ) => {
 
    //This will get the image from the database as a blob, 
   //Then be read as a data URL to put into the src{} tag.  
     const [imageSrc, setImageSrc] = useState('');
-    //console.log("INSIDE FUNC: ID  ", id)
     useEffect(() => {
       const fetchImage = async () => {
         const response = await (fetch(`/n-image/${id}`));
@@ -43,4 +37,3 @@ const Cluster = ( {id, clusterName, onClick} ) => {
 
 export default Cluster;
 
-//<img src={require('../Cluster_Pictures/Mathematics.png') } alt="Cluster Picture" className="cluster-pics"></img>

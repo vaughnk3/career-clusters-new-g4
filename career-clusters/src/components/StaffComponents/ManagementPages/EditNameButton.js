@@ -1,8 +1,8 @@
 import './ManagementCluster.css';
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 
-const EditNameButton = ({ID, ClusterName}) => {
+const EditNameButton = ({ID}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [clusterName, setClusterName] = useState('');
     const openPopup = () => {

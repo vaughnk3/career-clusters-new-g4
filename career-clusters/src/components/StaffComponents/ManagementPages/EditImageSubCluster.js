@@ -29,8 +29,6 @@ const EditImageSubCluster = ({ID}) => {
             body: formData,
         });
 
-        //const data = await dbResponse.json();
-        //console.log('Sucess image post', data);
         } catch (error) {
             console.log("Error", error);
         }

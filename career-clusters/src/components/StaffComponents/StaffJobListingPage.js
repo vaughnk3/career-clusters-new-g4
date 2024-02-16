@@ -1,5 +1,3 @@
-import JobListingPage from "../JobListingComponents/JobListingPage";
-import OverlayRectangle from "./OverlayRectangle";
 import {useNavigate} from "react-router-dom"
 import { getAuth, signOut } from "firebase/auth";
 import { ExcelGenerationQueue } from "../StaffComponents/ExcelGeneration";

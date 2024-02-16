@@ -40,7 +40,6 @@ const StaffClusters = () => {
   const handleClusterClick = (ID) => {
       console.log(ID)
       navigate(`/login/staffclusters/staffsubclusters/${ID}`);
-      ///login/staffclusters/staffsubclusters/${ID}
       return ID;
   }
 
@@ -63,9 +62,9 @@ const StaffClusters = () => {
       console.error('Logout error:', error.message);
     }
   };
-  const handleButtonClickExportData = () => {
-    console.log("Export Data");
-  };
+  
+  
+  
   const handleButtonClickStaff = () => {
     //Need to check whether or not user has correct permissions. 
     navigate('/login/adminpage');
@@ -93,11 +92,10 @@ const StaffClusters = () => {
             </div>
             <div class="staff-button-column-two">
               <a class="staff-button" onClick={handleButtonClickStaff}>Admin Landing Page</a>
-              <a class="staff-button" onClick={ExcelGenerationQueue}>Export Data (.xlsx)</a>
             </div>
             <div class="staff-button-column-three">
               <a class="staff-button" onClick={handleSubclusterManagementClick}>SubCluster Management</a>
-              <a class="staff-button">Pathways Management</a>
+              <a class="staff-button" onClick={ExcelGenerationQueue}>Export Data (.xlsx)</a>
             </div>
           </div>
           <BottomRectangle/>

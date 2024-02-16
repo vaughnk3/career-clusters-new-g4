@@ -13,10 +13,6 @@ export async function ExcelGenerationQueue()
         ws['!cols'] = colWidths;
     }
 
-    function setCellStyle(ws, cell, style) {
-        ws[cell].s = style;
-    }
-
      // Create a new workbook
      const wb = XLSX.utils.book_new();
      let ws = XLSX.utils.aoa_to_sheet('');
@@ -33,7 +29,6 @@ export async function ExcelGenerationQueue()
             throw new Error('Error fetching clusters');
         }
         const data = await dbResponse.json();
-        //console.log(data)
 
         //Create the headers
         wsData.push(['Cluster Name', 'Click Count'])
@@ -50,12 +45,6 @@ export async function ExcelGenerationQueue()
         console.error('Error: ', error);
     }
 
-    /*  NOT WORKING AS INTENDED??
-    //Put some padding space between the columns
-    wsData.forEach(row => {
-        row.push('', '');
-    });
-    */
     
     //temporary padding
     wsData.push('', ''); 
@@ -95,7 +84,7 @@ export async function ExcelGenerationQueue()
             throw new Error('Error fetching clusters');
         }
         const data = await dbResponse.json();
-        console.log(data)
+        
 
         //Push new column headers
 
@@ -106,7 +95,7 @@ export async function ExcelGenerationQueue()
             wsData.push([row.userID, row.school, row.gradeLevel, row.desiredCareerField, row.currentAge])
         })
 
-        console.log(wsData)
+
     } catch (error) 
     {
         console.error('Error: ', error);
@@ -123,24 +112,6 @@ export async function ExcelGenerationQueue()
 
 
     ws = XLSX.utils.aoa_to_sheet(wsData);
-
-
-
-    //This doesnt work dog idk why :()
-
-    /*
-     //Set the colors of the column headers to chamber colors
-     const lightBlue = { fill: { patternType:"solid", bgColor: { rgb: '59bab6' } } };
-     setCellStyle(ws, 'A1', lightBlue);
-     setCellStyle(ws, 'B1', lightBlue);
-
- 
-     numClusters += 2;
-     let newCellA = 'A' + numClusters;
-     let newCellB = ' ' + numClusters;
-     //setCellColor(ws, newCellA, lightBlue);
-     //setCellColor(ws, newCellB, lightBlue);
-    */
 
 
     adjustColumnWidth(ws, 0, 40);

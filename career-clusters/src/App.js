@@ -1,6 +1,4 @@
 import './App.css';
-//import { Link, useNavigate } from 'react-router-dom';
-import Cluster from './components/cluster_Components/Cluster.js'
 import DemographicInfo from './components/homePage/DemographicInfo';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginPage from './components/login_components/LoginPage.js';
@@ -48,8 +46,4 @@ function App() {
 }
 
 export default App;
-//<Route path="/cluster/subcluster" element={<SubClusterPage/>} />//
 
-//<Route path="/login/staffclusters/clustermanagementpage" element={<Cluster}
-
-// <Route path="/login/staffclusters/staffsubclusters/:clusterId" element={<StaffSubClusters/>} />

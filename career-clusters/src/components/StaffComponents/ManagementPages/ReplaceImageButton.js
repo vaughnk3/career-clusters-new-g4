@@ -1,5 +1,5 @@
 import './ManagementCluster.css';
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 
 const ReplaceImageButton = ({ID}) => {
@@ -17,8 +17,6 @@ const ReplaceImageButton = ({ID}) => {
     const uploadFilePost = async (file, id) => {
         try {
             const formData = new FormData();
-            console.log(file);
-            console.log("ID: ", id)
             formData.append('image', file);
             formData.append('id', id);
             
@@ -73,10 +71,8 @@ const ReplaceImageButton = ({ID}) => {
     )
 }
 
-
-
 export default ReplaceImageButton;
 
-//<input type="file" id="imgN" name="imgN" accept="image/*" onChange={handleFileInputChange}></input>
+
 
 

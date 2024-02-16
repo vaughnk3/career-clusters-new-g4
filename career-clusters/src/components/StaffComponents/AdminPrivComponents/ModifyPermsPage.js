@@ -2,7 +2,6 @@ import TopRectangle from "../../page_Components/TopRectangle";
 import BottomRectangle from "../../page_Components/BottomRectangle";
 
 const ModifyPermsPage = () => {
-
     return (
         <div>
             <TopRectangle/>

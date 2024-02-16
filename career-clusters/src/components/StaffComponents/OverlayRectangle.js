@@ -7,5 +7,4 @@ const OverlayRectangle = () => {
     )
 }
 
-
 export default OverlayRectangle;

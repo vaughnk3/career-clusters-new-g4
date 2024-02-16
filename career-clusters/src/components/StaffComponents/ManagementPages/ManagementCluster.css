@@ -142,10 +142,6 @@
     width:50%;
 }
 
-/*#popupLeft h2 {
-    padding-bottom:25%; 
-    color:black;
-}*/
 
 .button-row {
     display:inline-flex;
@@ -168,10 +164,6 @@
     justify-content: center;
 }
 
-/*#popupLeftName h2 {
-    padding-bottom:25%; 
-    color:black;
-}*/
 
 #popupRightName {
     flex:1;

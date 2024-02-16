@@ -1,7 +1,5 @@
-import TopRectangle from "../../page_Components/TopRectangle";
 import BottomRectangle from "../../page_Components/BottomRectangle";
 import './ClusterManagementPage.css';
-import OverlayRectangle from "../OverlayRectangle";
 import ManagementCluster from "./ManagementCluster";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
@@ -81,7 +79,7 @@ const ClusterManagementPage = () => {
 
     //If the page takes a while to load, display loading image.
     if (loading) {
-        return <h1>Still loading</h1>
+        return <div id="loading-animation"></div>
     }
 
     //Navigation for a user clicking the back button
@@ -128,7 +126,7 @@ const ClusterManagementPage = () => {
             <ul class="mgmt_list">
                 {clusters.map((cluster) => (
                     <li>
-                        <ManagementCluster key={cluster.id} ID={cluster.id} clusterName={cluster.clusterName} onClick="" />
+                        <ManagementCluster key={cluster.id} ID={cluster.id} clusterName={cluster.clusterName} />
                     </li>
                 ))}
             </ul>
@@ -141,7 +139,6 @@ const ClusterManagementPage = () => {
 
     )
 }
-
 
 export default ClusterManagementPage;
 

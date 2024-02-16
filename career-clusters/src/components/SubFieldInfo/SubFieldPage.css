@@ -1,25 +1,3 @@
-/*.inline {
-    list-style-type: none;
-    display: inline;
-    
-}
-
-.fInline {
-    display:inline;
-    color:#98CA41;
-    font-weight: 800;
-    margin-left:5%;
-    font-size:3rem;
-    
-}
-
-.fInlineTitle {
-    display: inline;
-    margin-left:5%;
-    font-size:2rem;
-    background-color: palegoldenrod;
-    
-}*/
 
 #fName {
     color:var(--darkblue);

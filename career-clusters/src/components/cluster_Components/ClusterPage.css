@@ -1,7 +1,4 @@
 
-
-
-
 #topRectangle {
     background-color: var(--darkblue);
     color: white;
@@ -65,8 +62,6 @@
 	position: sticky;
 	bottom:20%;
 }
-
-
 
 
 #loading-animation {

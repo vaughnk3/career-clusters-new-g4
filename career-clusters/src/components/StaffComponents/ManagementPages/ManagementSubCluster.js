@@ -7,9 +7,9 @@ import EditEducationSubCluster from './EditEducationSubCluster';
 import DeleteSubClusterButton from './DeleteSubClusterButton';
 import EditImageSubCluster from './EditImageSubCluster';
 
+
+
 const ManagementSubCluster = ({ID, subclusterName}) => {
-
-
 
     return (
         <div className="subcluster_m">
@@ -26,7 +26,5 @@ const ManagementSubCluster = ({ID, subclusterName}) => {
         </div>
     )
 }
-
-
 
 export default ManagementSubCluster;

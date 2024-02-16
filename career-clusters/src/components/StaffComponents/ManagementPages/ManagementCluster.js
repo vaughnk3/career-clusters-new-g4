@@ -4,11 +4,10 @@ import EditNameButton from './EditNameButton';
 import ReplaceImageButton from './ReplaceImageButton';
 import DeleteClusterButton from './DeleteClusterButton';
 
-const ManagementCluster = ({ ID, clusterName, onClick }) => {
+const ManagementCluster = ({ ID, clusterName }) => {
 
 
     const [imageSrc, setImageSrc] = useState('');
-    //console.log("INSIDE FUNC: ID  ", id)
     useEffect(() => {
       const fetchImage = async () => {
         const response = await (fetch(`http://localhost:3001/n-image/${ID}`));

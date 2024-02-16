@@ -229,6 +229,4 @@ const SubClusterManagementPage = () => {
     )
 }
 
-
-
 export default SubClusterManagementPage;

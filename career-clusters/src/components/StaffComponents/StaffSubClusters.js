@@ -1,31 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate} from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import SubCluster_S from "./SubCluster_S";
 import { getAuth, signOut } from "firebase/auth";
 import { ExcelGenerationQueue } from './ExcelGeneration';
 
 const StaffSubClusters = () => {
+    //Declare navigate hook
     const navigate = useNavigate();
 
-
+    //Handle the cluster click
     const handleClusterClick = (ID) => {
         console.log(ID)
-        //navigate('/login/staffclusters/staffsubclusters/staffsubclusterinfo')
-        ///login/staffclusters/staffsubclusters/staffsubclusterinfo
-
     }
-
+    
+    //Route to the subcluster management page if button is clicked
     const handleSubclusterManagementClick = () => {
       navigate('/subclustermanagementpage')
     }
 
-
+    // Route to the cluster management page is button is clicked
     const handleButtonClickClusterManagement = () => {
       navigate('/login/staffclusters/clustermanagementpage');
     };
 
-
+    //Handle logout
     const handleButtonClickLogout = async () => {
       //Logout
       const auth = getAuth();
@@ -39,15 +38,18 @@ const StaffSubClusters = () => {
     };
 
 
+    //Handle route to admin page
     const handleButtonClickStaff = () => {
       //Need to check whether or not user has correct permissions. 
       navigate('/login/adminpage');
     };
 
+
     const { clusterId } = useParams();
     const [subclusters, setSubclusters] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    //Grab all the subclusters to be mapped on display
     useEffect(() => {
         const fetchSubclusters = async () => {
             try {
@@ -66,10 +68,11 @@ const StaffSubClusters = () => {
         fetchSubclusters();
     }, [clusterId])
 
+    //Loading animation
     if (loading) {
-      return <h1>This page loading</h1>
+      return<div id="loading-animation"></div>
     }
-    //const subclusterF = subclusters.length > 0 ? subclusters[0] : {};
+   
 
     return (
         <div>
@@ -88,11 +91,10 @@ const StaffSubClusters = () => {
             </div>
             <div class="staff-button-column-two">
               <a class="staff-button" onClick={handleButtonClickStaff}>Admin Landing Page</a>
-              <a class="staff-button" onClick={ExcelGenerationQueue}>Export Data (.xlsx)</a>
             </div>
             <div class="staff-button-column-three">
               <a class="staff-button" onClick={handleSubclusterManagementClick}>SubCluster Management</a>
-              <a class="staff-button">Pathways Management</a>
+              <a class="staff-button" onClick={ExcelGenerationQueue}>Export Data (.xlsx)</a>
             </div>
           </div>
         </div>
@@ -100,6 +102,5 @@ const StaffSubClusters = () => {
 
 
 }
-
 
 export default StaffSubClusters;
