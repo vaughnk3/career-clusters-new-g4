@@ -46,8 +46,8 @@ const DeleteSubClusterButton = ({ID}) => {
             <button className="deleteButton" onClick={openPopup} >Delete</button>
             {isOpen && (
                     <div className="popup">
-                        <div className="popup-content">  
-                            <h2>Test Delete</h2>
+                        <div className="delete-popup-content">  
+                            <label for='deletebuttonrow'>Are you sure you want to delete this subcluster?</label>
                             <div className='deletebuttonrow'>
                             <button onClick={closePopup} className="cancelButton">Cancel</button>
                             <button id="deleteCluster" onClick={DeleteSubCluster}>Delete</button>
