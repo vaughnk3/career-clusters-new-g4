@@ -194,17 +194,19 @@
 .newsc-left {
     display:flex;
     flex-flow:column;
-    width:200px;
+    width:225px;
     margin-top:20px;
-    padding-right:40px;
+    padding-right:35px;
+    padding-left:40px;
 }
 
 .newsc-right {
     display:flex;
     flex-flow:column;
-    width:200px;
-    padding-left:100px;
+    width:225px;
+    padding-left:35px;
     margin-top:20px;
+    padding-right:40px;
 }
 
 
