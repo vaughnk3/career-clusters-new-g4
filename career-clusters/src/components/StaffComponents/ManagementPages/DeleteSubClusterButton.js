@@ -48,8 +48,10 @@ const DeleteSubClusterButton = ({ID}) => {
                     <div className="popup">
                         <div className="popup-content">  
                             <h2>Test Delete</h2>
+                            <div className='deletebuttonrow'>
                             <button onClick={closePopup} className="cancelButton">Cancel</button>
                             <button id="deleteCluster" onClick={DeleteSubCluster}>Delete</button>
+                            </div>
                         </div>
                     </div>
                 )}

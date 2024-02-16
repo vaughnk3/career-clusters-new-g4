@@ -64,8 +64,10 @@ const EditGrowthSubCluster = ({ID}) => {
                                 <option value="Medium">Medium</option>
                                 <option value="Low">Low</option>
                             </select>
-                            <button id="submitName" onClick={changeSubClusterGrowthRate}>Submit</button>
+                            <div className="replacebuttonrow">
                             <button onClick={closePopup} className="cancelButton">Cancel</button>
+                            <button id="submitName" onClick={changeSubClusterGrowthRate}>Submit</button>
+                            </div>
                         </div>
                     </div>
             )}

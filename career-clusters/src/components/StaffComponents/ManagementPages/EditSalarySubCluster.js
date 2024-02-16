@@ -49,10 +49,12 @@ const EditSalarySubCluster = ({ID}) => {
             {isOpen && (
                     <div className="popup">
                         <div className="popup-content">  
-                            <h2>Test Edit Education Level</h2>
+                            <label for="subclusterSalary" className="newsc-left">Salary</label>
                             <input type="text" id="subclusterSalary" name="subclusterSalary" placeholder="Enter the changed SubCluster salary." value={subclusterSalary} onChange={(e) => setsubclusterSalary(e.target.value)}></input>
-                            <button id="submitName" onClick={changeSubClusterSalary}>Submit</button>
+                            <div className="replacebuttonrow">
                             <button onClick={closePopup} className="cancelButton">Cancel</button>
+                            <button id="submitName" onClick={changeSubClusterSalary}>Submit</button>
+                            </div>
                         </div>
                     </div>
             )}

@@ -14,6 +14,7 @@ const ManagementSubCluster = ({ID, subclusterName}) => {
     return (
         <div className="subcluster_m">
             <h2>{subclusterName}</h2>
+            <div className="sc_editbar">
             <EditNameSubcluster ID={ID} />
             <EditImageSubCluster ID={ID} />
             <EditDescriptionSubcluster ID={ID} />
@@ -21,6 +22,7 @@ const ManagementSubCluster = ({ID, subclusterName}) => {
             <EditGrowthSubCluster ID={ID} />
             <EditEducationSubCluster ID={ID} />
             <DeleteSubClusterButton ID={ID} />
+            </div>
         </div>
     )
 }

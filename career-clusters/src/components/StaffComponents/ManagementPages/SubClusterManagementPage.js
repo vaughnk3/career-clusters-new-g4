@@ -202,8 +202,8 @@ const SubClusterManagementPage = () => {
                             </div>
                             <br/>
                             <div className="newsc-buttonrow">
-                            <button id="submitName" onClick={addSubCluster}>Submit</button>
                             <button onClick={closePopup} className="cancelButton">Cancel</button>
+                            <button id="submitName" onClick={addSubCluster}>Submit</button>
                             </div>
                         </div>
                     </div>
@@ -215,7 +215,7 @@ const SubClusterManagementPage = () => {
             <br></br><br></br><br></br><br></br><br></br><br></br>
 
 
-            <ul>
+            <ul className="scmgmt_list">
                 {subClusters2.map((subcluster) => (
                     <li>
                         <ManagementSubCluster key={subcluster.id} ID={subcluster.id} subclusterName={subcluster.subclusterName} />

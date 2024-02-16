@@ -47,11 +47,15 @@ const EditNameSubcluster = ({ID}) => {
             <button className="editName" onClick={openPopup}>Edit Name</button>
             {isOpen && (
                     <div className="popup">
-                        <div className="popup-content">  
-                            <h2>Test Edit Name</h2>
-                            <input type="text" id="subclusterName" name="subclusterName" placeholder="Enter the changed SubCluster name." value={subclusterName} onChange={(e) => setsubclusterName(e.target.value)}></input>
-                            <button id="submitName" onClick={changeSubClusterName}>Submit</button>
+                        <div className="popup-content">
+                         
+                            <label for="subclusterName" className="newsc-left"><b>Edit Subcluster Name</b></label>
+                            <input type="text" id="subclusterName" name="subclusterName" className='newsc-right2' placeholder="Enter the SubCluster name." value={subclusterName} onChange={(e) => setsubclusterName(e.target.value)}></input>
+                        
+                            <div className="replacebuttonrow">
                             <button onClick={closePopup} className="cancelButton">Cancel</button>
+                            <button id="submitName" onClick={changeSubClusterName}>Submit</button>
+                            </div>
                         </div>
                     </div>
                 )}
