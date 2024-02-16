@@ -26,6 +26,12 @@ body {
   
 }
 
+.home-button {
+  
+    height:50px;
+
+}
+
 ul {
     list-style-type: none;
 }

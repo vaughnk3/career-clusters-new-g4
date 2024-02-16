@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import { ExcelGenerationQueue } from './ExcelGeneration';
+import { Link } from 'react-router-dom';
+import './StaffSubClusters.js';
 
 
 const StaffSubFields = () => {
@@ -64,6 +66,7 @@ const StaffSubFields = () => {
     return (
         <div id="page">
           <div className="overlay">
+            <Link to="/login/staffclusters"><img src={require('./HomeButton.png')} alt="Home Button" className="home-button"></img></Link>
             <div class="staff-button-column-one">
               <a class="staff-button" onClick={handleButtonClickClusterManagement}>Cluster Management</a>
               <a class="staff-button" onClick={handleButtonClickLogout}>Logout</a>

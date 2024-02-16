@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import SubCluster_S from "./SubCluster_S";
 import { getAuth, signOut } from "firebase/auth";
 import { ExcelGenerationQueue } from './ExcelGeneration';
+import { Link } from 'react-router-dom';
+import './StaffSubClusters.js';
 
 const StaffSubClusters = () => {
     //Declare navigate hook
@@ -84,18 +86,19 @@ const StaffSubClusters = () => {
                  </li>
                 ))}
             </ul>
-            <div className="overlay">
-            <div class="staff-button-column-one">
-              <a class="staff-button" onClick={handleButtonClickClusterManagement}>Cluster Management</a>
-              <a class="staff-button" onClick={handleButtonClickLogout}>Logout</a>
-            </div>
-            <div class="staff-button-column-two">
-              <a class="staff-button" onClick={handleButtonClickStaff}>Admin Landing Page</a>
-            </div>
-            <div class="staff-button-column-three">
-              <a class="staff-button" onClick={handleSubclusterManagementClick}>SubCluster Management</a>
-              <a class="staff-button" onClick={ExcelGenerationQueue}>Export Data (.xlsx)</a>
-            </div>
+          <div className="overlay">
+              <Link to="/login/staffclusters"><img src={require('./HomeButton.png')} alt="Home Button" className="home-button"></img></Link>
+              <div class="staff-button-column-one">
+                <a class="staff-button" onClick={handleButtonClickClusterManagement}>Cluster Management</a>
+                <a class="staff-button" onClick={handleButtonClickLogout}>Logout</a>
+              </div>
+              <div class="staff-button-column-two">
+                <a class="staff-button" onClick={handleButtonClickStaff}>Admin Landing Page</a>
+              </div>
+              <div class="staff-button-column-three">
+                <a class="staff-button" onClick={handleSubclusterManagementClick}>SubCluster Management</a>
+                <a class="staff-button" onClick={ExcelGenerationQueue}>Export Data (.xlsx)</a>
+              </div>
           </div>
         </div>
     )
