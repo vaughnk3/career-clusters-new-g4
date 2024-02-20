@@ -1,0 +1,40 @@
+#form {
+    width:30%;
+    justify-content: center;
+    align-items: center;
+    height:30rem;
+
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:5%;
+    margin-top:5%;
+
+    background-color: var(--darkblue);
+    border-radius: 25px; /* Adjust the border-radius for rounded corners */
+    box-shadow: 0 0 50px rgba(0, 0, 0,.3);
+}
+
+#form form {
+    text-align: center;
+    width:50%;
+}
+
+#form label {
+    display:block;
+    margin-bottom:16px;
+}
+
+#createAcc {
+    position: relative;
+    bottom: 20px;
+    margin-top:15%;
+
+    background-color: var(--green);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+
+    text-decoration: none;
+    cursor: pointer;
+}

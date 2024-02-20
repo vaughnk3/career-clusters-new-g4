@@ -31,26 +31,28 @@ const CreateStaffAccount = () => {
     }
 
     return (
-    <div>
+    <>
         <TopRectangle/>
-            <div>
-                <form onSubmit={handleSignUp}>
-                    <label>
-                        New Email: 
-                        <input type="email" value={email} onChange={(e) => setUserEmail(e.target.value)} required />
-                    </label>
+            
+                <form id="form" onSubmit={handleSignUp}>
+                <div>
+                    <label> New Email</label>
+                        <input type="email" value={email} className="field" onChange={(e) => setUserEmail(e.target.value)} required />
+                
+                <br></br>
+                
+                    <label> New Password</label>
+                        <input type="password" value={password} className="field" onChange={(e) => setPassword(e.target.value)} required />
+                        <br></br>
+                        <button id="createAcc" type="submit">Create Account</button>
+                    </div>
+                   
 
-                    <label>
-                        New Password: 
-                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                    </label>
-
-                <button type="submit">Create Account</button>
+                
                 </form>
 
-            </div>
             <BottomRectangle/>
-        </div>
+        </>
     )
 }
 
