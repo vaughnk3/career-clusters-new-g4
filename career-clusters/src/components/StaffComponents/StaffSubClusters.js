@@ -5,7 +5,7 @@ import SubCluster_S from "./SubCluster_S";
 import { getAuth, signOut } from "firebase/auth";
 import { ExcelGenerationQueue } from './ExcelGeneration';
 import { Link } from 'react-router-dom';
-import './StaffSubClusters.js';
+import './StaffSubClusters.css';
 
 const StaffSubClusters = () => {
     //Declare navigate hook

@@ -1,6 +1,6 @@
 import './StaffClusters.css';
 import React from 'react';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link } from 'react-router-dom';
 import './OverlayRectangle.css'
 import { useState , useEffect} from "react";
 import Cluster_S from "./Cluster_S";
@@ -86,6 +86,7 @@ const StaffClusters = () => {
                 ))}
             </li>
           <div className="overlay">
+            <Link to="/login/staffclusters"><img src={require('./HomeButton.png')} alt="Home Button" className="home-button"></img></Link>
             <div class="staff-button-column-one">
               <a class="staff-button" onClick={handleButtonClickClusterManagement}>Cluster Management</a>
               <a class="staff-button" onClick={handleButtonClickLogout}>Logout</a>

@@ -28,7 +28,10 @@ body {
 
 .home-button {
   
-    height:50px;
+    height:75px;
+    position:absolute;
+    left:5%;
+    top:15%;
 
 }
 
