@@ -113,6 +113,7 @@ const SubClusterManagementPage = () => {
                 try {
                     const response = await(fetch('http://localhost:3001/subclustermanagementpage/add-subcluster-field', {
                         method: 'POST',
+                        // credentials: "include",    verification for back-end
                         headers: {
                             'Content-Type' : 'application/json'
                         },

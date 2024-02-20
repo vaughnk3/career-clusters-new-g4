@@ -12,7 +12,7 @@ const ProtectedRoute = ({ children }) => {
         const auth = getAuth();
         onAuthStateChanged(auth, (user) => {
             if(user) {
-                console.log('User is logged in')
+                console.log('User is logged in: ', user)
                 setUser(user);
             } else {
                 setUser(null);

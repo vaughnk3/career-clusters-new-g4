@@ -4,6 +4,8 @@ const cors = require('cors');
 const app = express();
 const multer = require('multer');
 
+//add firebase? library to check token to see if user is legit 
+
 const upload = multer({ storage: multer.memoryStorage() });
 // Use the mysqlConnection object to perform database operations
 // ...
@@ -11,7 +13,7 @@ const upload = multer({ storage: multer.memoryStorage() });
 // Start your Express server
 
 app.use(express.json());
-app.use(cors());
+app.use(cors()); //access-control-allow-origin : http://localhost:3000 http://yorkcounty.com
 
 const pool = mysql.createPool({
   host: 'deltona.birdnest.org',
@@ -36,6 +38,7 @@ pool.getConnection((err, connection) => {
 
 
 //IMAGE POST FROM CLUSTER MANAGEMENT
+//check if logged in, verify if image
 app.post('/imag-cluster-replace', upload.single('image'), (req, res) => {
   const image = req.file.buffer;
   const clusterId = req.body.id;
@@ -534,6 +537,7 @@ app.post('/subclustermanagementpage/add-subcluster', upload.single('image'), (re
 })
 
 app.post('/subclustermanagementpage/add-subcluster-field', (req, res) => {
+  //look at req (in headers)
   const { subclusterID, newSCName, newSCDescrip, newSCsalary, newSCEdLevel, newSCGrowthRate} = req.body;
   pool.query(
     'INSERT INTO Field (subclusterID, fieldName, description, avgSalary, educationLvl, growthRate) VALUES (?, ?, ?, ?, ?, ?)',
