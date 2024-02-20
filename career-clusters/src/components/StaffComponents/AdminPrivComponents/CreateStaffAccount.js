@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import app from "../../login_components/FirebaseConfig";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useNavigate } from 'react-router-dom'
+import './CreateStaffAccount.css'
 
 const CreateStaffAccount = () => {
     const [email, setUserEmail] = useState('');
@@ -30,17 +31,17 @@ const CreateStaffAccount = () => {
     }
 
     return (
-        <div>
-            <TopRectangle/>
+    <div>
+        <TopRectangle/>
             <div>
                 <form onSubmit={handleSignUp}>
                     <label>
-                        Email: 
+                        New Email: 
                         <input type="email" value={email} onChange={(e) => setUserEmail(e.target.value)} required />
                     </label>
 
                     <label>
-                        Password: 
+                        New Password: 
                         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                     </label>
 
