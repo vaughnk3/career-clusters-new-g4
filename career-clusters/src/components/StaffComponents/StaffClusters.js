@@ -9,6 +9,7 @@ import BottomRectangle from "../page_Components/BottomRectangle";
 import { getAuth, signOut } from "firebase/auth";
 import './StaffClusters.css'
 import { ExcelGenerationQueue } from './ExcelGeneration';
+import SchoolManagementPage from './ManagementPages/SchoolManagementPage';
 
 const StaffClusters = () => {
 
@@ -74,6 +75,10 @@ const StaffClusters = () => {
     navigate('/subclustermanagementpage');
   }
 
+  const handleSchoolManagementClick = () => {
+    navigate('/school-management-page');
+  }
+
 
     return (
         <div>
@@ -93,6 +98,7 @@ const StaffClusters = () => {
             </div>
             <div class="staff-button-column-two">
               <a class="staff-button" onClick={handleButtonClickStaff}>Admin Landing Page</a>
+              <a class="staff-button" onClick={handleSchoolManagementClick}>School Management</a>
             </div>
             <div class="staff-button-column-three">
               <a class="staff-button" onClick={handleSubclusterManagementClick}>SubCluster Management</a>

@@ -76,6 +76,10 @@ const StaffSubClusters = () => {
     }
    
 
+    const handleSchoolManagementClick = () => {
+      navigate('/school-management-page');
+    }
+
     return (
         <div>
            <br></br><br></br><br></br><br></br><br></br><br></br> 
@@ -94,6 +98,7 @@ const StaffSubClusters = () => {
               </div>
               <div class="staff-button-column-two">
                 <a class="staff-button" onClick={handleButtonClickStaff}>Admin Landing Page</a>
+                <a class="staff-button" onClick={handleSchoolManagementClick}>School Management</a>
               </div>
               <div class="staff-button-column-three">
                 <a class="staff-button" onClick={handleSubclusterManagementClick}>SubCluster Management</a>

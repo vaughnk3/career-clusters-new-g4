@@ -59,6 +59,10 @@ const StaffSubFields = () => {
     //Need to check whether or not user has correct permissions. 
     navigate('/login/adminpage');
   };
+
+  const handleSchoolManagementClick = () => {
+    navigate('/school-management-page');
+  }
   
   
   const field = subFields.length > 0 ? subFields[0] : {};
@@ -73,6 +77,7 @@ const StaffSubFields = () => {
             </div>
             <div class="staff-button-column-two">
               <a class="staff-button" onClick={handleButtonClickStaff}>Admin Landing Page</a>
+              <a class="staff-button" onClick={handleSchoolManagementClick}>School Management</a>
             </div>
             <div class="staff-button-column-three">
               <a class="staff-button" onClick={handleSubclusterManagementClick}>SubCluster Management</a>

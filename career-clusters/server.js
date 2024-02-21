@@ -77,7 +77,6 @@ app.post('/subimage-replace', upload.single('image'), (req, res) => {
 // Get subcluster image
 app.get('/subclust-img-pull/:id', async (req, res) => {
   const { id } = req.params;
-  console.log("idddddddd: ", id)
   pool.query('SELECT img FROM Subcluster WHERE id = ?', [id], (error, results) => {
     if (error) {
       console.error("Error fetching image: ", error);
@@ -99,7 +98,6 @@ app.get('/subclust-img-pull/:id', async (req, res) => {
 // get the cluster images for a particular cluster
 app.get('/n-image/:id', async (req, res) => {
   const { id } = req.params;
-  console.log("id: ", id)
   pool.query('SELECT img FROM Cluster WHERE id = ?', [id], (error, results) => {
     if (error) {
       console.error("Error fetching image: ", error);
@@ -121,7 +119,6 @@ app.get('/n-image/:id', async (req, res) => {
 //************************************************************************/
 //Excel sheet get cluster names and click rates. 
 app.get('/excel-clusters', (req, res) => {
-  console.log('Recieved GET request to /cluster')
   pool.query('SELECT clusterName, clickCount FROM Cluster', (error, results, fields) => {
     if(error) {
       console.error(error);
@@ -140,7 +137,7 @@ app.get('/excel-clusters', (req, res) => {
 //************************************************************************/
 //Excel sheet get cluster names and click rates. 
 app.get('/dem-info', (req, res) => {
-  console.log('Recieved GET request to /cluster')
+
   pool.query('SELECT * FROM UserDemographicInfo', (error, results, fields) => {
     if(error) {
       console.error(error);
@@ -160,7 +157,6 @@ app.get('/dem-info', (req, res) => {
 //************************************************************************/
 //GENERAL VIEW SELECT ALL CLUSTERS
 app.get('/gen-subclusters', (req, res) => {
-  console.log('Recieved GET request to /cluster')
   pool.query('SELECT subclusterName, clickCount FROM Subcluster', (error, results, fields) => {
     if(error) {
       console.error(error);
@@ -181,7 +177,7 @@ app.get('/gen-subclusters', (req, res) => {
 //************************************************************************/
 // Get list of schools for demographic page
 app.get('/school', (req, res) => {
-  console.log('Recieved GET request to /school')
+  console.log('Recieved GET request to /school/test!')
   pool.query('SELECT * FROM School ORDER BY schoolName', (error, results, fields) => {
     if(error) {
       console.error(error);
@@ -194,6 +190,45 @@ app.get('/school', (req, res) => {
   })
 })
 //************************************************************************/
+
+app.post('/manage-school-name', (req, res) => {
+  
+  const { newSchoolName, ID } = req.body;
+  console.log("I GOT IT, ", newSchoolName, " ", ID);
+  pool.query(
+    'UPDATE School SET schoolName = ? where id = ?',
+    [ newSchoolName , ID] ,
+    (error, results, fields) => {
+      if(error) {
+        console.error("Error adding demographic information: ", error);
+        res.status(500).send("Error adding demographic information");
+      } else {
+        console.log("Added demographic information successfully");
+        res.status(200).send("Added demographic information successfully");
+      }
+    }
+  )
+})
+
+
+app.post('/new-school', (req, res) => {
+  
+  const { newSchool} = req.body;
+  pool.query(
+    'INSERT INTO School (schoolName) VALUES (?)',
+    [ newSchool] ,
+    (error, results, fields) => {
+      if(error) {
+        console.error("Error adding demographic information: ", error);
+        res.status(500).send("Error adding demographic information");
+      } else {
+        console.log("Added demographic information successfully");
+        res.status(200).send("Added demographic information successfully");
+      }
+    }
+  )
+})
+
 
 //************************************************************************/
 // Send collected demographic information to database
@@ -237,7 +272,6 @@ app.get('/cluster', (req, res) => {
 //************************************************************************/
 // GET ALL CLUSTERS FOR THE CLUSTER MANAGEMENT PAGE LIST -- STAFF VIEW/ADMIN VIEW
 app.get('/login/staffclusters/clustermanagementpage', (req, res) => {
-  console.log('Recieved GET request to /cluster')
   pool.query('SELECT * FROM Cluster ORDER BY clusterName', (error, results, fields) => {
     if(error) {
       console.error(error);
@@ -255,7 +289,6 @@ app.get('/login/staffclusters/clustermanagementpage', (req, res) => {
 //************************************************************************/
 //GET ALL CLUSTERS FOR THE STAFF VIEW PAGE -- STAFF/ADMIN
 app.get('/login/staffclusters', (req, res) => {
-  console.log('Recieved GET request to /cluster')
   pool.query('SELECT * FROM Cluster ORDER BY clusterName', (error, results, fields) => {
     if(error) {
       console.error(error);

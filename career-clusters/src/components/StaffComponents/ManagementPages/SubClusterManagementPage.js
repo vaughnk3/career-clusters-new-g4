@@ -160,7 +160,7 @@ const SubClusterManagementPage = () => {
         <div id="page">
             <div id="_topRectangle">
                 <button id="back_button" onClick={handleBackButton}>Back</button>
-                <button id="add_cluster" onClick={openPopup}>Add SubCluster</button>
+                <button id="add_cluster" onClick={openPopup}>Add SubCluster +</button>
                 {isOpen && (
                     <div className="popup">
                         <div className="addsc-container">  
@@ -213,8 +213,8 @@ const SubClusterManagementPage = () => {
 
                 <h1>SubCluster Managment Page</h1>
             </div>
-            <br></br><br></br><br></br><br></br><br></br><br></br>
-
+            
+            <br></br>
 
             <ul className="scmgmt_list">
                 {subClusters2.map((subcluster) => (

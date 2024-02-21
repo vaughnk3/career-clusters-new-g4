@@ -16,6 +16,7 @@ import CreateStaffAccount from './components/StaffComponents/AdminPrivComponents
 import ClusterManagementPage from './components/StaffComponents/ManagementPages/ClusterManagementPage';
 import SubClusterManagementPage from './components/StaffComponents/ManagementPages/SubClusterManagementPage';
 import ProtectedRoute from './components/StaffComponents/ProtectedRoute.js';
+import SchoolManagementPage from './components/StaffComponents/ManagementPages/SchoolManagementPage';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
 
         <Route path="/login/staffclusters/clustermanagementpage" element={<ProtectedRoute><ClusterManagementPage/></ProtectedRoute>} />
         <Route path="/subclustermanagementpage" element={<ProtectedRoute><SubClusterManagementPage/></ProtectedRoute>} />
+        <Route path="/school-management-page" element={<ProtectedRoute><SchoolManagementPage/></ProtectedRoute>} />
       </Routes>
     </Router>
   );

@@ -98,7 +98,7 @@ const ClusterManagementPage = () => {
         <div id="page">
             <div id="_topRectangle">
                 <button id="back_button" onClick={backButtonHandler}>Back</button>
-                <button onClick={openPopup} id="add_cluster">Add Cluster</button>
+                <button onClick={openPopup} id="add_cluster">Add Cluster +</button>
                 {isOpen && (
                     <div className="popup">
                         <div className="popup-content">                           
