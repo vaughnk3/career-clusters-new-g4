@@ -16,6 +16,7 @@ import CreateStaffAccount from './components/StaffComponents/AdminPrivComponents
 import ClusterManagementPage from './components/StaffComponents/ManagementPages/ClusterManagementPage';
 import SubClusterManagementPage from './components/StaffComponents/ManagementPages/SubClusterManagementPage';
 import ProtectedRoute from './components/StaffComponents/ProtectedRoute.js';
+import AdminProtectedRoute from './components/StaffComponents/AdminProtectedRoute.js';
 
 function App() {
   return (
@@ -34,9 +35,9 @@ function App() {
         <Route path="/login/staffclusters/staffsubclusters/staffsubclusterinfo/:subclusterId" element={<ProtectedRoute><StaffSubFields/></ProtectedRoute>} />
         <Route path="/login/staffclusters/staffsubclusters/staffsubclusterinfo/staffjoblistings" element={<ProtectedRoute><StaffJobListingPage/></ProtectedRoute>} />
 
-        <Route path="/login/adminpage" element={<ProtectedRoute><AdminLandingPage/></ProtectedRoute>} />
-        <Route path="/login/adminpage/modifyperms" element={<ProtectedRoute><ModifyPermsPage/></ProtectedRoute>} />
-        <Route path="/login/adminpage/createstaffpage" element={<ProtectedRoute><CreateStaffAccount/></ProtectedRoute>} />
+        <Route path="/login/adminpage" element={<AdminProtectedRoute><AdminLandingPage/></AdminProtectedRoute>} />
+        <Route path="/login/adminpage/modifyperms" element={<AdminProtectedRoute><ModifyPermsPage/></AdminProtectedRoute>} />
+        <Route path="/login/adminpage/createstaffpage" element={<AdminProtectedRoute><CreateStaffAccount/></AdminProtectedRoute>} />
 
         <Route path="/login/staffclusters/clustermanagementpage" element={<ProtectedRoute><ClusterManagementPage/></ProtectedRoute>} />
         <Route path="/subclustermanagementpage" element={<ProtectedRoute><SubClusterManagementPage/></ProtectedRoute>} />

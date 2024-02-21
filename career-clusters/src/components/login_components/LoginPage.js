@@ -25,6 +25,7 @@ const LoginPage = () => {
 
 
     const navigate = useNavigate();
+    const adminUID = 'NW0QYGlDcaRCgEk8T8r9n3MgvP22'
     
     //Sign in handler with firebase
     const handleSubmit = async (event) => {
@@ -34,8 +35,11 @@ const LoginPage = () => {
           const userCredential = await signInWithEmailAndPassword(auth, username, password);
           const user = userCredential.user;
           console.log('User logged in: ', user);
-
-          navigate('/login/staffclusters')
+          if(user.uid === adminUID) {
+            navigate('/login/adminpage')
+          } else {
+            navigate('/login/staffclusters')
+          }
         } catch (error) {
           console.error('Login error:', error.message);
         }
