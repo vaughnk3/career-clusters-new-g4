@@ -13,7 +13,11 @@ const upload = multer({ storage: multer.memoryStorage() });
 // Start your Express server
 
 app.use(express.json());
-app.use(cors()); //access-control-allow-origin : http://localhost:3000 http://yorkcounty.com
+// app.use(cors()); //currently allows cross-origin access control
+app.use(cors({
+  origin: 'http://localhost:3000',    //add YCRC domain when ready to hand off 
+  credentials: true,
+}))
 
 const pool = mysql.createPool({
   host: 'deltona.birdnest.org',
