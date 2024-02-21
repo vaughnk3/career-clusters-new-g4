@@ -1,5 +1,7 @@
 import BottomRectangle from "../page_Components/BottomRectangle";
 import "./AdminLandingPage.css";
+import { ExcelGenerationQueue } from "./ExcelGeneration";
+
 
 const AdminLandingPage = () => {
 
@@ -20,7 +22,7 @@ const AdminLandingPage = () => {
                     <a href="/login/staffclusters/clustermanagementpage">Cluster Management</a> 
                     <a href="">Manage Job Postings</a>
                 </div>
-                <a href="">Export Data (.xlsx)</a>
+                <a  onClick={ExcelGenerationQueue}>Export Data (.xlsx)</a>
                 <a href="">Logout</a>
             </div>
             <BottomRectangle/>
