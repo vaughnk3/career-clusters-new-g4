@@ -16,11 +16,8 @@ import CreateStaffAccount from './components/StaffComponents/AdminPrivComponents
 import ClusterManagementPage from './components/StaffComponents/ManagementPages/ClusterManagementPage';
 import SubClusterManagementPage from './components/StaffComponents/ManagementPages/SubClusterManagementPage';
 import ProtectedRoute from './components/StaffComponents/ProtectedRoute.js';
-<<<<<<< HEAD
 import SchoolManagementPage from './components/StaffComponents/ManagementPages/SchoolManagementPage';
-=======
 import AdminProtectedRoute from './components/StaffComponents/AdminProtectedRoute.js';
->>>>>>> c64ce904fb8cf90073f0bfb9503db25d56c9431f
 
 function App() {
   return (
