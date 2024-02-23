@@ -2,13 +2,16 @@
     import './SubCluster.css'
     import { Link } from 'react-router-dom';
     import { useState, useEffect } from 'react';
+    import { useNavigate } from "react-router-dom";
 
    
     const SubCluster = ( {ID, subclusterName, onClick} ) => {
 
+        const navigate = useNavigate();
         //This will get the image from the database as a blob, 
         //Then be read as a data URL to put into the src{} tag.  
         const [imageSrc, setImageSrc] = useState('');
+
         useEffect(() => {
             const fetchImage = async () => {
             console.log("TEST SUB ID: ", ID)
@@ -27,15 +30,25 @@
             }
         }, [ID]);
 
+        const handleNav = () => {
+            navigate(`/cluster/subcluster/subclusterinfo/${ID}`)
+        }
 
         return (
-            <Link to={`/cluster/subcluster/subclusterinfo/${ID}`}>
-            <div onClick={() => onClick(ID)} class="subcluster"> 
+            
+            <div onClick={handleNav} class="subcluster"> 
             <img src={ imageSrc } alt="SubCluster Picture" className="subcluster-pics"></img>
             <h2>{subclusterName}</h2>
             </div>
-            </Link>
+            
         );
     };  
 
     export default SubCluster
+
+    /*
+    <Link to={`/cluster/subcluster/subclusterinfo/${ID}`}>
+    </Link>
+    */
+
+    //() => onClick(ID)
