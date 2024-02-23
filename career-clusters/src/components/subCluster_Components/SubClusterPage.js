@@ -68,12 +68,12 @@ const SubClusterPage = ({ }) => {
         return <div id="loading-animation"></div>
     }
 
-    const subclusterF = subclusters.length > 0 ? subclusters[0] : {};
+    //const subclusterF = subclusters.length > 0 ? subclusters[0] : {};
 
     return (
         <div id="page">
             <div id="_topRectangle">
-                <p>Please select a subcluster within the {subclusterF.subclusterName} cluster.</p>
+                <p>Please select a subcluster from the selected cluster.</p>
             </div>
             <UserIcon />
             <div id="content">

@@ -27,9 +27,27 @@
 #school_pod {
    width:80%;
    background-color: #D9D9D9;
+   margin:10px;
    margin-left: auto;
    margin-right:auto;
-   height:10%;
+   border-radius: 45px;
+   border: 6px solid #98ca41;
+   
+}
+
+#school_pod:hover {
+    background-color: #253251;
+}
+
+#edit_school_name {
+    width:20%;
+    background-color: #D9D9D9;
+    border-radius:40px;
+    border: 3px solid #98ca41;
+}
+
+#edit_school_name:hover {
+    background-color: #253251;
 }
 
 

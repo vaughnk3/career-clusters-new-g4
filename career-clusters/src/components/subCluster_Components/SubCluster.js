@@ -30,6 +30,8 @@
             }
         }, [ID]);
 
+
+
         const handleNav = () => {
             navigate(`/cluster/subcluster/subclusterinfo/${ID}`)
         }
