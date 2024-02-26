@@ -32,6 +32,6 @@
   .cluster-pics {
 	border: 2px solid var(--green);
 	border-radius: 20px;
-	margin-left: 5%; /* Add margin-left to position the image */
+	margin-left: 10%; /* Add margin-left to position the image */
 	max-height: min(15vw, 80%);
   }

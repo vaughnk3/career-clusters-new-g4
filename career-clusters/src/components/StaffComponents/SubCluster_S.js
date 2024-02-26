@@ -1,5 +1,4 @@
 import React from "react";
-import './SubCluster_S.css'
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
