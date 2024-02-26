@@ -4,7 +4,6 @@ import {useNavigate, Link } from 'react-router-dom';
 import './OverlayRectangle.css'
 import { useState , useEffect} from "react";
 import Cluster_S from "./Cluster_S";
-import './Cluster_S.css'
 import BottomRectangle from "../page_Components/BottomRectangle";
 import { getAuth, signOut } from "firebase/auth";
 import './StaffClusters.css'

@@ -28,17 +28,6 @@
     /*color: var(--darkblue);*/
 }
 
-.cluster-pics {
-	display:flex;
-	flex-direction: row;
-	margin-top:1.3%;
-	margin-left: 4.2%;
-    margin-right:20px;
-    height:75px;
-    width:120px;
-	border-radius: 30px;
-	border:2px solid var(--green);
-}
 
 .mgmt_list_right {
     display:inline-flex;

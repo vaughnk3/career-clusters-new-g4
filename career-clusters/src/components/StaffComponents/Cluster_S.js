@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import './Cluster_S.css';
 
 const Cluster_S = ( {id, clusterName, onClick} ) => {
 
