@@ -23,6 +23,7 @@ const ClusterPage = () => {
                 setLoading(false);
             } catch (error) {
                 console.error('Error: ', error);
+                //setLoading(false);
             }
         }
         fetchClusters();

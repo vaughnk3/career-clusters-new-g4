@@ -15,6 +15,12 @@ const StaffClusters = () => {
     const navigate = useNavigate();
     const [clusters, setClusters] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const closePopup = () => {
+      setIsOpen(false);
+      window.location.reload();
+    }
 
     useEffect(() => {
         const fetchClusters = async () => {
@@ -28,6 +34,21 @@ const StaffClusters = () => {
                 setLoading(false);
             } catch (error) {
                 console.error('Error: ', error);
+                setLoading(false);
+                setIsOpen(true);
+                /*
+                return (
+                  <div>
+                    {isOpen && (
+                      <div id="popup">
+                        <div id="popup-content">
+                          <h1>Test</h1>
+                          <button onClick={closePopup}>Acknowledge and Refresh</button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )*/
             }
         }
         fetchClusters();
