@@ -33,22 +33,9 @@ const StaffClusters = () => {
                 setClusters(data);
                 setLoading(false);
             } catch (error) {
-                console.error('Error: ', error);
                 setLoading(false);
                 setIsOpen(true);
-                /*
-                return (
-                  <div>
-                    {isOpen && (
-                      <div id="popup">
-                        <div id="popup-content">
-                          <h1>Test</h1>
-                          <button onClick={closePopup}>Acknowledge and Refresh</button>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )*/
+                console.error('Error: ', error);
             }
         }
         fetchClusters();
@@ -103,6 +90,15 @@ const StaffClusters = () => {
     return (
         <div>
           <br></br><br></br><br></br><br></br><br></br><br></br> 
+          {isOpen && (
+          <div className="popup">
+            <div id="popup-content">
+              <h1>Error</h1>
+              <p>An error occurred while fetching clusters.</p>
+              <button onClick={closePopup}>Acknowledge and Refresh</button>
+            </div>
+          </div>
+        )}
           <li id="c_array">
                 {clusters.map(cluster => (
                 <form id="form1" onSubmit={handleFormSubmit}>
