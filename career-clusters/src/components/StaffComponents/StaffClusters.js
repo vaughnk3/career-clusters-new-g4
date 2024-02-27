@@ -92,7 +92,7 @@ const StaffClusters = () => {
           <br></br><br></br><br></br><br></br><br></br><br></br> 
           {isOpen && (
           <div className="popup">
-            <div id="popup-content">
+            <div className="popup-content">
               <h1>Error</h1>
               <p>An error occurred while fetching clusters.</p>
               <button onClick={closePopup}>Acknowledge and Refresh</button>
