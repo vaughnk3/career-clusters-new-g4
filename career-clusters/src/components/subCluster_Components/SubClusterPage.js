@@ -5,11 +5,15 @@ import './SubClusterPage.css'
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import { getAuth, onAuthStateChanged } from "firebase/auth";        //new
+import app from "../login_components/FirebaseConfig.js"         //new
 
 
 
 const SubClusterPage = ({ }) => {
     const navigate = useNavigate();
+
+    const auth = getAuth(app);      //initialize firebase auth
 
   
 
@@ -20,17 +24,22 @@ const SubClusterPage = ({ }) => {
         const updateSubClusterClickCount = async () => {
             try {
                 console.log("SUB   IDDDDDD, ", ID)
-                const response = await (fetch('http://localhost:3001/updates-subclust-clickCnt', {
-                    method: 'POST', 
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify( { subclusterID: ID })
-                }));
-                if (response.ok) {
-                    console.log('SubCluster click count updated successfully');
-                } else {
-                    console.error('Failed to update subcluster clickount')
+                const user = auth.currentUser;          //attempt to authenticate user 
+                if(user) {                              //if authenticated
+                    const token = await user.getIdToken();      //get authenticated user token 
+                    const response = await (fetch('http://localhost:3001/updates-subclust-clickCnt', {
+                        method: 'POST', 
+                        headers: {
+                            'Authorization': `Bearer ${token}`,                 //pass authenticated user token to backend
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify( { subclusterID: ID })
+                    })); 
+                    if (response.ok) {
+                        console.log('SubCluster click count updated successfully');
+                    } else {
+                        console.error('Failed to update subcluster clickount')
+                    }
                 }
             } catch (error) {
                 console.error('Error updating subcluster clickcount: ', error)
