@@ -386,8 +386,8 @@ app.post('/login/staffclusters/clustermanagementpage/add-cluster', upload.single
 })
 //************************************************************************/
 
-
-app.post('/update-clust-clickCnt', checkAuth, (req, res) => {
+//Public request
+app.post('/update-clust-clickCnt', (req, res) => {
   const { clusterID } = req.body;
   pool.query(
     'UPDATE Cluster SET clickCount = clickCount + 1 where id = ?', 
@@ -405,8 +405,8 @@ app.post('/update-clust-clickCnt', checkAuth, (req, res) => {
 })
 
 
-
-app.post('/updates-subclust-clickCnt', checkAuth, (req, res) => {
+//Public request
+app.post('/updates-subclust-clickCnt', (req, res) => {
   const { subclusterID } = req.body;
   pool.query(
     'UPDATE Subcluster SET clickCount = clickCount + 1 where id = ?', 

@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import BottomRectangle from '../../page_Components/BottomRectangle';
 import ManagementSubCluster from './ManagementSubCluster';
+import { getAuth } from "firebase/auth";
+import app from "../../login_components/FirebaseConfig"
+
 
 
 const SubClusterManagementPage = () => {
@@ -10,6 +13,7 @@ const SubClusterManagementPage = () => {
     //FETCH SUBCLUSTERS CODE
     const navigate = useNavigate();
     const[subClusters2, setSubClusters2] = useState([]);
+    const auth = getAuth(app);
 
     const handleBackButton = () => {
         navigate('/login/staffclusters/')
@@ -88,20 +92,25 @@ const SubClusterManagementPage = () => {
                     formData.append('image', newImage);
                     formData.append('subclusterName', newSCName)
                     formData.append('clusterID', clusterID)
-
-                    const response = await(fetch('http://localhost:3001/subclustermanagementpage/add-subcluster', {
-                        method: 'POST',
-                        
-                        body: formData
-                    }));
-
-                    if (response.ok) {
-                        const data = await response.json();
-                        subclusterID = data.subclusterID;
-                        console.log('SubCluster added successfully with ID: ', subclusterID);
-                    } else {
-                        console.error('Failed to add subcluster');
-                    } 
+                    const user = auth.currentUser();
+                    if(user) {
+                        const token = await user.getIdToken();
+                        const response = await(fetch('http://localhost:3001/subclustermanagementpage/add-subcluster', {
+                            method: 'POST',
+                            headers: {
+                                'Authorization': `Bearer ${token}`,                 //pass authenticated user token to backend
+                            },
+                            body: formData
+                        }));
+    
+                        if (response.ok) {
+                            const data = await response.json();
+                            subclusterID = data.subclusterID;
+                            console.log('SubCluster added successfully with ID: ', subclusterID);
+                        } else {
+                            console.error('Failed to add subcluster');
+                        } 
+                    }
                 }   catch (error) {
                     console.error('Error adding subcluster: ', error);
                 }
@@ -111,19 +120,24 @@ const SubClusterManagementPage = () => {
                 console.log('SubCluster added successfully with ID between: ', subclusterID);
         
                 try {
-                    const response = await(fetch('http://localhost:3001/subclustermanagementpage/add-subcluster-field', {
-                        method: 'POST',
-                        // credentials: "include",    verification for back-end
-                        headers: {
-                            'Content-Type' : 'application/json'
-                        },
-                        body: JSON.stringify({subclusterID, newSCName, newSCDescrip, newSCSalary, newSCEdLevel, newSCGrowthRate})
-                    }));
-                    console.log(subclusterID, " INSIDE SECOND REQUEST");
-                    if(response.ok) {
-                        console.log('Field data added successfully');
-                    } else {
-                        console.error('Failed to add field data');
+                    const user = auth.currentUser();
+                    if(user) {
+                        const token = await user.getIdToken();
+                        const response = await(fetch('http://localhost:3001/subclustermanagementpage/add-subcluster-field', {
+                            method: 'POST',
+                            // credentials: "include",    verification for back-end
+                            headers: {
+                                'Authorization': `Bearer ${token}`,
+                                'Content-Type' : 'application/json'
+                            },
+                            body: JSON.stringify({subclusterID, newSCName, newSCDescrip, newSCSalary, newSCEdLevel, newSCGrowthRate})
+                        }));
+                        console.log(subclusterID, " INSIDE SECOND REQUEST");
+                        if(response.ok) {
+                            console.log('Field data added successfully');
+                        } else {
+                            console.error('Failed to add field data');
+                        }
                     }
                 } catch(error) {
                     console.error('Error adding field: ', error);
