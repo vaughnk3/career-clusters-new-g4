@@ -6,6 +6,7 @@ import React, { useState } from "react";
 const EditNameSubcluster = ({ID}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [subclusterName, setsubclusterName] = useState('');
+    const [openError, setOpenError] = useState(false);
 
     const openPopup = () => {
         setIsOpen(true);
@@ -17,6 +18,11 @@ const EditNameSubcluster = ({ID}) => {
 
     const refreshPage = () => {
         window.location.reload();
+    }
+
+    const closeError = () => {
+        setOpenError(false);
+        refreshPage();
     }
 
     const changeSubClusterName = async () => {
@@ -31,15 +37,21 @@ const EditNameSubcluster = ({ID}) => {
             }));
             if (response.ok) {
                 console.log('SubCluster name updated successfully');
+                setIsOpen(false);
+                refreshPage();
             } else {
                 console.error('Failed to update subcluster name');
+                setIsOpen(false);
+                setOpenError(true);
             } 
         }   catch (error) {
             console.error('Error updating subcluster name: ', error);
+            setIsOpen(false);
+            setOpenError(true);
         }
-        console.log('POST request sent from edit button')
-        setIsOpen(false);
-        refreshPage();
+        //console.log('POST request sent from edit button')
+        //setIsOpen(false);
+        //refreshPage();
     }
 
     return (
@@ -56,6 +68,17 @@ const EditNameSubcluster = ({ID}) => {
                             <button onClick={closePopup} className="cancelButton">Cancel</button>
                             <button id="submitName" onClick={changeSubClusterName}>Submit</button>
                             </div>
+                        </div>
+                    </div>
+                )}
+
+
+                {openError && (
+                    <div className="popup">
+                        <div className="popup-content">
+                            <h1>Error</h1>
+                            <p>Error updating SubCluster name.</p>
+                            <button onClick={closeError}>Acknowledge and Refresh</button>
                         </div>
                     </div>
                 )}

@@ -7,6 +7,7 @@ export async function ExcelGenerationQueue()
 {
    console.log("Excel Generator Clicked");
 
+   //Function that allows specified column width
    function adjustColumnWidth(ws, columnIndex, width) {
         const colWidths = ws['!cols'] || [];
         colWidths[columnIndex] = { width };
@@ -16,6 +17,8 @@ export async function ExcelGenerationQueue()
      // Create a new workbook
      const wb = XLSX.utils.book_new();
      let ws = XLSX.utils.aoa_to_sheet('');
+
+     //Initialize data structure we will put database info into. 
      const wsData = [];
 
    
@@ -46,11 +49,11 @@ export async function ExcelGenerationQueue()
     }
 
     
-    //temporary padding
+    //temporary padding (spaces in the excel template)
     wsData.push('', ''); 
     wsData.push('', '');
 
-    console.log(wsData);
+
     //Now we get the subcluster information and their corresponding click rates. 
     try 
     {
@@ -73,7 +76,7 @@ export async function ExcelGenerationQueue()
         console.error('Error: ', error);
     }
 
-
+     //temporary padding (spaces in the excel template)
     wsData.push('', '');
     wsData.push('', '');
 
@@ -87,10 +90,10 @@ export async function ExcelGenerationQueue()
         
 
         //Push new column headers
-
         wsData.push(['Demograpic Information'])
         wsData.push(['User #', 'School', 'Grade Level', 'Desired Career', 'Age']);
 
+        //For each user, push the id, and its corresponding demographic information. 
         data.forEach(row => {
             wsData.push([row.userID, row.school, row.gradeLevel, row.desiredCareerField, row.currentAge])
         })
@@ -101,19 +104,20 @@ export async function ExcelGenerationQueue()
         console.error('Error: ', error);
     }
    
-
+    //Grab the date and time. 
     const currentDate = new Date();
     const formattedDate = currentDate.toLocaleDateString(); // Format date as needed
     const formattedTime = currentDate.toLocaleTimeString();
 
-
+    //Insert the date and time of excel sheet generation onto the sheet
     wsData[0][3] = 'Current Date: ' + formattedDate;
     wsData[1][3] = 'Current Time: ' + formattedTime;
 
 
+    //Convert our data to excel sheet
     ws = XLSX.utils.aoa_to_sheet(wsData);
 
-
+    //Adjust the necessary column widths for longer phrases and words in table
     adjustColumnWidth(ws, 0, 40);
     adjustColumnWidth(ws, 1, 40);
     adjustColumnWidth(ws, 3, 40);
@@ -127,7 +131,7 @@ export async function ExcelGenerationQueue()
     // Convert the binary data to a Blob
     const blob = new Blob([s2ab(wbout)], { type: 'application/octet-stream' });
 
-
+    // Create the file name with interpolated date.
     const fileName = `ChamberCareerAppReport  ${formattedDate}.xlsx`
     // Save the Blob as a file
     saveAs(blob, fileName);

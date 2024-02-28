@@ -45,6 +45,7 @@ const SubClusterPage = ({ }) => {
     const { clusterId } = useParams();
     const [subclusters, setSubclusters] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [openError, setOpenError] = useState(false);
 
     useEffect(() => {
         const fetchSubclusters = async () => {
@@ -58,6 +59,8 @@ const SubClusterPage = ({ }) => {
                 setLoading(false);
             } catch (error) {
                 console.error('Error: ', error);
+                setLoading(false);
+                setOpenError(true);
             }
         }
 
@@ -68,6 +71,11 @@ const SubClusterPage = ({ }) => {
         return <div id="loading-animation"></div>
     }
 
+    const closeError = () => {
+        setOpenError(false);
+        window.location.reload();
+    }
+
     //const subclusterF = subclusters.length > 0 ? subclusters[0] : {};
 
     return (
@@ -75,12 +83,28 @@ const SubClusterPage = ({ }) => {
             <div id="_topRectangle">
                 <p>Please select a subcluster from the selected cluster.</p>
             </div>
+
+
+            {openError && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <h1>Error</h1>
+                        <p>Error rendering SubClusters. Please try again later.</p>
+                        <button onClick={closeError}>Acknowledge and Refresh</button>
+                    </div>
+                </div>
+            )} 
+
             <UserIcon />
             <div id="content">
                 <br></br>
                 <br></br>
                 <br></br><br></br>
                 <br></br><br></br>
+
+
+
+
                 <ul>
                     {subclusters.map((subcluster) => (
                         <li>

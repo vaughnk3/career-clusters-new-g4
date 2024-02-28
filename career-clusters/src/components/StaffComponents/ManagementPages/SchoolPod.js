@@ -4,6 +4,9 @@ import './SchoolManagementPage.css'
 const SchoolPod = ({ID, schoolName}) => {
     console.log(schoolName, " ", ID)
     const [isOpen, setIsOpen] = useState(false);
+    const [isOpen2, setIsOpen2] = useState(false);
+    const [errorOpenName, setErrorOpenName] = useState(false);
+    const [errorOpenDelete, setErrorOpenDelete] = useState(false);
     const [newSchoolName, setSchoolName] = useState('');
 
     const openPopup = () => {
@@ -18,6 +21,26 @@ const SchoolPod = ({ID, schoolName}) => {
         window.location.reload();
     }
 
+    const openPopup2 = () => {
+        setIsOpen2(true);
+    }
+
+    const closePopup2 = () => {
+        setIsOpen2(false);
+    }
+
+    const closeErrorPopupName = () => {
+        setErrorOpenName(false);
+        refreshPage();
+    }
+
+
+    const closeErrorDelete = () => {
+        setErrorOpenDelete(false);
+        refreshPage();
+    }
+
+
 
     const changeSchoolName = async () => {
         try {
@@ -31,20 +54,60 @@ const SchoolPod = ({ID, schoolName}) => {
             }));
             if (response.ok) {
                 console.log('School name updated successfully');
+                console.log('POST request sent from edit button')
+                setIsOpen(false);
+                refreshPage();
+        
             } else {
                 console.error('Failed to update school name');
+                setIsOpen(false);
+                setErrorOpenName(true);
             } 
         }   catch (error) {
             console.error('Error updating school name: ', error);
+            setIsOpen(false);
+            setErrorOpenName(true);
         }
-        console.log('POST request sent from edit button')
-        setIsOpen(false);
-        refreshPage();
+        //console.log('POST request sent from edit button')
+        //setIsOpen(false);
+        //refreshPage();
+    }
+
+
+    const handleDeleteSchool = async () => {
+        try {
+
+            const response = await(fetch('http://localhost:3001/del-school', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ ID })
+            }));
+            if (response.ok) {
+                console.log('School deleted successfully');
+                setIsOpen2(false);
+                refreshPage();
+            } else {
+                console.error('Failed to delete school');
+                setIsOpen2(false);
+                setErrorOpenDelete(true);
+                
+            } 
+        }   catch (error) {
+            console.error('Error deleting school: ', error);
+            setIsOpen2(false);
+            setErrorOpenDelete(true);
+        }
+        //console.log('POST request sent from delete school')
+        //setIsOpen(false);
+        //refreshPage();
     }
     return (
         <div id="school_pod">
             <h1>{schoolName}</h1>
             <button onClick={openPopup} id="edit_school_name">Edit School Name</button>
+            <button onClick={openPopup2}>Delete</button>
             {isOpen && (
                     <div className="popup">
                         <div className="popup-content">
@@ -56,6 +119,35 @@ const SchoolPod = ({ID, schoolName}) => {
                         </div>
                     </div>
                 )}
+            {isOpen2 && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <label>Delete School</label>
+                        <button onClick={handleDeleteSchool}>Delete</button>
+                        <button onClick={closePopup2}>Cancel</button>
+                    </div>
+                </div>
+            )}
+
+            {errorOpenName && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <h1>Error</h1>
+                        <p>An error has occured changing the school name.</p>
+                        <button onClick={closeErrorPopupName}>Acknowledge and Refresh</button>
+                    </div>
+                </div>
+            )}
+
+            {errorOpenDelete && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <h1>Error</h1>
+                        <p>An error has occured deleting the school</p>
+                        <button onClick={closeErrorDelete}>Acknowledge and Refresh</button>
+                    </div>
+                </div>
+            )}
 
         </div>
     )

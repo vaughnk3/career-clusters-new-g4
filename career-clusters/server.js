@@ -233,6 +233,28 @@ app.post('/new-school', (req, res) => {
   )
 })
 
+//Delete school
+app.post('/del-school', (req, res) => {
+  
+  const { ID } = req.body;
+  pool.query(
+    'DELETE FROM School WHERE id = ?',
+    [ ID ] ,
+    (error, results, fields) => {
+      if(error) {
+        console.error("Error deleting school: ", error);
+        res.status(500).send("Error deleting school");
+      } else {
+        console.log("deleting school successfully");
+        res.status(200).send("deleting school successfully");
+      }
+    }
+  )
+})
+
+
+
+
 
 //************************************************************************/
 // Send collected demographic information to database

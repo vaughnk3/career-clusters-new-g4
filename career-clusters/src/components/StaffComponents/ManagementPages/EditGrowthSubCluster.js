@@ -6,6 +6,7 @@ import React, { useState } from "react";
 const EditGrowthSubCluster = ({ID}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [subclusterGrowthRate, setsubclusterGrowthRate] = useState('');
+    const [openError, setOpenError] = useState(false);
 
     //When an option is selected, set the value in subclusterGrowth rate
     const handleSelectChange = (event) => {
@@ -27,6 +28,11 @@ const EditGrowthSubCluster = ({ID}) => {
         window.location.reload();
     }
 
+    const closeError = () => {
+        setOpenError(false);
+        refreshPage();
+    }
+
     const changeSubClusterGrowthRate = async () => {
         try {
 
@@ -39,15 +45,21 @@ const EditGrowthSubCluster = ({ID}) => {
             }));
             if (response.ok) {
                 console.log('SubCluster name updated successfully');
+                setIsOpen(false);
+                refreshPage();
             } else {
                 console.error('Failed to update subcluster name');
-            } 
+                setIsOpen(false);
+                setOpenError(true);
+           } 
         }   catch (error) {
             console.error('Error updating subcluster name: ', error);
+            setIsOpen(false);
+            setOpenError(true);
         }
-        console.log('POST request sent from edit button')
-        setIsOpen(false);
-        refreshPage();
+        //console.log('POST request sent from edit button')
+        //setIsOpen(false);
+        //refreshPage();
     }
 
 
@@ -70,6 +82,16 @@ const EditGrowthSubCluster = ({ID}) => {
                             </div>
                         </div>
                     </div>
+            )}
+
+            {openError && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <h1>Error</h1>
+                        <p>Error updating SubCluster Growth Rate.</p>
+                        <button onClick={closeError}>Acknowledge and Refresh</button>
+                    </div>
+                </div>
             )}
         </div>
     )

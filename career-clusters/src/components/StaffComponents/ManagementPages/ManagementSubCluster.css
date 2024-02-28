@@ -15,7 +15,7 @@
 
 
 .subcluster_m:hover {
-	background-color: var(--darkblue);
+	background-color: #253251;
 	color:white;
 }
 
@@ -46,7 +46,7 @@
 }
 
 .editName:hover {
-    background-color: var(--darkblue);
+    background-color: #253251;
 }
 
 
@@ -66,7 +66,7 @@
 }
 
 .editDescription:hover {
-    background-color: var (--darkblue);
+    background-color: #253251;
 }
 
 
@@ -86,7 +86,7 @@
 }
 
 .editSalary:hover {
-    background-color: var (--darkblue);
+    background-color: #253251;
 }
 
 
@@ -107,7 +107,7 @@
 }
 
 .editGrowthRate:hover{
-    background-color: var(--darkblue);
+    background-color: #253251;
 }
 
 
@@ -129,7 +129,7 @@
 }
 
 .editEducation:hover {
-    background-color: var(--darkblue);
+    background-color: #253251;
 }
 
 
@@ -152,7 +152,7 @@
 }
 
 .deleteButton:hover {
-    background-color: var(--darkblue);
+    background-color: #253251;
 }
 
 /* Edit image */
@@ -172,7 +172,7 @@
 }
 
 .editImage:hover{
-    background-color: var(--darkblue);
+    background-color: #253251;
 }
 
 .addsc-container {

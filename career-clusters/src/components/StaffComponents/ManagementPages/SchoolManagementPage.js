@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import './SchoolManagementPage.css';
 import React, { useState, useEffect } from "react";
 import SchoolPod from './SchoolPod';
+import BottomRectangle from '../../page_Components/BottomRectangle';
 
 const SchoolManagementPage = () => {
 
@@ -99,6 +100,8 @@ const SchoolManagementPage = () => {
                 
             ))}
             
+            <br></br>
+            <BottomRectangle/>
         </div>
     )
 }

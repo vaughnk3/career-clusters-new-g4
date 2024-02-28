@@ -5,6 +5,7 @@ import React, { useState } from "react";
 
 const DeleteSubClusterButton = ({ID}) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [errorDelete, setErrorDelete] = useState(false);
 
     const openPopup = () => {
         setIsOpen(true);
@@ -12,6 +13,11 @@ const DeleteSubClusterButton = ({ID}) => {
 
     const closePopup = () => {
         setIsOpen(false);
+    }
+
+    const closeError = () => {
+        setErrorDelete(false);
+        refreshPage();
     }
 
     const refreshPage = () => {
@@ -30,15 +36,21 @@ const DeleteSubClusterButton = ({ID}) => {
             }));
             if (response.ok) {
                 console.log('SubCluster deleted successfully');
+                setIsOpen(false);
+                refreshPage();
             } else {
                 console.error('Failed to delete subcluster');
+                setIsOpen(false);
+                setErrorDelete(true);
             } 
         }   catch (error) {
             console.error('Error deleting subcluster: ', error);
+            setIsOpen(false);
+            setErrorDelete(true);
         }
-        console.log('POST request sent from delete subcluster')
-        setIsOpen(false);
-        refreshPage();
+        //console.log('POST request sent from delete subcluster')
+        //setIsOpen(false);
+        //refreshPage();
     }
 
     return (
@@ -55,6 +67,16 @@ const DeleteSubClusterButton = ({ID}) => {
                         </div>
                     </div>
                 )}
+
+            {errorDelete && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <h1>Error</h1>
+                        <p>An error has occured deleting the subcluster.</p>
+                        <button onClick={closeError}>Acknowledge and Refresh</button>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

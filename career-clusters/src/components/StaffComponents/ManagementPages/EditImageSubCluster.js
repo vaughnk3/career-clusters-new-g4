@@ -2,8 +2,10 @@ import './ManagementCluster.css';
 import { useState } from 'react';
 
 const EditImageSubCluster = ({ID}) => {
+   
     const [isOpen, setIsOpen] = useState(false);
     const [newImage, setNewImage] = useState(null);
+    const [openError, setOpenError] = useState(false);
     const openPopup = () => {
         setIsOpen(true);
     }
@@ -26,11 +28,22 @@ const EditImageSubCluster = ({ID}) => {
             const dbResponse = await fetch ('http://localhost:3001/subimage-replace', {
             method: 'POST',
 
-            body: formData,
+            body: formData
+
         });
 
+        if (dbResponse.ok) {
+            console.log('SubCluster name updated successfully');
+            refreshPage();
+        } else {
+            console.error('Failed to update subcluster name');
+            setIsOpen(false);
+            setOpenError(true);        
+       } 
         } catch (error) {
             console.log("Error", error);
+            setIsOpen(false);
+            setOpenError(true);
         }
     }
 
@@ -44,6 +57,11 @@ const EditImageSubCluster = ({ID}) => {
     const handleSubmit = () => {
         uploadFilePost(newImage, ID);
         closePopup();
+    }
+
+
+    const closeError = () => {
+        setOpenError(false);
         refreshPage();
     }
 
@@ -59,6 +77,16 @@ const EditImageSubCluster = ({ID}) => {
                         <button onClick={closePopup} className="cancelButton">Cancel</button>
                         <button id="submitImg" onClick={handleSubmit}>Submit</button>
                         </div>
+                    </div>
+                </div>
+            )}
+
+            {openError && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <h1>Error</h1>
+                        <p>Error updating SubCluster image.</p>
+                        <button onClick={closeError}>Acknowledge and Refresh</button>
                     </div>
                 </div>
             )}

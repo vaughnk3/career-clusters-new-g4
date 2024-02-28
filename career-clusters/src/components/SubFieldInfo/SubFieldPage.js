@@ -31,16 +31,18 @@ const SubFieldsPage = () => {
 
     return (
         <div id="page">
-            <TopRectangle/>
+            <div id="_topRectangle">
+                <p>Here is some information about the selected SubCluster.</p>
+            </div>
             <UserIcon/>
-            <br></br><br></br>
+            <br></br><br></br><br></br><br></br><br></br><br></br>
             <div id="content">
                 <div id="row">
                     <div id="topLeft">
                         <h2 id="fName">{field.fieldName}</h2>
                         <h2 id="fDesc">{field.description} </h2>
                     </div>
-                    <a id="view-button">View Job Postings</a>
+                    <a id="view-button" href="https://business.yorkcountychamber.com/jobs">View Job Postings</a>
                 </div>
                 <div id="bottomMiddle">
                     <div class="field-statistic">

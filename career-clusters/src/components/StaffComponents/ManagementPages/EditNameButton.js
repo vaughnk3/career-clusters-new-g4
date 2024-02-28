@@ -5,6 +5,15 @@ import React, { useState } from "react";
 const EditNameButton = ({ID}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [clusterName, setClusterName] = useState('');
+    const [errorOpen, setErrorOpen] = useState(false);
+
+
+    // Once the post request occurs, refresh the page so we can see the changes. 
+    const refreshPage = () => {
+        window.location.reload();
+    }
+
+
     const openPopup = () => {
         setIsOpen(true);
     }
@@ -13,10 +22,12 @@ const EditNameButton = ({ID}) => {
         setIsOpen(false);
     }
 
-    // Once the post request occurs, refresh the page so we can see the changes. 
-    const refreshPage = () => {
-        window.location.reload();
+    const closeError = () => {
+        setErrorOpen(false);
+        refreshPage();
     }
+
+    
 
     const changeClusterName = async () => {
         try {
@@ -30,15 +41,21 @@ const EditNameButton = ({ID}) => {
             }));
             if (response.ok) {
                 console.log('Cluster updated successfully');
+                setIsOpen(false);
+                refreshPage();
             } else {
                 console.error('Failed to update cluster');
+                setIsOpen(false);
+                setErrorOpen(true);
             } 
         }   catch (error) {
             console.error('Error updating cluster: ', error);
+            setIsOpen(false);
+            setErrorOpen(true);
         }
-        console.log('POST request sent from update button')
-        setIsOpen(false);
-        refreshPage();
+        //console.log('POST request sent from update button')
+        //setIsOpen(false);
+        //refreshPage();
     }
 
 
@@ -59,6 +76,17 @@ const EditNameButton = ({ID}) => {
                         </div>
                     </div>
                 )}
+
+                {errorOpen && (
+                    <div className="popup">
+                        <div className="popup-content">
+                            <h1>Error</h1>
+                            <p>Error editing cluster name.</p>
+                            <button onClick={closeError}>Acknowledge and Refresh</button>
+                        </div>
+                    </div>
+                )}
+
             </div>
     )
 }

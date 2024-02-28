@@ -6,7 +6,7 @@ const EditEducationSubCluster = ({ID}) => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [subclusterEducation, setsubclusterEducation] = useState('');
-
+    const [openError, setOpenError] = useState(false);
 
     const openPopup = () => {
         setIsOpen(true);
@@ -18,6 +18,11 @@ const EditEducationSubCluster = ({ID}) => {
 
     const refreshPage = () => {
         window.location.reload();
+    }
+
+    const closeError = () => {
+        setOpenError(false);
+        refreshPage();
     }
 
     const changeSubClusterEducation = async () => {
@@ -32,15 +37,21 @@ const EditEducationSubCluster = ({ID}) => {
             }));
             if (response.ok) {
                 console.log('SubCluster name updated successfully');
+                setIsOpen(false);
+                refreshPage();
             } else {
                 console.error('Failed to update subcluster name');
+                setIsOpen(false);
+                setOpenError(true);
             } 
         }   catch (error) {
             console.error('Error updating subcluster name: ', error);
+            setIsOpen(false);
+            setOpenError(true);
         }
-        console.log('POST request sent from edit button')
-        setIsOpen(false);
-        refreshPage();
+        //console.log('POST request sent from edit button')
+        //setIsOpen(false);
+        //refreshPage();
     }
 
 
@@ -59,6 +70,16 @@ const EditEducationSubCluster = ({ID}) => {
                             </div>
                         </div>
                     </div>
+            )}
+
+            {openError && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <h1>Error</h1>
+                        <p>Error updating SubCluster Education Level.</p>
+                        <button onClick={closeError}>Acknowledge and Refresh</button>
+                    </div>
+                </div>
             )}
         </div>
     )

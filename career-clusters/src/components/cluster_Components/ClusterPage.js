@@ -10,6 +10,7 @@ const ClusterPage = () => {
     const navigate = useNavigate();
     const [clusters, setClusters] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [openError, setOpenError] = useState(false);
 
     useEffect(() => {
         const fetchClusters = async () => {
@@ -23,6 +24,8 @@ const ClusterPage = () => {
                 setLoading(false);
             } catch (error) {
                 console.error('Error: ', error);
+                setLoading(false);
+                setOpenError(true);
                 //setLoading(false);
             }
         }
@@ -33,11 +36,17 @@ const ClusterPage = () => {
         return <div id="loading-animation"></div>
      }
 
+    const closeError = () => {
+        setOpenError(false);
+        window.location.reload();
+    }
+
+
     const handleClusterClick = (ID) => {
         // Define method for updatinng cluster click count
         const updateClusterClickCount = async () => {
             try {
-                console.log("IDDDDDD, ", ID)
+                //console.log("IDDDDDD, ", ID)
                 const response = await (fetch('http://localhost:3001/update-clust-clickCnt', {
                     method: 'POST', 
                     headers: {
@@ -76,6 +85,17 @@ const ClusterPage = () => {
             <p>Please select a cluster that interests you. This website will help match you with potential careers in your area of interest.</p>
         </div>
         <br></br><br></br><br></br><br></br><br></br><br></br> 
+
+        {openError && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <h1>Error</h1>
+                        <p>Error rendering clusters. Please try again later.</p>
+                        <button onClick={closeError}>Acknowledge and Refresh</button>
+                    </div>
+                </div>
+         )}
+        
         <UserIcon/>
  
             <li id="c_array">

@@ -6,10 +6,15 @@ import { getAuth, signOut } from "firebase/auth";
 import { ExcelGenerationQueue } from './ExcelGeneration';
 import { Link } from 'react-router-dom';
 import './StaffSubClusters.css';
+import BottomRectangle from "../page_Components/BottomRectangle";
 
 const StaffSubClusters = () => {
     //Declare navigate hook
     const navigate = useNavigate();
+
+    const refreshPage = () => {
+      window.location.reload();
+  }
 
     //Handle the cluster click
     const handleClusterClick = (ID) => {
@@ -50,6 +55,7 @@ const StaffSubClusters = () => {
     const { clusterId } = useParams();
     const [subclusters, setSubclusters] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [openError, setOpenError] = useState(false);
 
     //Grab all the subclusters to be mapped on display
     useEffect(() => {
@@ -64,6 +70,8 @@ const StaffSubClusters = () => {
                 setLoading(false);
             } catch (error) {
                 console.error('Error: ', error);
+                setLoading(false);
+                setOpenError(true);
             }
         }
 
@@ -80,9 +88,27 @@ const StaffSubClusters = () => {
       navigate('/school-management-page');
     }
 
+    const closeError = () => {
+      setOpenError(false);
+      refreshPage();
+    }
+
+    
+
     return (
         <div>
            <br></br><br></br><br></br><br></br><br></br><br></br> 
+           {openError && (
+              <div className="popup">
+                <div className="popup-content">
+                  <h1>Error</h1>
+                  <p>An error occurred while fetching SubClusters.</p>
+                  <button onClick={closeError}>Acknowledge and Refresh</button>
+                </div>
+              </div>
+            )}
+
+
             <ul>
               {subclusters.map((subcluster) => (
                 <li>
@@ -90,6 +116,9 @@ const StaffSubClusters = () => {
                  </li>
                 ))}
             </ul>
+            
+            <BottomRectangle/>
+
           <div className="overlay">
               <Link to="/login/staffclusters"><img src={require('./HomeButton.png')} alt="Home Button" className="home-button"></img></Link>
               <div class="staff-button-column-one">
