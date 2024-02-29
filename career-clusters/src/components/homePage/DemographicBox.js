@@ -141,7 +141,7 @@ const DemographicBox = () => {
       </div>
 
 
-      <a href="#" id="submit-button" onClick={sendDemographicInfo}>Submit</a>
+      <a href="#" class="demographic-button" onClick={sendDemographicInfo}>Submit</a>
     </div>
   );
 };
