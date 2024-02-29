@@ -215,7 +215,7 @@ app.get('/school', (req, res) => {
 })
 //************************************************************************/
 
-app.post('/manage-school-name', (req, res) => {
+app.post('/manage-school-name', checkAuth, (req, res) => {
   
   const { newSchoolName, ID } = req.body;
   console.log("I GOT IT, ", newSchoolName, " ", ID);
@@ -254,8 +254,7 @@ app.post('/new-school', (req, res) => {
 })
 
 //Delete school
-app.post('/del-school', (req, res) => {
-  
+app.post('/del-school', checkAuth, (req, res) => {
   const { ID } = req.body;
   pool.query(
     'DELETE FROM School WHERE id = ?',

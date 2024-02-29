@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import app from "../../login_components/FirebaseConfig"
 import './SchoolManagementPage.css'
 
 const SchoolPod = ({ID, schoolName}) => {
@@ -8,6 +10,8 @@ const SchoolPod = ({ID, schoolName}) => {
     const [errorOpenName, setErrorOpenName] = useState(false);
     const [errorOpenDelete, setErrorOpenDelete] = useState(false);
     const [newSchoolName, setSchoolName] = useState('');
+
+    const auth = getAuth(app);
 
     const openPopup = () => {
         setIsOpen(true);
@@ -44,24 +48,29 @@ const SchoolPod = ({ID, schoolName}) => {
 
     const changeSchoolName = async () => {
         try {
-            console.log(newSchoolName, ":", ID)
-            const response = await(fetch('http://localhost:3001/manage-school-name', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ newSchoolName, ID })
-            }));
-            if (response.ok) {
-                console.log('School name updated successfully');
-                console.log('POST request sent from edit button')
-                setIsOpen(false);
-                refreshPage();
-        
-            } else {
-                console.error('Failed to update school name');
-                setIsOpen(false);
-                setErrorOpenName(true);
+            const user = auth.currentUser;
+            if(user) {
+                const token = await user.getIdToken();
+                console.log(newSchoolName, ":", ID)
+                const response = await(fetch('http://localhost:3001/manage-school-name', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ newSchoolName, ID })
+                }));
+                if (response.ok) {
+                    console.log('School name updated successfully');
+                    console.log('POST request sent from edit button')
+                    setIsOpen(false);
+                    // refreshPage();
+            
+                } else {
+                    console.error('Failed to update school name');
+                    setIsOpen(false);
+                    setErrorOpenName(true);
+                }
             } 
         }   catch (error) {
             console.error('Error updating school name: ', error);
@@ -76,24 +85,28 @@ const SchoolPod = ({ID, schoolName}) => {
 
     const handleDeleteSchool = async () => {
         try {
-
-            const response = await(fetch('http://localhost:3001/del-school', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ ID })
-            }));
-            if (response.ok) {
-                console.log('School deleted successfully');
-                setIsOpen2(false);
-                refreshPage();
-            } else {
-                console.error('Failed to delete school');
-                setIsOpen2(false);
-                setErrorOpenDelete(true);
-                
-            } 
+            const user = auth.currentUser;
+            if(user) {
+                const token = await user.getIdToken();
+                const response = await(fetch('http://localhost:3001/del-school', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ID })
+                }));
+                if (response.ok) {
+                    console.log('School deleted successfully');
+                    setIsOpen2(false);
+                    // refreshPage();
+                } else {
+                    console.error('Failed to delete school');
+                    setIsOpen2(false);
+                    setErrorOpenDelete(true);
+                    
+                } 
+            }
         }   catch (error) {
             console.error('Error deleting school: ', error);
             setIsOpen2(false);
