@@ -87,11 +87,11 @@ const LoginPage = () => {
                   <div className="pass-popup"> 
                     <div className="pass-popup-content">
                         <label>
-                          <h2 className="title">Email</h2>
+                          <h3 className="title">Email</h3>
                           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required></input>
                         </label>
-                        <button className="forgot-submit" type="submit" onClick={handleForgotPassSubmit}>Send Password Reset Email</button>
-                        <button onClick={closePopup}>Cancel</button>
+                        <button class="demographic-button" type="submit" onClick={handleForgotPassSubmit}>Send Password Reset Email</button>
+                        <button class="demographic-button" onClick={closePopup}>Cancel</button>
                     
                     </div>
                   </div>

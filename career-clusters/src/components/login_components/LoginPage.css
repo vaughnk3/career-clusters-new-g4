@@ -31,30 +31,13 @@
     height: 30px;
     color:black;
     font-size: 1rem;
-    margin-bottom:10%;
+    margin-bottom:2.8rem;
     border-radius:10px;
     width:100%;
     border: none;
 
 }
 .field::placeholder {
-    height:1.5rem;
-    color:gray;
-    font-size: 1rem;
-    bottom:0;
-}
-
-
-#bottomField {
-
-    height:3rem;
-    color:black;
-    font-size: 1rem;
-    width: 100%;
-    border-radius:5px;
-}
-
-#bottom::placeholder {
     height:1.5rem;
     color:gray;
     font-size: 1rem;
@@ -95,10 +78,16 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     position: relative;
     z-index: 10000;
-    display:flex;
-    flex-flow:row nowrap;
 }
 
+.pass-popup h3 {
+    color: black !important;
+}
+
+.pass-popup .demographic-button {
+    margin-top: 80px;
+    margin-bottom: 10px;
+}
 
 .forgot-submit {
     background-color: var(--green);
