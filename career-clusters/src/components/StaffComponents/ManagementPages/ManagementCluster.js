@@ -27,9 +27,9 @@ const ManagementCluster = ({ ID, clusterName }) => {
 
     return (
         <div className='cluster_m'>
-            <img src={imageSrc} className="cluster-pics" />
+            <img src={imageSrc} className="cluster-pics" alt="Cluster_Pic" />
             <h2>{clusterName}</h2>
-            <div class="mgmt_list_right"> 
+            <div className="mgmt_list_right"> 
             <EditNameButton ID={ID} clusterName={clusterName}/>
             <ReplaceImageButton ID={ID}/>
             <DeleteClusterButton ID={ID}/>

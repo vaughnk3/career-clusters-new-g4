@@ -92,7 +92,7 @@ const SubClusterManagementPage = () => {
                     formData.append('image', newImage);
                     formData.append('subclusterName', newSCName)
                     formData.append('clusterID', clusterID)
-                    const user = auth.currentUser();
+                    const user = auth.currentUser;
                     if(user) {
                         const token = await user.getIdToken();
                         const response = await(fetch('http://localhost:3001/subclustermanagementpage/add-subcluster', {
@@ -120,7 +120,7 @@ const SubClusterManagementPage = () => {
                 console.log('SubCluster added successfully with ID between: ', subclusterID);
         
                 try {
-                    const user = auth.currentUser();
+                    const user = auth.currentUser;
                     if(user) {
                         const token = await user.getIdToken();
                         const response = await(fetch('http://localhost:3001/subclustermanagementpage/add-subcluster-field', {

@@ -60,7 +60,7 @@ const DeleteClusterButton = ({ID}) => {
                 {isOpen && (
                     <div className="popup">
                         <div className="delete-popup-content">  
-                            <label for='deletebuttonrow'>Are you sure you want to delete this cluster?</label>
+                            <label htmlFor='deletebuttonrow'>Are you sure you want to delete this cluster?</label>
                             <div class="deletebuttonrow">
                             <button onClick={closePopup} className="cancelButton">Cancel</button>
                             <button id="deleteCluster" onClick={deleteCluster}>Delete</button>
