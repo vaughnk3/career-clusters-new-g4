@@ -3,11 +3,13 @@ import './SchoolManagementPage.css';
 import React, { useState, useEffect } from "react";
 import SchoolPod from './SchoolPod';
 import BottomRectangle from '../../page_Components/BottomRectangle';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import app from "../../login_components/FirebaseConfig"
 
 const SchoolManagementPage = () => {
 
     const navigate = useNavigate();
-
+    const auth = getAuth(app);
     const [schools, setSchools] = useState([]);
     const [newSchool, setNewSchool] = useState('')
     const [isOpen, setIsOpen] = useState(false);
@@ -54,19 +56,22 @@ const SchoolManagementPage = () => {
 
     const addNewSchool = async () => {
         try {
-
-            const response = await(fetch('http://localhost:3001/new-school', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ newSchool })
-            }));
-            if (response.ok) {
-                console.log('School added successfully');
-            } else {
-                console.error('Failed to add new school');
-            } 
+            const user = auth.currentUser;
+            if(user){ 
+                const token = await user.getIdToken();
+                const response = await(fetch('http://localhost:3001/new-school', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ newSchool })
+                }));
+                if (response.ok) {
+                    console.log('School added successfully');
+                } else {
+                    console.error('Failed to add new school');
+                } 
+            }
         }   catch (error) {
             console.error('Error adding school: ', error);
         }

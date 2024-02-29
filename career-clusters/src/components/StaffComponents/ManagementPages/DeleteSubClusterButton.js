@@ -1,11 +1,17 @@
 import './ManagementSubCluster.css'
 import './ManagementCluster.css'
 import React, { useState } from "react";
+import { getAuth } from "firebase/auth";
+import app from "../../login_components/FirebaseConfig";
 
 
 const DeleteSubClusterButton = ({ID}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [errorDelete, setErrorDelete] = useState(false);
+
+
+    const auth = getAuth(app);
+
 
     const openPopup = () => {
         setIsOpen(true);
@@ -26,23 +32,26 @@ const DeleteSubClusterButton = ({ID}) => {
 
     const DeleteSubCluster = async () => {
         try {
-
-            const response = await(fetch('http://localhost:3001/subclustermanagementpage/delete-subcluster', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ ID })
-            }));
-            if (response.ok) {
-                console.log('SubCluster deleted successfully');
-                setIsOpen(false);
-                refreshPage();
-            } else {
-                console.error('Failed to delete subcluster');
-                setIsOpen(false);
-                setErrorDelete(true);
-            } 
+            const user = auth.currentUser;
+            if(user) {
+                const token = await user.getIdToken();
+                const response = await(fetch('http://localhost:3001/subclustermanagementpage/delete-subcluster', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ID })
+                }));
+                if (response.ok) {
+                    console.log('SubCluster deleted successfully');
+                    setIsOpen(false);
+                    refreshPage();
+                } else {
+                    console.error('Failed to delete subcluster');
+                    setIsOpen(false);
+                    setErrorDelete(true);
+                } 
+            }
         }   catch (error) {
             console.error('Error deleting subcluster: ', error);
             setIsOpen(false);

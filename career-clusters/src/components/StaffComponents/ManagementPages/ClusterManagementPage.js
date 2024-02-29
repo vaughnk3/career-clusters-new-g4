@@ -4,7 +4,8 @@ import ManagementCluster from "./ManagementCluster";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import './ManagementCluster.css';
-
+import { getAuth } from "firebase/auth";
+import app from "../../login_components/FirebaseConfig";
 
 
 const ClusterManagementPage = () => {
@@ -15,6 +16,8 @@ const ClusterManagementPage = () => {
     const [clusterName, setClusterName] = useState('');
     const [newImage, setNewImage] = useState(null);
     const [loading, setLoading] = useState(true);
+
+    const auth = getAuth(app);
 
     //Open the popup
     const openPopup = () => {
@@ -35,21 +38,28 @@ const ClusterManagementPage = () => {
     // Post request for adding a cluster
     const addCluster = async () => {
         try {
-            const formData = new FormData();
-            formData.append('image', newImage); // Append the file
-            formData.append('clusterName', clusterName); // Append the clusterName as a text field
+            const user = auth.currentUser;
+            if(user) {
+                const token = await user.getIdToken();
+                const formData = new FormData();
+                formData.append('image', newImage); // Append the file
+                formData.append('clusterName', clusterName); // Append the clusterName as a text field
+        
+                const response = await fetch('http://localhost:3001/login/staffclusters/clustermanagementpage/add-cluster', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: formData,
+                   
+                });
+        
+                if (response.ok) {
+                    console.log('Cluster and image added successfully');
     
-            const response = await fetch('http://localhost:3001/login/staffclusters/clustermanagementpage/add-cluster', {
-                method: 'POST',
-                body: formData,
-               
-            });
-    
-            if (response.ok) {
-                console.log('Cluster and image added successfully');
-
-            } else {
-                console.error('Failed to add cluster and upload image');
+                } else {
+                    console.error('Failed to add cluster and upload image');
+                }
             }
         } catch (error) {
             console.error('Error adding cluster and uploading image: ', error);

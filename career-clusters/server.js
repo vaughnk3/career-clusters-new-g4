@@ -63,7 +63,7 @@ pool.getConnection((err, connection) => {
 
 //IMAGE POST FROM CLUSTER MANAGEMENT
 //check if logged in, verify if image
-app.post('/imag-cluster-replace', upload.single('image'), (req, res) => {
+app.post('/imag-cluster-replace', upload.single('image'), checkAuth, (req, res) => {
   const image = req.file.buffer;
   const clusterId = req.body.id;
   pool.query('UPDATE Cluster SET img = ? WHERE id = ?', 
@@ -81,7 +81,7 @@ app.post('/imag-cluster-replace', upload.single('image'), (req, res) => {
 })
 
 //SUBCLUSTER UPDATE IMAGE
-app.post('/subimage-replace', upload.single('image'), (req, res) => {
+app.post('/subimage-replace', upload.single('image'), checkAuth, (req, res) => {
   const image = req.file.buffer;
   const subClusterId = req.body.id;
   pool.query('UPDATE Subcluster SET img = ? WHERE id = ?', 
@@ -235,7 +235,7 @@ app.post('/manage-school-name', checkAuth, (req, res) => {
 })
 
 
-app.post('/new-school', (req, res) => {
+app.post('/new-school', checkAuth, (req, res) => {
   
   const { newSchool} = req.body;
   pool.query(
@@ -366,7 +366,7 @@ app.get('/subclustermanagementpage', (req, res) => {
 
 //************************************************************************/
 //ADD CLUSTER
-app.post('/login/staffclusters/clustermanagementpage/add-cluster', upload.single('image'), (req, res) => {
+app.post('/login/staffclusters/clustermanagementpage/add-cluster', upload.single('image'), checkAuth, (req, res) => {
   const image = req.file.buffer;
   const clusterName = req.body.clusterName;
   pool.query(
@@ -425,7 +425,7 @@ app.post('/updates-subclust-clickCnt', (req, res) => {
 
 //************************************************************************/
 // EDIT CLUSTER NAME
-app.post('/login/staffclusters/clustermanagementpage/edit-cluster-name', (req, res) => {
+app.post('/login/staffclusters/clustermanagementpage/edit-cluster-name', checkAuth, (req, res) => {
   const { clusterName, ID } = req.body;
   pool.query(
     'UPDATE Cluster SET clusterName = ? WHERE id = ?',
@@ -446,7 +446,7 @@ app.post('/login/staffclusters/clustermanagementpage/edit-cluster-name', (req, r
 
 //************************************************************************/
 //DELETE CLUSTER
-app.post('/login/staffclusters/clustermanagementpage/delete-cluster', (req, res) => {
+app.post('/login/staffclusters/clustermanagementpage/delete-cluster', checkAuth, (req, res) => {
   const { ID } = req.body;
   pool.query(
     'DELETE FROM Cluster WHERE id = ?',
@@ -467,7 +467,7 @@ app.post('/login/staffclusters/clustermanagementpage/delete-cluster', (req, res)
 
 //************************************************************************/
 // Update request to update a subcluster name based on ID
-app.post('/subclustermanagementpage/edit-subcluster-name', (req, res) => {
+app.post('/subclustermanagementpage/edit-subcluster-name',checkAuth, (req, res) => {
   const { subclusterName, ID } = req.body;
   pool.query(
     'UPDATE Subcluster SET subclusterName = ? WHERE id = ?',
@@ -488,7 +488,7 @@ app.post('/subclustermanagementpage/edit-subcluster-name', (req, res) => {
 
 //************************************************************************/
 //Update request for updating a subcluster's description
-app.post('/subclustermanagementpage/edit-subcluster-descrip', (req, res) => {
+app.post('/subclustermanagementpage/edit-subcluster-descrip', checkAuth, (req, res) => {
   const { subclusterDescrip, ID } = req.body;
   pool.query(
     'UPDATE Field SET description = ? WHERE subclusterId = ?',
@@ -509,7 +509,7 @@ app.post('/subclustermanagementpage/edit-subcluster-descrip', (req, res) => {
 
 //************************************************************************/
 // Update request for updating the education level of a subcluster
-app.post('/subclustermanagementpage/edit-subcluster-education', (req, res) => {
+app.post('/subclustermanagementpage/edit-subcluster-education', checkAuth, (req, res) => {
   const { subclusterEducation, ID } = req.body;
   pool.query(
     'UPDATE Field SET educationLvl = ? WHERE subclusterId = ?',
@@ -530,7 +530,7 @@ app.post('/subclustermanagementpage/edit-subcluster-education', (req, res) => {
 
 //************************************************************************/
 // Update request for updating the salary of a subcluster
-app.post('/subclustermanagementpage/edit-subcluster-salary', (req, res) => {
+app.post('/subclustermanagementpage/edit-subcluster-salary', checkAuth, (req, res) => {
   const { subclusterSalary, ID } = req.body;
   pool.query(
     'UPDATE Field SET avgSalary = ? WHERE subclusterId = ?',
@@ -551,7 +551,7 @@ app.post('/subclustermanagementpage/edit-subcluster-salary', (req, res) => {
 
 //************************************************************************/
 //DELETE SUBCLUSTER
-app.post('/subclustermanagementpage/delete-subcluster', (req, res) => {
+app.post('/subclustermanagementpage/delete-subcluster', checkAuth, (req, res) => {
   const { ID } = req.body;
   pool.query(
     'DELETE FROM Subcluster WHERE id = ?',
@@ -572,7 +572,7 @@ app.post('/subclustermanagementpage/delete-subcluster', (req, res) => {
 
 //************************************************************************/
 // Update request for updating the growth rate of a subcluster
-app.post('/subclustermanagementpage/edit-subcluster-growthrate', (req, res) => {
+app.post('/subclustermanagementpage/edit-subcluster-growthrate', checkAuth, (req, res) => {
   const { subclusterGrowthRate, ID } = req.body;
   pool.query(
     'UPDATE Field SET growthRate = ? WHERE subclusterId = ?',

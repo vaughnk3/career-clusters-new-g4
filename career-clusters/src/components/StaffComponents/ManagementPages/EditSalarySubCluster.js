@@ -1,12 +1,16 @@
 import './ManagementSubCluster.css'
 import './ManagementCluster.css'
 import React, { useState } from "react";
+import { getAuth } from "firebase/auth";
+import app from "../../login_components/FirebaseConfig";
 
 const EditSalarySubCluster = ({ID}) => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [subclusterSalary, setsubclusterSalary] = useState('');
     const [openError, setOpenError] = useState(false);
+
+    const auth = getAuth(app);
 
 
     const openPopup = () => {
@@ -28,23 +32,27 @@ const EditSalarySubCluster = ({ID}) => {
 
     const changeSubClusterSalary = async () => {
         try {
-
-            const response = await(fetch('http://localhost:3001/subclustermanagementpage/edit-subcluster-salary', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ subclusterSalary, ID })
-            }));
-            if (response.ok) {
-                console.log('SubCluster name updated successfully');
-                setIsOpen(false);
-                refreshPage();
-            } else {
-                console.error('Failed to update subcluster name');
-                setIsOpen(false);
-                setOpenError(true);
-            } 
+            const user = auth.currentUser;
+            if(user) {
+                const token = await user.getIdToken();
+                const response = await(fetch('http://localhost:3001/subclustermanagementpage/edit-subcluster-salary', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ subclusterSalary, ID })
+                }));
+                if (response.ok) {
+                    console.log('SubCluster name updated successfully');
+                    setIsOpen(false);
+                    refreshPage();
+                } else {
+                    console.error('Failed to update subcluster name');
+                    setIsOpen(false);
+                    setOpenError(true);
+                } 
+            }
         }   catch (error) {
             console.error('Error updating subcluster name: ', error);
             setIsOpen(false);

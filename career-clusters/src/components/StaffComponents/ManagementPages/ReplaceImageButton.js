@@ -1,10 +1,15 @@
 import './ManagementCluster.css';
 import React, { useState } from "react";
+import { getAuth } from "firebase/auth";
+import app from "../../login_components/FirebaseConfig";
+
 
 
 const ReplaceImageButton = ({ID}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [newImage, setNewImage] = useState(null);
+
+    const auth = getAuth(app);
     const openPopup = () => {
         setIsOpen(true);
     }
@@ -19,12 +24,17 @@ const ReplaceImageButton = ({ID}) => {
             const formData = new FormData();
             formData.append('image', file);
             formData.append('id', id);
-            
-            const dbResponse = await fetch ('http://localhost:3001/imag-cluster-replace', {
-            method: 'POST',
-
-            body: formData,
-        });
+            const user = auth.currentUser;
+            if(user) {
+                const token = await user.getIdToken();
+                const dbResponse = await fetch ('http://localhost:3001/imag-cluster-replace', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: formData,
+                });
+            }
 
         //const data = await dbResponse.json();
         //console.log('Sucess image post', data);

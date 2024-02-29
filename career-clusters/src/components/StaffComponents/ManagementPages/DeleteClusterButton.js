@@ -1,11 +1,16 @@
 import './ManagementCluster.css';
 import React, { useState } from "react";
+import { getAuth } from "firebase/auth";
+import app from "../../login_components/FirebaseConfig";
+
 
 
 const DeleteClusterButton = ({ID}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [errorOpen, setErrorOpen] = useState(false);
 
+
+    const auth = getAuth(app);
     const openPopup = () => {
         setIsOpen(true);
     }
@@ -28,22 +33,27 @@ const DeleteClusterButton = ({ID}) => {
     const deleteCluster = async () => {
         try {
 
-            const response = await(fetch('http://localhost:3001/login/staffclusters/clustermanagementpage/delete-cluster', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ ID })
-            }));
-            if (response.ok) {
-                console.log('Cluster deleted successfully');
-                setIsOpen(false);
-                refreshPage();
-            } else {
-                console.error('Failed to delete cluster');
-                setIsOpen(false);
-                setErrorOpen(true);
-            } 
+            const user = auth.currentUser;
+            if(user) {
+                const token = await user.getIdToken();
+                const response = await(fetch('http://localhost:3001/login/staffclusters/clustermanagementpage/delete-cluster', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ID })
+                }));
+                if (response.ok) {
+                    console.log('Cluster deleted successfully');
+                    setIsOpen(false);
+                    refreshPage();
+                } else {
+                    console.error('Failed to delete cluster');
+                    setIsOpen(false);
+                    setErrorOpen(true);
+                } 
+            }
         }   catch (error) {
             console.error('Error deleting cluster: ', error);
             setIsOpen(false);

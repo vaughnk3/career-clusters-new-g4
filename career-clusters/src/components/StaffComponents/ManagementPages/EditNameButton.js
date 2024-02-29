@@ -1,5 +1,7 @@
 import './ManagementCluster.css';
 import React, { useState } from "react";
+import { getAuth } from "firebase/auth";
+import app from "../../login_components/FirebaseConfig";
 
 
 const EditNameButton = ({ID}) => {
@@ -7,6 +9,7 @@ const EditNameButton = ({ID}) => {
     const [clusterName, setClusterName] = useState('');
     const [errorOpen, setErrorOpen] = useState(false);
 
+    const auth = getAuth(app);
 
     // Once the post request occurs, refresh the page so we can see the changes. 
     const refreshPage = () => {
@@ -31,10 +34,13 @@ const EditNameButton = ({ID}) => {
 
     const changeClusterName = async () => {
         try {
-
-            const response = await(fetch('http://localhost:3001/login/staffclusters/clustermanagementpage/edit-cluster-name', {
+            const user = auth.currentUser;
+            if(user) {
+                const token = await user.getIdToken();
+                const response = await(fetch('http://localhost:3001/login/staffclusters/clustermanagementpage/edit-cluster-name', {
                 method: 'POST',
                 headers: {
+                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ clusterName, ID })
@@ -48,6 +54,7 @@ const EditNameButton = ({ID}) => {
                 setIsOpen(false);
                 setErrorOpen(true);
             } 
+        }
         }   catch (error) {
             console.error('Error updating cluster: ', error);
             setIsOpen(false);
