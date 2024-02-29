@@ -1,11 +1,16 @@
 import './ManagementCluster.css';
 import { useState } from 'react';
+import { getAuth } from "firebase/auth";
+import app from "../../login_components/FirebaseConfig"
 
 const EditImageSubCluster = ({ID}) => {
    
     const [isOpen, setIsOpen] = useState(false);
     const [newImage, setNewImage] = useState(null);
     const [openError, setOpenError] = useState(false);
+
+    const auth = getAuth(app);
+
     const openPopup = () => {
         setIsOpen(true);
     }
@@ -24,22 +29,27 @@ const EditImageSubCluster = ({ID}) => {
             const formData = new FormData();
             formData.append('image', file);
             formData.append('id', id);
-            
-            const dbResponse = await fetch ('http://localhost:3001/subimage-replace', {
-            method: 'POST',
-
-            body: formData
-
-        });
-
-        if (dbResponse.ok) {
-            console.log('SubCluster name updated successfully');
-            refreshPage();
-        } else {
-            console.error('Failed to update subcluster name');
-            setIsOpen(false);
-            setOpenError(true);        
-       } 
+            const user = auth.currentUser;
+            if(user) {
+                const token = await user.getIdToken();
+                const dbResponse = await fetch ('http://localhost:3001/subimage-replace', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: formData
+        
+                });
+        
+                if (dbResponse.ok) {
+                    console.log('SubCluster name updated successfully');
+                    refreshPage();
+                } else {
+                    console.error('Failed to update subcluster name');
+                    setIsOpen(false);
+                    setOpenError(true);        
+               } 
+            }
         } catch (error) {
             console.log("Error", error);
             setIsOpen(false);
