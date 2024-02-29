@@ -62,3 +62,8 @@
   border:1px solid var(--green);
   font-weight: 400;
  }
+
+#school-select, #grade {
+  outline: 2px solid rgba(255, 0, 0, 0);
+  transition: outline .5s;
+}
