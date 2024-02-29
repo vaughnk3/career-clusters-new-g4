@@ -193,7 +193,7 @@
     display:flex;
     flex-flow:column;
     width:225px;
-    margin-top:20px;
+    margin-top:30px;
     padding-right:35px;
     padding-left:40px;
 }
@@ -203,7 +203,7 @@
     flex-flow:column;
     width:225px;
     padding-left:35px;
-    margin-top:20px;
+    margin-top:30px;
     padding-right:40px;
 }
 
@@ -252,3 +252,37 @@
     margin-top:auto;
     height:22px;
 }
+
+
+#subclusterDescrip {
+    height:43%;
+    border:3px solid var(--green);
+    border-radius:30px;
+    
+}
+
+#growth-rate {
+    border:3px solid var(--green);
+    border-radius:30px;
+}
+
+#subclusterName {
+    border:3px solid var(--green);
+    border-radius:30px;
+}
+
+#subclusterSalary {
+    border:3px solid var(--green);
+    border-radius:30px;
+}
+
+#subclusterEducation {
+    border:3px solid var(--green);
+    border-radius:30px;
+}
+
+#select-cluster {
+    border:3px solid var(--green);
+    border-radius:30px;
+}
+
