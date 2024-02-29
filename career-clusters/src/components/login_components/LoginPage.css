@@ -27,7 +27,7 @@
     text-align: left !important;
 }
 
-.field  {
+.field {
     height: 30px;
     color:black;
     font-size: 1rem;
@@ -35,8 +35,8 @@
     border-radius:10px;
     width:100%;
     border: none;
-
 }
+
 .field::placeholder {
     height:1.5rem;
     color:gray;
@@ -70,8 +70,8 @@
 }
 
 .pass-popup-content {
-    width:40%;
-    height:30%;
+    width: min(40%, 380px);
+    height: 26%;
     background-color: white;
     padding: 20px;
     border-radius: 10px;
@@ -84,8 +84,24 @@
     color: black !important;
 }
 
+.pass-popup input {
+    height: 30px;
+    color:black;
+    font-size: 1rem;
+
+    border-radius:10px;
+    width:100%;
+    border: 1px solid var(--darkblue);
+    margin-bottom: 80px;
+    margin-top: 20px;
+}
+
 .pass-popup .demographic-button {
-    margin-top: 80px;
+    text-align: center;
+    display: block;
+
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 10px;
 }
 
@@ -94,5 +110,4 @@
     border-radius:20px;
     border: solid var (--green);
     height:30%;
-
 }
