@@ -30,3 +30,17 @@ html, body {
   flex: 1;
 }
 
+.demographic-button { /* green buttons on demographic/login pages */
+  position: relative;
+  bottom: 20px;
+
+  background-color: var(--green);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+
+  text-decoration: none;
+  cursor: pointer;
+}
+

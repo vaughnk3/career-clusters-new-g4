@@ -63,25 +63,25 @@ const LoginPage = () => {
           <div id="topbar">
             <TopLeftLogo />
           </div>
-          <div id="content">
-            <div id="form">
+          <div class="content">
+            <div id="login-form">
               <form onSubmit={handleSubmit}>
-                <label htmlFor="usernameField"><strong>Username</strong></label><br />
+                <label htmlFor="usernameField"><h3>Username</h3></label>
                 <input
                   type="text"
                   className="field"
                   placeholder='Input username here'
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                /><br />
-                <label htmlFor="passwordField"><strong>Password</strong></label><br />
+                />
+                <label htmlFor="passwordField"><h3>Password</h3></label>
                 <input
                   type="password"
                   className="field"
                   placeholder='Input password here'
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                /><br />
+                />
                 <p onClick={openPopup} >Forgot Password?</p>
                 {isOpen && (
                   <div className="pass-popup"> 
@@ -96,7 +96,7 @@ const LoginPage = () => {
                     </div>
                   </div>
                 )}
-                <button type="submit" id="login-button">Login</button>
+                <button type="submit" class="demographic-button">Login</button>
               </form>
             </div>
           </div>
