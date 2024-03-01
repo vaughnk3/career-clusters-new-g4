@@ -77,7 +77,7 @@ const EditGrowthSubCluster = ({ID}) => {
             {isOpen && (
                     <div className="popup">
                         <div className="popup-content">  
-                            <h2>Test Edit Descrip</h2>
+                            <h2>Change Growth Rate</h2>
                             <select id="growth-rate" name="rate" value={subclusterGrowthRate} onChange={handleSelectChange} >
                                 <option>Select Below</option>
                                 <option value="High">High</option>

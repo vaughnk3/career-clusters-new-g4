@@ -1,3 +1,12 @@
+/*
+This file contains the styling that will be used for the Cluster Page.
+This page is where all the clusters will be rendered for users of the general public. 
+This includes the header box, bottom rectangle, and all the clusters in between. 
+The actual styling for the clusters can be found in Cluster.css.
+
+LAST EDITED -- 03 / 01 / 2024 --- Ross Friend
+*/
+
 
 #topRectangle {
     background-color: var(--darkblue);
