@@ -202,7 +202,7 @@ const SubClusterManagementPage = () => {
                             </div>
                             <div className="newsc-right">
                             <label class="label-addsc" for="subclusterDescrip">Description</label>
-                            <input type="text" id="subclusterDescrip" name="subclusterDescrip" placeholder="Enter new description." value={newSCDescrip} onChange={(e) => setNewDescrip(e.target.value)}></input>
+                            <textarea type="text" id="subclusterDescrip" maxLength="200" name="subclusterDescrip" placeholder=" Enter new description." value={newSCDescrip} onChange={(e) => setNewDescrip(e.target.value)}></textarea>
                             
                             <label class="label-addsc" for="rate">Growth Rate</label>
                             <select id="growth-rate" name="rate" value={newSCGrowthRate} onChange={(e) => setNewGrowthRate(e.target.value)} >

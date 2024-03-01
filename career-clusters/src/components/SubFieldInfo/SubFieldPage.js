@@ -32,7 +32,7 @@ const SubFieldsPage = () => {
     return (
         <div id="page">
             <div id="_topRectangle">
-                <p>Here is some information about the selected SubCluster.</p>
+                <p>Here is some information about the {field.fieldName} SubCluster.</p>
             </div>
             <UserIcon/>
             <br></br><br></br><br></br><br></br><br></br><br></br>

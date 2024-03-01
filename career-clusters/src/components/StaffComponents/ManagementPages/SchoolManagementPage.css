@@ -50,4 +50,11 @@
     background-color: #253251;
 }
 
+#new-school{
+    border:3px solid var(--green);
+    border-radius:30px;
+    width:40%;
+    height:20%;
+}
+
 
