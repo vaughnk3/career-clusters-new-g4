@@ -721,6 +721,43 @@ app.get('/login/staffclusters/staffsubclusters/staffsubclusterinfo/:subclusterId
 })
 //************************************************************************/
 
+//************************************************************************/
+//RECIEVE USER ID AND PARTICULAR CLAIM TO BE ADDED, UPDATE FIREBASE WITH NEW PERMISSION FOR USER
+app.post('/login/adminpage/modifyperms/add-user-permission', async (req, res) => {
+  const { uid, claims } = req.body; // UID of user and claims to be set, passed from tickbox value in form in client
+  try {
+    await admin.auth().setCustomUserClaims(uid, claims);
+    res.send('Custom claims set successfully.');
+  } catch(error) {
+    console.error('Error setting custom claim: ', error);
+    res.status(500).send('Failed to set custom claims.')
+  }
+})
+//************************************************************************/
+
+
+//************************************************************************/
+//RECIEVE USER ID AND LIST OF CLAIMS TO REMOVE, UPDATE FIREBASE WITH REMOVED PERMISSIONS FOR USER
+app.post('/login/adminpage/modifyperms/remove-user-permission', async (req, res) => {
+  const { uid, claimsToRemove } = req.body;
+  try {
+    const user = await admin.auth().getUser(uid);
+    const updatedClaims = {...user.customClaims};
+    
+    claimsToRemove.forEach(claim => {
+      delete updatedClaims[claim];
+    });
+
+    await admin.auth().setCustomUserClaims(uid, updatedClaims); //reset user claims for user with deleted ones removed
+    res.send('Custom claims removed successfully.');
+  } catch(error) {
+    console.error('Error removing custom claims:', error);
+    res.status(500).send('Failed to remove custom')
+  }
+})
+//************************************************************************/
+
+
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
