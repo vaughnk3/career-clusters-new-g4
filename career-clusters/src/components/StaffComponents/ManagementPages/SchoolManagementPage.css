@@ -26,29 +26,61 @@
 
 #school_pod {
    width:80%;
+   height: fit-content;
    background-color: #D9D9D9;
-   margin:10px;
-   margin-left: auto;
-   margin-right:auto;
-   border-radius: 45px;
-   border: 6px solid #98ca41;
-   
+
+   margin-bottom: 20px;
+
+   border-radius: 50px;
+   border: 6px solid var(--green);
+
+   transition: .2s color, .2s background-color;   
+
+   display: inline-block;
+   text-align: left;
 }
 
 #school_pod:hover {
-    background-color: #253251;
+    background-color: var(--darkblue);
+    color: white;
 }
 
-#edit_school_name {
-    width:20%;
-    background-color: #D9D9D9;
+#school_pod h1 {
+    width: fit-content;
+
+	font-size: min(2.5em, calc(2.5vw*1.5));
+	margin-left:5%;
+
+    display: inline-block;
+    
+}
+
+#school-pod-buttons {
+    float: right;
+    display: inline-block;
+
+    margin: 30px;
+    margin-right: 0px;
+}
+
+#school_pod button {
+    width: fit-content;
+    height: max(2rem, 4vw);
+    background-color: white;
     border-radius:40px;
-    border: 3px solid #98ca41;
+    border: 3px solid var(--green);
+    display: inline-block;
+
+    margin-right: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
-#edit_school_name:hover {
-    background-color: #253251;
+#school_pod:hover button:hover {
+    background-color: var(--darkblue);
+    color: white;
 }
+
 
 #new-school{
     border:3px solid var(--green);
@@ -57,4 +89,8 @@
     height:20%;
 }
 
-
+#school-management-list {
+    width: 100%;
+    margin: 2rem;
+    text-align: center;
+}

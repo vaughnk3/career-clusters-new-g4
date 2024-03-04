@@ -30,8 +30,9 @@ body {
   
 }
 
-ul {
+#subcluster-list {
     list-style-type: none;
+    width: 100%;
 }
 
 #loading-animation {

@@ -97,15 +97,15 @@ const SchoolManagementPage = () => {
                     </div>
                 )}
             </div>
-
-
-            <br></br><br></br><br></br><br></br><br></br><br></br>
-            {schools.map((school) => (
+            <div class="content content-margin">
+                <div id="school-management-list">
+                {schools.map((school) => (
                 <SchoolPod key={school.id} value={school.id} ID={school.id} schoolName={school.schoolName} />
                 
-            ))}
-            
-            <br></br>
+                 ))}
+                </div>
+            </div>
+
             <BottomRectangle/>
         </div>
     )

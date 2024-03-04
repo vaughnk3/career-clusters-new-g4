@@ -119,8 +119,11 @@ const SchoolPod = ({ID, schoolName}) => {
     return (
         <div id="school_pod">
             <h1>{schoolName}</h1>
-            <button onClick={openPopup} id="edit_school_name">Edit School Name</button>
-            <button onClick={openPopup2}>Delete</button>
+            <div id="school-pod-buttons">
+                <button onClick={openPopup} id="edit_school_name">Edit School Name</button>
+                <button onClick={openPopup2}>Delete</button>
+            </div>
+
             {isOpen && (
                     <div className="popup">
                         <div className="popup-content">

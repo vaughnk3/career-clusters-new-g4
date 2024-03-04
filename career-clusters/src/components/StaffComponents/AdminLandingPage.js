@@ -24,12 +24,12 @@ const AdminLandingPage = () => {
       };
     
     return (
-        <div class="wrapper">
+        <div id="page">
             <div id="_topRectangle">
                 <h1>Administrator Landing Page</h1>
             </div>
-            <br></br><br></br><br></br><br></br><br></br>
-            <div class="content admin-content">
+            <div class="content content-margin admin-landing-content">
+                <div id="admin-landing-buttons">
                 <div class="admin-landing-column">
                     <a href="/login/adminpage/createstaffpage">Create Staff Account</a>
                     <a href="/login/staffclusters">Staff Cluster View</a>
@@ -40,8 +40,12 @@ const AdminLandingPage = () => {
                     <a href="/login/staffclusters/clustermanagementpage">Cluster Management</a> 
                     <a href="">Manage Job Postings</a>
                 </div>
+                <div class="admin-landing-column">
                 <a  onClick={ExcelGenerationQueue}>Export Data (.xlsx)</a>
                 <a onClick={handleButtonClickLogout}>Logout</a>
+                </div>
+
+                </div>
             </div>
             <BottomRectangle/>
         </div>

@@ -100,16 +100,8 @@ const SubClusterPage = ({ }) => {
             )} 
 
             <UserIcon />
-            <div id="content">
-                <br></br>
-                <br></br>
-                <br></br><br></br>
-                <br></br><br></br>
-
-
-
-
-                <ul>
+            <div class="content content-margin">
+                <ul id="subcluster-list">
                     {subclusters.map((subcluster) => (
                         <li>
                             <SubCluster key={subcluster.id} ID={subcluster.id} subID={subcluster.clusterID} subclusterName={subcluster.subclusterName} onClick={handleSubClusterClick}/>
