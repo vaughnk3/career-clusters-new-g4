@@ -1,0 +1,9 @@
+.actionSelect, .userSelect, .permissionSelect {
+    text-align:center;
+}
+
+#userUpdate {
+    margin-left:auto 0;
+    text-align:center;
+    margin-right:auto 0;
+}
