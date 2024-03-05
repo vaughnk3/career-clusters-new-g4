@@ -821,6 +821,37 @@ app.post('/login/adminpage/create-user', async (req, res) => {
   }
 });
 
+app.post('/wipe-cluster-clickCounts', (req, res) => {
+  pool.query(
+    'UPDATE Cluster SET clickCount = 0',
+    (error, results, fields) => {
+      if(error) {
+        console.error("Error wiping cluster counts: ", error);
+        res.status(500).send("Error wiping cluster counts");
+      } else {
+        console.log("cluster counts wiped sucessfully successfully");
+        res.status(200).send("cluster counts wiped sucessfully successfully");
+      }
+    }
+  )
+})
+
+app.post('/wipe-subcluster-clickCounts', (req, res) => {
+  pool.query(
+    'UPDATE Subcluster SET clickCount = 0',
+    (error, results, fields) => {
+      if(error) {
+        console.error("Error wiping subcluster counts: ", error);
+        res.status(500).send("Error wiping subcluster counts");
+      } else {
+        console.log("subcluster counts wiped successfully");
+        res.status(200).send("subcluster counts wiped successfully");
+      }
+    }
+  )
+})
+
+
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

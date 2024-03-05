@@ -3,11 +3,28 @@ import "./AdminLandingPage.css";
 import { ExcelGenerationQueue } from "./ExcelGeneration";
 import { getAuth, signOut } from "firebase/auth";
 import {useNavigate} from 'react-router-dom';
+import { useState } from "react";
 
 
 
 const AdminLandingPage = () => {
     const navigate = useNavigate();
+    const [openClusterWipe, setClusterWipe] = useState(false);
+    const [openSubClusterWipe, setSubClusterWipe] = useState(false);
+
+    const openCluster = () => {
+        setClusterWipe(true);
+    }
+    const closeCluster = () => {
+        setClusterWipe(false);
+    }
+
+    const openSubCluster = () => {
+        setSubClusterWipe(true);
+    }
+    const closeSubCluster = () => {
+        setSubClusterWipe(false);
+    }
 
 
     const handleButtonClickLogout = async () => {
@@ -22,6 +39,36 @@ const AdminLandingPage = () => {
           console.error('Logout error:', error.message);
         }
       };
+
+
+    const handleWipeClusterCounts =  async  () => {
+        try {
+        const response = await(fetch('http://localhost:3001/wipe-cluster-clickCounts',  {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json'
+            },}))
+        } catch(error) {
+            console.log(error);
+        }
+
+        closeCluster();
+    }
+
+    const handleWipeSubClusterCounts = async () => {
+        try {
+            const response = await(fetch('http://localhost:3001/wipe-subcluster-clickCounts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }))
+        } catch (error) {
+            console.log(error)
+        }
+
+        closeSubCluster();
+    }
     
     return (
         <div id="page">
@@ -34,11 +81,33 @@ const AdminLandingPage = () => {
                     <a href="/login/adminpage/createstaffpage">Create Staff Account</a>
                     <a href="/login/staffclusters">Staff Cluster View</a>
                     <a href="">Cluster Fields Management</a>
+                    <a onClick={openCluster} >Clear Cluster Click Counts</a>
+                    {openClusterWipe && (
+                        <div className="popup">
+                            <div className="popup-content">
+                                <h1>Are you sure you want to clear Cluster Click Rates?</h1>
+                                <p>This action is irreversible.</p>
+                                <button onClick={handleWipeClusterCounts}>Clear Click Rates</button>
+                                <button onClick={closeCluster}>Cancel</button>
+                            </div>
+                        </div>
+                    )}
                 </div>
                 <div class="admin-landing-column">
                     <a href="/login/adminpage/modifyperms">Modify User Permissions</a>
                     <a href="/login/staffclusters/clustermanagementpage">Cluster Management</a> 
                     <a href="">Manage Job Postings</a>
+                    <a onClick={openSubCluster} >Clear SubCluster Click Counts</a>
+                    {openSubClusterWipe && (
+                        <div className="popup">
+                            <div className="popup-content">
+                                <h1>Are you sure you want to clear SubCluster Click Rates?</h1>
+                                <p>This action is irreversible.</p>
+                                <button onClick={handleWipeSubClusterCounts}>Clear Click Rates</button>
+                                <button onClick={closeSubCluster}>Cancel</button>
+                            </div>
+                        </div>
+                    )}
                 </div>
                 <div class="admin-landing-column">
                 <a  onClick={ExcelGenerationQueue}>Export Data (.xlsx)</a>
