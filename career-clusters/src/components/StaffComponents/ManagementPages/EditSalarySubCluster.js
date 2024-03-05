@@ -64,7 +64,7 @@ const EditSalarySubCluster = ({ID}) => {
     }
 
     return (
-        <div className="Salary">
+        <div className="cluster-button">
             <button className="editSalary" onClick={openPopup}>Edit Salary</button>
             {isOpen && (
                     <div className="popup">

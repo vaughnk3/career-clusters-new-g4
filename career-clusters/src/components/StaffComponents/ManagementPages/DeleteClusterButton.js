@@ -65,8 +65,8 @@ const DeleteClusterButton = ({ID}) => {
     }
 
     return (
-        <div id="deleteB">
-                <button id="delete" onClick={openPopup}>Delete</button>
+        <div id="cluster-button">
+                <button class="management-button" onClick={openPopup}>Delete</button>
                 {isOpen && (
                     <div className="popup">
                         <div className="delete-popup-content">  

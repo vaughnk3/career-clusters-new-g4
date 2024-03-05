@@ -109,12 +109,12 @@ const ClusterPage = () => {
     }
 
     return (
-    <div>
+    <div id="page">
         <div id="topRectangle">
             <h1>Welcome</h1>
             <p>Please select a cluster that interests you. This website will help match you with potential careers in your area of interest.</p>
         </div>
-        <br></br><br></br><br></br><br></br><br></br><br></br> 
+        
 
         {openError && (
                 <div className="popup">
@@ -127,7 +127,7 @@ const ClusterPage = () => {
          )}
         
         <UserIcon/>
- 
+        <div class="content content-margin">
             <li id="c_array">
                 {clusters.map(cluster => (
                 <form id="form1" onSubmit={handleFormSubmit}>
@@ -135,6 +135,8 @@ const ClusterPage = () => {
                 </form>
                 ))}
             </li>
+        </div>
+
      
 
   

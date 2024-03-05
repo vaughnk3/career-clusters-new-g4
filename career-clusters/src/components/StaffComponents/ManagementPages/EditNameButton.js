@@ -69,8 +69,8 @@ const EditNameButton = ({ID}) => {
     
 
     return (
-        <div id="name">
-                <button id="edit_Name" onClick={openPopup}>Edit Name</button>
+        <div id="cluster-button">
+                <button class="management-button" onClick={openPopup}>Edit Name</button>
                 {isOpen && (
                     <div className="popup">
                         <div className="popup-content">  

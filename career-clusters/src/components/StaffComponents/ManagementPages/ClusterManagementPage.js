@@ -132,14 +132,16 @@ const ClusterManagementPage = () => {
                 <h4>Please select an option for cluster management.</h4>
             </div>
             
-            <br></br><br></br>
-            <ul class="mgmt_list">
-                {clusters.map((cluster) => (
-                    <li>
-                        <ManagementCluster key={cluster.id} ID={cluster.id} clusterName={cluster.clusterName} />
-                    </li>
-                ))}
-            </ul>
+            <div class="content content-margin">
+                <ul class="mgmt_list">
+                    {clusters.map((cluster) => (
+                        <li>
+                            <ManagementCluster key={cluster.id} ID={cluster.id} clusterName={cluster.clusterName} />
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
 
 
             <BottomRectangle />

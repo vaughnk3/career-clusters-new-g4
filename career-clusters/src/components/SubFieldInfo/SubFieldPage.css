@@ -83,3 +83,8 @@
     font-size: 1.6rem;
     margin: 0px;
 }
+
+#subfield-content {
+    width: 100%;
+    padding-top: 8%;
+}

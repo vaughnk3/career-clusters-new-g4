@@ -35,8 +35,8 @@ const SubFieldsPage = () => {
                 <p>Here is some information about the {field.fieldName} SubCluster.</p>
             </div>
             <UserIcon/>
-            <br></br><br></br><br></br><br></br><br></br><br></br>
-            <div id="content">
+            <div class="content content-margin">
+                <div id="subfield-content">
                 <div id="row">
                     <div id="topLeft">
                         <h2 id="fName">{field.fieldName}</h2>
@@ -58,8 +58,9 @@ const SubFieldsPage = () => {
                         <h1>{field.growthRate}</h1>
                     </div>
                 </div>
+                </div>
+                
             </div>
-            <br></br><br></br><br></br><br></br>
             <BottomRectangle/>
         </div>
     )

@@ -63,8 +63,8 @@ const ReplaceImageButton = ({ID}) => {
 
 
     return (
-        <div id="replace">
-            <button onClick={openPopup} id="replace_Image">Replace Image</button>
+        <div id="cluster-button">
+            <button onClick={openPopup} class="management-button">Replace Image</button>
             {isOpen && (
                 <div className="popup">
                     <div className="popup-content">  

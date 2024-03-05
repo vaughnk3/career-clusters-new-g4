@@ -88,8 +88,7 @@ const StaffClusters = () => {
 
 
     return (
-        <div>
-          <br></br><br></br><br></br><br></br><br></br><br></br> 
+        <div id="page">
           {isOpen && (
           <div className="popup">
             <div className="popup-content">
@@ -99,6 +98,7 @@ const StaffClusters = () => {
             </div>
           </div>
         )}
+        <div class="content content-margin">
           <li id="c_array">
                 {clusters.map(cluster => (
                 <form id="form1" onSubmit={handleFormSubmit}>
@@ -106,6 +106,7 @@ const StaffClusters = () => {
                 </form>
                 ))}
             </li>
+            </div>
           <div className="overlay">
             <Link to="/login/staffclusters"><img src={require('./HomeButton.png')} alt="Home Button" className="home-button"></img></Link>
             <div class="staff-button-column-one">

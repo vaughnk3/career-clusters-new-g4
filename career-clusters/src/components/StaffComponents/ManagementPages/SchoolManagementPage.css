@@ -77,7 +77,7 @@
 }
 
 #school_pod:hover button:hover {
-    background-color: var(--darkblue);
+    background-color: var(--green);
     color: white;
 }
 

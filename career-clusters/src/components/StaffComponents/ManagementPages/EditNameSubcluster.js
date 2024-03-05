@@ -63,7 +63,7 @@ const EditNameSubcluster = ({ID}) => {
     }
 
     return (
-        <div className="Name">
+        <div className="cluster-button">
             <button className="editName" onClick={openPopup}>Edit Name</button>
             {isOpen && (
                     <div className="popup">

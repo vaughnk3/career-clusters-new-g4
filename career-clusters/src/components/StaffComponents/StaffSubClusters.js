@@ -96,8 +96,8 @@ const StaffSubClusters = () => {
     
 
     return (
-        <div>
-           <br></br><br></br><br></br><br></br><br></br><br></br> 
+        <div id="page">
+
            {openError && (
               <div className="popup">
                 <div className="popup-content">
@@ -109,13 +109,15 @@ const StaffSubClusters = () => {
             )}
 
 
-            <ul>
+            <div class="content content-margin">
+                <ul id="subcluster-list">
               {subclusters.map((subcluster) => (
                 <li>
                   <SubCluster_S key={subcluster.id} ID={subcluster.id} subID={subcluster.clusterID} subclusterName={subcluster.subclusterName} onClick={handleClusterClick}/>
                  </li>
                 ))}
             </ul>
+            </div>
             
             <BottomRectangle/>
 
