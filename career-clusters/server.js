@@ -726,6 +726,7 @@ app.get('/login/staffclusters/staffsubclusters/staffsubclusterinfo/:subclusterId
 app.post('/login/adminpage/modifyperms/add-user-permission', async (req, res) => {
   const { uid, claims } = req.body; // UID of user and claims to be set, passed from tickbox value in form in client
   try {
+    console.log("IN ADD" , uid)
     await admin.auth().setCustomUserClaims(uid, claims);
     res.send('Custom claims set successfully.');
   } catch(error) {
@@ -757,6 +758,40 @@ app.post('/login/adminpage/modifyperms/remove-user-permission', async (req, res)
 })
 //************************************************************************/
 
+
+
+app.get('/login/adminpage/modifyperms/list-users', async (req, res) => {
+  try {
+    const listUsersResult = await admin.auth().listUsers();
+    const usersWithPermissions = listUsersResult.users.map(user => ({
+      uid: user.uid,
+      email: user.email,
+      permissions: user.customClaims || {},
+    }));
+
+    res.json(usersWithPermissions);
+  } catch (error) {
+    console.error('Error listing users:', error);
+    res.status(500).send('Internal server error');
+  }
+});
+
+
+app.post('/login/adminpage/create-user', async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const userCredential = await admin.auth().createUser({
+      email,
+      password,
+    });
+    // Respond with the UID of the newly created user or other relevant information
+    console.log(userCredential.uid)
+    res.status(200).json({ uid: userCredential.uid });
+  } catch (error) {
+    console.error('Failed to create user:', error);
+    res.status(500).send('Error creating user');
+  }
+});
 
 const PORT = 3001;
 app.listen(PORT, () => {
