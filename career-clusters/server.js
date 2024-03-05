@@ -788,6 +788,7 @@ app.post('/login/adminpage/create-user', async (req, res) => {
     // Respond with the UID of the newly created user or other relevant information
     console.log(userCredential.uid)
 
+    try {
     // Store the uid of the new user
     const uid = userCredential.uid;
 
@@ -809,7 +810,10 @@ app.post('/login/adminpage/create-user', async (req, res) => {
 
     // Set the new user's custom claims
     await admin.auth().setCustomUserClaims(uid, claims);
-
+  } catch(error) {
+    console.log(error);
+  }
+  
     res.status(200).json({ uid: userCredential.uid });
   } catch (error) {
     console.error('Failed to create user:', error);
