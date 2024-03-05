@@ -13,12 +13,13 @@
 	cursor: pointer;
 	text-align: center;
 
-	transition: .2s color, .2s background-color;
+	transition: .2s color, .2s background-color, .2s transform;
 }
 
 .subcluster:hover {
 	background-color: var(--darkblue);
 	color:white;
+	transform: scale(1.1);
 }
 .subcluster h2 {
 	height: 8rem;
