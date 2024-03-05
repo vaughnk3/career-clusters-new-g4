@@ -779,6 +779,7 @@ app.get('/login/adminpage/modifyperms/list-users', async (req, res) => {
 
 app.post('/login/adminpage/create-user', async (req, res) => {
   const { email, password } = req.body;
+  //Try to create the user
   try {
     const userCredential = await admin.auth().createUser({
       email,
@@ -786,6 +787,29 @@ app.post('/login/adminpage/create-user', async (req, res) => {
     });
     // Respond with the UID of the newly created user or other relevant information
     console.log(userCredential.uid)
+
+    // Store the uid of the new user
+    const uid = userCredential.uid;
+
+    // Set the default claims
+    const claims = {
+      "uid": uid,
+      "claims": {
+        "admin": false,
+        "clusterManagement": false,
+        "subclusterManagement": false,
+        "exportExcel": false,
+        "createStaff": false,
+        "modifyPerms": false,
+        "schoolManagement":false,
+        "clearClicks":false,
+        "accessLevel": 1
+      }
+    }
+
+    // Set the new user's custom claims
+    await admin.auth().setCustomUserClaims(uid, claims);
+
     res.status(200).json({ uid: userCredential.uid });
   } catch (error) {
     console.error('Failed to create user:', error);
