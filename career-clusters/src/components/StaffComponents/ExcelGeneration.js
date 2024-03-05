@@ -90,7 +90,7 @@ export async function ExcelGenerationQueue()
         
 
         //Push new column headers
-        wsData.push(['Demograpic Information'])
+        wsData.push(['Demographic Information'])
         wsData.push(['User #', 'School', 'Grade Level', 'Desired Career', 'Age']);
 
         //For each user, push the id, and its corresponding demographic information. 
