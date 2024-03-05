@@ -91,6 +91,8 @@ html, body {
 
   font-size: 1em;
   font-family: 'Lato', sans-serif;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 #cluster-button {
