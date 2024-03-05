@@ -25,9 +25,10 @@ const Cluster_S = ( {id, clusterName, onClick} ) => {
 
   return (
     <div onClick={() => onClick(id)} className="cluster">
+        <img src={imageSrc} alt="Cluster Picture" className="cluster-pics"></img>
         <h2> {clusterName}
         </h2>
-        <img src={imageSrc} alt="Cluster Picture" className="cluster-pics"></img>
+        
     </div>
   );
 }
