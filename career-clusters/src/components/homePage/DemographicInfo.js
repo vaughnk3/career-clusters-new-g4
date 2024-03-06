@@ -22,7 +22,6 @@ const DemographicInfo = () => {
         </div>
 
       </div>
-      <br></br><br></br>
       <BottomRectangle/>
     </div>
   );

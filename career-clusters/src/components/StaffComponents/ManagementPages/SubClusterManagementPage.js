@@ -247,8 +247,6 @@ const SubClusterManagementPage = () => {
 
                 <h1>SubCluster Managment Page</h1>
             </div>
-            
-            <br></br>
 
             <ul className="scmgmt_list">
                 {subClusters2.map((subcluster) => (
