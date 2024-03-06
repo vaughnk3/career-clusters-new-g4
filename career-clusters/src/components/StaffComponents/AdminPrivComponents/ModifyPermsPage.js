@@ -17,7 +17,8 @@ const ModifyPermsPage = () => {
         useEffect(() => {
           const fetchUsersAndPermissions = async () => {
             try {
-              const response = await fetch('http://localhost:3001/login/adminpage/modifyperms/list-users');
+              const response = await fetch('http://localhost:3001/login/adminpage/modifyperms/list-users', 
+              );
               const data = await response.json();
               setUsers(data);
               if(data.length > 0) {
@@ -35,43 +36,46 @@ const ModifyPermsPage = () => {
     UsersPermissionsList();
     
     const handleSubmit = async (e) => {
+      e.preventDefault();
       
-      //Determine whether to add or remove & endpoint
-      let endpoint = '';
-      if(action === 'add') {
-        endpoint = 'http://localhost:3001/login/adminpage/modifyperms/add-user-permission';
-        console.log("Add endpoint accessed")
-      } else if(action === 'remove') {
-        endpoint = 'http://localhost:3001/login/adminpage/modifyperms/remove-user-permission';
-        console.log("Remove endpoint accessed")
+     
+      console.log("LENGTH", users.length)
+      console.log(users)
+      console.log("single: ", users[0].permissions);
+      console.log("UID", users[0].uid)
+
+
+      // Initialize new claims list 
+      let newClaimsList = {}
+
+      // Find the claims list for the selected user
+      for (let i = 0; i < users.length; i++)
+      {
+        if (selectedUser === users[i].uid) {
+          newClaimsList = users[i].permissions;
+        }
       }
-
-      //Might be where current error is, payload coming through as null
-      let payload = {};
-
+     
+      console.log("NEW CLAIMS:", newClaimsList)
+      console.log("SPECIFIC: ", newClaimsList.claims[selectedPermission])
       //Iffy logic, not sure if list of all claims are being sent back 
-      if(action === 'add') {
-        payload = {
-          uid: selectedUser,
-          claims: {
-            [selectedPermission]: true,
-          },
-        }
-      } else if (action === 'remove') {
-        payload = {
-          uid: selectedUser,
-          claimsToRemove: [selectedPermission],
-        }
+      if(action === 'add') 
+      {
+        newClaimsList.claims[selectedPermission] = true;
+      
+      } else if (action === 'remove') 
+      {
+        newClaimsList.claims[selectedPermission] = false;
       }
 
       //Finally communicate w backend to update user info
       try {
-        const response = await fetch(endpoint, {
+        const response = await fetch('http://localhost:3001/login/adminpage/modifyperms/add-user-permission', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body:JSON.stringify(payload),
+          body:JSON.stringify({uid: selectedUser, claims: newClaimsList}),
         })
 
         if(response.ok) {
@@ -82,40 +86,10 @@ const ModifyPermsPage = () => {
       } catch (error) {
         console.error("Error updating permissions: ", error);
       }
-      console.log(payload.claims);
+      //console.log(payload.claims);
     }
 
-    // This is how i manually set all perms, just switch out the UID and edit true false
-    /*
-    // ######## DO NOT DELETE THIS ############ //
-    // Test to manually add some perms - Ross 
-    const uid = 'dJgypuZ4kkf00RUEmGfXzThJChy1';
-    const claims = {
-        "uid": "dJgypuZ4kkf00RUEmGfXzThJChy1",
-        "claims": {
-          "admin": false,
-          "clusterManagement": true,
-          "subclusterManagement": true,
-          "exportExcel": true,
-          "createStaff": false,
-          "modifyPerms": false,
-          "schoolManagement":true,
-          "clearClicks":false,
-          "accessLevel": 1
-        }
-      }
-      
-    const attemptPermsSet = async () => {
-        const response = await(fetch('http://localhost:3001/login/adminpage/modifyperms/add-user-permission', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ uid, claims })
-                }));
-    } 
-    attemptPermsSet();
-    */
+    
 
     return (
         <div>

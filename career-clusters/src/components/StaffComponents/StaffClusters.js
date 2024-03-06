@@ -9,6 +9,7 @@ import { getAuth, signOut } from "firebase/auth";
 import './StaffClusters.css'
 import { ExcelGenerationQueue } from './ExcelGeneration';
 import SchoolManagementPage from './ManagementPages/SchoolManagementPage';
+import app from '../login_components/FirebaseConfig';
 
 const StaffClusters = () => {
 
@@ -16,11 +17,20 @@ const StaffClusters = () => {
     const [clusters, setClusters] = useState([]);
     const [loading, setLoading] = useState(true);
     const [isOpen, setIsOpen] = useState(false);
+    const [claim, setClaim] = useState([])
+    const [claimError, setClaimError] = useState(false);
+
+
+    const closeError = () => {
+      setClaimError(false);
+    }
+
 
     const closePopup = () => {
       setIsOpen(false);
       window.location.reload();
     }
+    
 
     useEffect(() => {
         const fetchClusters = async () => {
@@ -41,6 +51,35 @@ const StaffClusters = () => {
         fetchClusters();
     }, []);
 
+    const auth = getAuth(app);
+    const user = auth.currentUser;
+    console.log(user.uid)
+    // Make post request here
+
+    useEffect( () => {
+      const fetchUserClaims = async () => {
+        try {
+          const response = await(fetch('http://localhost:3001/get-unique-claims', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body:JSON.stringify({uid: user.uid}),
+          }))
+
+          if (response.ok) 
+          {
+            const claims = await response.json()
+            setClaim(claims);
+          }
+        }
+        catch (error) {
+          console.log(error)
+        }
+      }
+      fetchUserClaims();
+    }, [])
+
     if (loading) {
       return <div id="loading-animation"></div>
     }
@@ -57,7 +96,18 @@ const StaffClusters = () => {
   }
 
   const handleButtonClickClusterManagement = () => {
-    navigate('/login/staffclusters/clustermanagementpage');
+    console.log(claim.claims.claims['clusterManagement'])
+    if (claim.claims.claims['clusterManagement'] == true)
+    {
+      navigate('/login/staffclusters/clustermanagementpage');
+    }
+    else {
+      console.log("In the else")
+      setClaimError(true);
+      //navigate('/login/staffclusters');
+      
+    }
+    //navigate('/login/staffclusters/clustermanagementpage');
   };
   const handleButtonClickLogout = async () => {
     //Logout
@@ -95,6 +145,14 @@ const StaffClusters = () => {
               <h1>Error</h1>
               <p>An error occurred while fetching clusters.</p>
               <button onClick={closePopup}>Acknowledge and Refresh</button>
+            </div>
+          </div>
+        )}
+        { claimError && (
+          <div className="popup">
+            <div className="popup-content">
+              <h1>You do not have access to this feature.</h1>
+              <button onClick={closeError}>Acknowledge</button>
             </div>
           </div>
         )}

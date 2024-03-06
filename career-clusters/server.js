@@ -727,6 +727,7 @@ app.post('/login/adminpage/modifyperms/add-user-permission', async (req, res) =>
   const { uid, claims } = req.body; // UID of user and claims to be set, passed from tickbox value in form in client
   try {
     console.log("IN ADD" , uid)
+    console.log(claims)
     await admin.auth().setCustomUserClaims(uid, claims);
     res.send('Custom claims set successfully.');
   } catch(error) {
@@ -820,6 +821,20 @@ app.post('/login/adminpage/create-user', async (req, res) => {
     res.status(500).send('Error creating user');
   }
 });
+
+app.post('/get-unique-claims', async (req, res) => {
+  const { uid } = req.body;
+
+  try {
+  const user = await admin.auth().getUser(uid);
+  const claims = user.customClaims;
+  console.log(claims);
+  res.status(200).json({ claims })
+  }
+  catch (error) {
+    console.log(error);
+  }
+})
 
 app.post('/wipe-cluster-clickCounts', (req, res) => {
   pool.query(
