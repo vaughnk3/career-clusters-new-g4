@@ -160,8 +160,19 @@ const StaffSubClusters = () => {
       refreshPage();
     }
 
-    
 
+    const handleExcelButtonClick = () => {
+      console.log(claim.claims.claims['exportExcel'])
+      if(claim.claims.claims['exportExcel'] == true){
+        ExcelGenerationQueue();
+      }
+      else{
+        console.log("In the else")
+        setClaimError(true);
+      }
+    }
+
+  
     return (
         <div id="page">
 
@@ -211,7 +222,7 @@ const StaffSubClusters = () => {
               </div>
               <div class="staff-button-column-three">
                 <a class="staff-button" onClick={handleSubclusterManagementClick}>SubCluster Management</a>
-                <a class="staff-button" onClick={ExcelGenerationQueue}>Export Data (.xlsx)</a>
+                <a class="staff-button" onClick={handleExcelButtonClick}>Export Data (.xlsx)</a>
               </div>
           </div>
         </div>
