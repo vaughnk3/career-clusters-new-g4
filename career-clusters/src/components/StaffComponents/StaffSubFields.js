@@ -40,7 +40,18 @@ const StaffSubFields = () => {
  
 
   const handleSubclusterManagementClick = () => {
-    navigate('/subclustermanagementpage')
+    console.log(claim.claims.claims['subclusterManagement'])
+    if (claim.claims.claims['subclusterManagement'] == true)
+    {
+      navigate('/subclustermanagementpage');
+    }
+    else {
+      console.log("In the else")
+      setClaimError(true);
+      //navigate('/login/staffclusters');
+      
+    }
+    //navigate('/login/staffclusters/clustermanagementpage');
   }
 
 

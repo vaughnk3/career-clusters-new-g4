@@ -34,7 +34,18 @@ const StaffSubClusters = () => {
     
     //Route to the subcluster management page if button is clicked
     const handleSubclusterManagementClick = () => {
-      navigate('/subclustermanagementpage')
+      console.log(claim.claims.claims['subclusterManagement'])
+      if (claim.claims.claims['subclusterManagement'] == true)
+      {
+        navigate('/subclustermanagementpage');
+      }
+      else {
+        console.log("In the else")
+        setClaimError(true);
+        //navigate('/login/staffclusters');
+        
+      }
+      //navigate('/login/staffclusters/clustermanagementpage');
     }
 
     // Route to the cluster management page is button is clicked
