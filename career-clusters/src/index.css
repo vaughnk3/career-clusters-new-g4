@@ -114,3 +114,10 @@ html, body {
 .management-button:hover {
   background-color: #98ca41;
 }
+
+#topRectangle p, #_topRectangle p {
+  width: 70%;
+  
+  margin-left: auto;
+  margin-right: auto;
+}
