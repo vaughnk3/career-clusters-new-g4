@@ -144,7 +144,17 @@ const StaffClusters = () => {
   }
 
   const handleSchoolManagementClick = () => {
-    navigate('/school-management-page');
+    console.log(claim.claims.claims['schoolManagement'])
+    if (claim.claims.claims['schoolManagement'] == true)
+    {
+      navigate('/school-management-page');
+    }
+    else {
+      console.log("In the else")
+      setClaimError(true);
+      //navigate('/login/staffclusters');
+      
+    }
   }
 
 
