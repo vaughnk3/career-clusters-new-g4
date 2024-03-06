@@ -797,15 +797,14 @@ app.post('/login/adminpage/create-user', async (req, res) => {
     const claims = {
       "uid": uid,
       "claims": {
-        "admin": false,
-        "clusterManagement": false,
-        "subclusterManagement": false,
-        "exportExcel": false,
-        "createStaff": false,
-        "modifyPerms": false,
-        "schoolManagement":false,
-        "clearClicks":false,
-        "accessLevel": 1
+        "Administrator": false,
+        "Cluster Management": true,
+        "SubCluster Management": true,
+        "Export Excel": true,
+        "Create Staff": false,
+        "Modify Perms": false,
+        "School Management":true,
+        "Clear Click Counts":false
       }
     }
 

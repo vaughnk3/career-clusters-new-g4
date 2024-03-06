@@ -34,8 +34,8 @@ const StaffSubClusters = () => {
     
     //Route to the subcluster management page if button is clicked
     const handleSubclusterManagementClick = () => {
-      console.log(claim.claims.claims['subclusterManagement'])
-      if (claim.claims.claims['subclusterManagement'] == true)
+      console.log(claim.claims.claims['SubCluster Management'])
+      if (claim.claims.claims['SubCluster Management'] == true)
       {
         navigate('/subclustermanagementpage');
       }
@@ -50,8 +50,8 @@ const StaffSubClusters = () => {
 
     // Route to the cluster management page is button is clicked
     const handleButtonClickClusterManagement = () => {
-      console.log(claim.claims.claims['clusterManagement'])
-      if (claim.claims.claims['clusterManagement'] == true)
+      console.log(claim.claims.claims['Cluster Management'])
+      if (claim.claims.claims['Cluster Management'] == true)
       {
         navigate('/login/staffclusters/clustermanagementpage');
       }
@@ -77,12 +77,17 @@ const StaffSubClusters = () => {
         console.error('Logout error:', error.message);
       }
     };
-
+    
+    let user = "";
+    try {
     const auth = getAuth(app);
-    const user = auth.currentUser;
+    user = auth.currentUser;
     console.log(user.uid)
     // Make post request here
-
+    }
+    catch (error) {
+      console.log(error)
+    }
     useEffect( () => {
       const fetchUserClaims = async () => {
         try {
@@ -110,8 +115,8 @@ const StaffSubClusters = () => {
     //Handle route to admin
     const handleButtonClickStaff = () => {
       //Need to check whether or not user has correct permissions. 
-      console.log(claim.claims.claims['admin'])
-      if (claim.claims.claims['admin'] == true)
+      console.log(claim.claims.claims['Administrator'])
+      if (claim.claims.claims['Administrator'] == true)
       {
         navigate('/login/adminpage');
       }
@@ -153,8 +158,8 @@ const StaffSubClusters = () => {
    
 
     const handleSchoolManagementClick = () => {
-      console.log(claim.claims.claims['schoolManagement'])
-      if (claim.claims.claims['schoolManagement'] == true)
+      console.log(claim.claims.claims['School Management'])
+      if (claim.claims.claims['School Management'] == true)
       {
         navigate('/school-management-page');
       }
@@ -173,8 +178,8 @@ const StaffSubClusters = () => {
 
 
     const handleExcelButtonClick = () => {
-      console.log(claim.claims.claims['exportExcel'])
-      if(claim.claims.claims['exportExcel'] == true){
+      console.log(claim.claims.claims['Export Excel'])
+      if(claim.claims.claims['Export Excel'] == true){
         ExcelGenerationQueue();
       }
       else{

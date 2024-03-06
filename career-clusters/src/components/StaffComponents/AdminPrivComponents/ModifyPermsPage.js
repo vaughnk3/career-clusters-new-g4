@@ -88,9 +88,8 @@ const ModifyPermsPage = () => {
       }
       //console.log(payload.claims);
     }
-
+   
     
-
     return (
         <div>
             <TopRectangle/>

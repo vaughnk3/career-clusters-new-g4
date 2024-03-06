@@ -1,4 +1,4 @@
-export const claimsList = {
+/*export const claimsList = {
     "uid": "", //update 
     "claims": {
       "admin": false,
@@ -10,4 +10,20 @@ export const claimsList = {
       "schoolManagement":true,
       "clearClicks":false
     }
+  }*/
+
+
+  export const claimsList = {
+    "uid": "", //update 
+    "claims": {
+      "Administrator": false,
+      "Cluster Management": true,
+      "SubCluster Management": true,
+      "Export Excel": true,
+      "Create Staff": false,
+      "Modify Perms": false,
+      "School Management":true,
+      "Clear Click Counts":false
+    }
   }
+

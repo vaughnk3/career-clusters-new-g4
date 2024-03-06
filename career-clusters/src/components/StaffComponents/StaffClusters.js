@@ -51,9 +51,14 @@ const StaffClusters = () => {
         fetchClusters();
     }, []);
 
+    let user = ""
+    try {
     const auth = getAuth(app);
-    const user = auth.currentUser;
+    user = auth.currentUser;
     console.log(user.uid)
+    }catch(error) {
+      console.log("error")
+    }
     // Make post request here
 
     useEffect( () => {
@@ -96,8 +101,8 @@ const StaffClusters = () => {
   }
 
   const handleButtonClickClusterManagement = () => {
-    console.log(claim.claims.claims['clusterManagement'])
-    if (claim.claims.claims['clusterManagement'] == true)
+    console.log(claim.claims.claims['Cluster Management'])
+    if (claim.claims.claims['Cluster Management'] == true)
     {
       navigate('/login/staffclusters/clustermanagementpage');
     }
@@ -125,8 +130,8 @@ const StaffClusters = () => {
   
   const handleButtonClickStaff = () => {
     //Need to check whether or not user has correct permissions. 
-    console.log(claim.claims.claims['admin'])
-    if (claim.claims.claims['admin'] == true)
+    console.log(claim.claims.claims['Administrator'])
+    if (claim.claims.claims['Administrator'] == true)
     {
       navigate('/login/adminpage');
     }
@@ -141,8 +146,8 @@ const StaffClusters = () => {
   };
 
   const handleSubclusterManagementClick = () => {
-    console.log(claim.claims.claims['subclusterManagement'])
-    if (claim.claims.claims['subclusterManagement'] == true)
+    console.log(claim.claims.claims['SubCluster Management'])
+    if (claim.claims.claims['SubCluster Management'] == true)
     {
       navigate('/subclustermanagementpage');
     }
@@ -156,8 +161,8 @@ const StaffClusters = () => {
   }
 
   const handleSchoolManagementClick = () => {
-    console.log(claim.claims.claims['schoolManagement'])
-    if (claim.claims.claims['schoolManagement'] == true)
+    console.log(claim.claims.claims['School Management'])
+    if (claim.claims.claims['School Management'] == true)
     {
       navigate('/school-management-page');
     }
@@ -170,8 +175,8 @@ const StaffClusters = () => {
   }
 
     const handleExcelButtonClick = () => {
-      console.log(claim.claims.claims['exportExcel'])
-      if(claim.claims.claims['exportExcel'] == true){
+      console.log(claim.claims.claims['Export Excel'])
+      if(claim.claims.claims['Export Excel'] == true){
         ExcelGenerationQueue();
       }
       else{
