@@ -16,8 +16,21 @@ const ClusterManagementPage = () => {
     const [clusterName, setClusterName] = useState('');
     const [newImage, setNewImage] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+    const [addStatus, setAddStatus] = useState(false);
+    const [message, setMessage] = useState('');
 
     const auth = getAuth(app);
+
+    const closeError = () => {
+        setError(false);
+        refreshPage();
+    }
+
+    const closeStatus = () => {
+        setAddStatus(false);
+        refreshPage();
+    }
 
     //Open the popup
     const openPopup = () => {
@@ -56,16 +69,25 @@ const ClusterManagementPage = () => {
         
                 if (response.ok) {
                     console.log('Cluster and image added successfully');
+                    setIsOpen(false);
+                    setMessage('Successfully created new cluster.')
+                    setAddStatus(true);
     
                 } else {
                     console.error('Failed to add cluster and upload image');
+                    setIsOpen(false);
+                    setMessage('Failed to create new cluster.')
+                    setAddStatus(true);
                 }
             }
         } catch (error) {
             console.error('Error adding cluster and uploading image: ', error);
+            setIsOpen(false);
+            setMessage('Failed to create new cluster').
+            setAddStatus(true);
         }
         setIsOpen(false);
-        refreshPage();
+        //refreshPage();
     };
     
 
@@ -75,6 +97,8 @@ const ClusterManagementPage = () => {
             try {
                 const response = await (fetch('http://localhost:3001/login/staffclusters/clustermanagementpage'));
                 if (!response.ok) {
+                    setLoading(false);
+                    setError(true);
                     throw new Error('Error fetching clusters');
                 }
                 const data = await response.json();
@@ -82,6 +106,8 @@ const ClusterManagementPage = () => {
                 setLoading(false);
             } catch (error) {
                 console.error('Error: ', error);
+                setLoading(false);
+                setError(true);
             }
         }
         fetchClusters();
@@ -131,6 +157,24 @@ const ClusterManagementPage = () => {
                 <h2>Cluster Management Page</h2>
                 <h4>Please select an option for cluster management.</h4>
             </div>
+
+            {error && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <h1>Error fetching clusters.</h1>
+                        <button onClick={closeError}>Acknowledge and Refresh</button>
+                    </div>
+                </div>
+            )}
+
+            { addStatus && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <h1>{message}</h1>
+                        <button onClick={closeStatus}>Acknowledge and Refresh</button>
+                    </div>
+                </div>
+            )}
             
             <div class="content content-margin">
                 <ul class="mgmt_list">

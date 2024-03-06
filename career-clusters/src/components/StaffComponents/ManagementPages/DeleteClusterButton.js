@@ -7,10 +7,12 @@ import app from "../../login_components/FirebaseConfig";
 
 const DeleteClusterButton = ({ID}) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [errorOpen, setErrorOpen] = useState(false);
+    const [deleteStatus, setDeleteStatus] = useState(false);
+    const [message, setMessage] = useState('');
 
 
     const auth = getAuth(app);
+    
     const openPopup = () => {
         setIsOpen(true);
     }
@@ -19,10 +21,11 @@ const DeleteClusterButton = ({ID}) => {
         setIsOpen(false);
     }
 
-    const closeError = () => {
-        setErrorOpen(false);
+    const closeStatus = () => {
+        setDeleteStatus(false);
         refreshPage();
     }
+   
 
     
     const refreshPage = () => {
@@ -47,17 +50,23 @@ const DeleteClusterButton = ({ID}) => {
                 if (response.ok) {
                     console.log('Cluster deleted successfully');
                     setIsOpen(false);
-                    refreshPage();
+                    setMessage('Successfully deleted cluster.')
+                    setDeleteStatus(true);
+                   
                 } else {
                     console.error('Failed to delete cluster');
                     setIsOpen(false);
-                    setErrorOpen(true);
+                    setMessage('Failed to delete cluster.');
+                    setDeleteStatus(true);
+                   
                 } 
             }
         }   catch (error) {
             console.error('Error deleting cluster: ', error);
             setIsOpen(false);
-            setErrorOpen(true);
+            setMessage('Failed to delete cluster.');
+            setDeleteStatus(true);
+            
         }
         //console.log('POST request sent from delete button')
         //setIsOpen(false);
@@ -79,15 +88,15 @@ const DeleteClusterButton = ({ID}) => {
                     </div>
                 )}
 
-                {errorOpen && (
+                {deleteStatus && (
                     <div className="popup">
                         <div className="popup-content">
-                            <h1>Error</h1>
-                            <p>Error deleting the cluster.</p>
-                            <button onClick={closeError}>Acknowledge and Refresh</button>
+                            <h1>{message}</h1>
+                            <button onClick={closeStatus}>Acknowledge and Refresh</button>
                         </div>
                     </div>
                 )}
+               
             </div>
     )
 }

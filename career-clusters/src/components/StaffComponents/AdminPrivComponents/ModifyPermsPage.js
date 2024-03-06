@@ -10,10 +10,17 @@ const ModifyPermsPage = () => {
     const [selectedUser, setSelectedUser] = useState('');
     const [action, setAction] = useState('add');
     const [selectedPermission, setSelectedPermission] = useState('');
+    const [statusPopup, setStatusPopup] = useState(false);
+    const [message, setMessage] = useState('');
     const permissionNames = Object.keys(claimsList.claims)
+
+    const closeStatus = () => {
+      setStatusPopup(false);
+      window.location.reload();
+    }
+
+
     const UsersPermissionsList = () => {
-        
-      
         useEffect(() => {
           const fetchUsersAndPermissions = async () => {
             try {
@@ -80,10 +87,16 @@ const ModifyPermsPage = () => {
 
         if(response.ok) {
           console.log("Permissions updated successfully");
+          setMessage('Successfully updated user permission.')
+          setStatusPopup(true);
         } else {
+          setMessage('Failed to update user permission.')
+          setStatusPopup(true);
           throw new Error("Failed to update permission")
         }
       } catch (error) {
+        setMessage('Failed to update user permission.')
+        setStatusPopup(true);
         console.error("Error updating permissions: ", error);
       }
       //console.log(payload.claims);
@@ -102,6 +115,15 @@ const ModifyPermsPage = () => {
                 ))}
             </ul>
 
+          { statusPopup && (
+            <div className="popup">
+              <div className="popup-content">
+                <h1>{message}</h1>
+                <button onClick={closeStatus}>Acknowledge & Close</button>
+              </div>
+            </div>
+          )}
+          
 
           <form id="userUpdate" onSubmit={handleSubmit}>
             <div id="userSelect">

@@ -7,13 +7,20 @@ import app from "../../login_components/FirebaseConfig";
 const EditNameButton = ({ID}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [clusterName, setClusterName] = useState('');
-    const [errorOpen, setErrorOpen] = useState(false);
+    const [editStatus, setEditStatus] = useState(false);
+    const [message, setMessage] = useState('');
+   
 
     const auth = getAuth(app);
 
     // Once the post request occurs, refresh the page so we can see the changes. 
     const refreshPage = () => {
         window.location.reload();
+    }
+
+    const closeStatus = () => {
+        setEditStatus(false);
+        refreshPage();
     }
 
 
@@ -25,10 +32,7 @@ const EditNameButton = ({ID}) => {
         setIsOpen(false);
     }
 
-    const closeError = () => {
-        setErrorOpen(false);
-        refreshPage();
-    }
+   
 
     
 
@@ -48,17 +52,21 @@ const EditNameButton = ({ID}) => {
             if (response.ok) {
                 console.log('Cluster updated successfully');
                 setIsOpen(false);
-                refreshPage();
+                setMessage(`Successfully changed cluster name to: ${clusterName}`);
+                setEditStatus(true);
             } else {
                 console.error('Failed to update cluster');
                 setIsOpen(false);
-                setErrorOpen(true);
+                setMessage('Failed to update cluster name.')
+                setEditStatus(true);
+              
             } 
         }
         }   catch (error) {
             console.error('Error updating cluster: ', error);
             setIsOpen(false);
-            setErrorOpen(true);
+            setMessage('Failed to update cluster name.')
+            setEditStatus(true);
         }
         //console.log('POST request sent from update button')
         //setIsOpen(false);
@@ -70,7 +78,7 @@ const EditNameButton = ({ID}) => {
 
     return (
         <div id="cluster-button">
-                <button class="management-button" onClick={openPopup}>Edit Name</button>
+                <button className="management-button" onClick={openPopup}>Edit Name</button>
                 {isOpen && (
                     <div className="popup">
                         <div className="popup-content">  
@@ -84,12 +92,11 @@ const EditNameButton = ({ID}) => {
                     </div>
                 )}
 
-                {errorOpen && (
+                { editStatus && (
                     <div className="popup">
                         <div className="popup-content">
-                            <h1>Error</h1>
-                            <p>Error editing cluster name.</p>
-                            <button onClick={closeError}>Acknowledge and Refresh</button>
+                            <h1>{message}</h1>
+                            <button onClick={closeStatus}>Acknowledge and Refresh</button>
                         </div>
                     </div>
                 )}

@@ -16,13 +16,16 @@ const LoginPage = () => {
     const[username, setUsername] = useState('');
     const[password, setPassword] = useState('');
     const[email, setEmail] = useState('')
+    const[failLogin, setFailLogin] = useState(false);
+
+
 
     //Define state methods for popup
     const [isOpen, setIsOpen] = useState(false);
 
     const openPopup = () => { setIsOpen(true) }
     const closePopup = () => { setIsOpen(false) }
-
+    const closeLogin = () => { setFailLogin(false) }
 
     const navigate = useNavigate();
     const adminUID = 'NW0QYGlDcaRCgEk8T8r9n3MgvP22'
@@ -42,6 +45,7 @@ const LoginPage = () => {
           }
         } catch (error) {
           console.error('Login error:', error.message);
+          setFailLogin(true);
         }
     };
 
@@ -63,6 +67,17 @@ const LoginPage = () => {
           <div id="topbar">
             <TopLeftLogo />
           </div>
+
+          { failLogin && (
+            <div className="popup">
+              <div className="popup-content">
+                <h1>Error logging in.</h1>
+                <p>Invalid username or password. Please try again.</p>
+                <button onClick={closeLogin}>Close</button>
+              </div>
+            </div>
+          )}
+
           <div class="content">
             <div id="login-form">
               <form onSubmit={handleSubmit}>

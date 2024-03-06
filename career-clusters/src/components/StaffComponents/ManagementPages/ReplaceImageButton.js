@@ -8,8 +8,16 @@ import app from "../../login_components/FirebaseConfig";
 const ReplaceImageButton = ({ID}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [newImage, setNewImage] = useState(null);
+    const [imageStatus, setImageStatus] = useState(false);
+    const [message, setMessage] = useState('');
 
     const auth = getAuth(app);
+
+    const closeStatus = () => {
+        setImageStatus(false);
+        refreshPage();
+    }
+
     const openPopup = () => {
         setIsOpen(true);
     }
@@ -34,12 +42,29 @@ const ReplaceImageButton = ({ID}) => {
                     },
                     body: formData,
                 });
+
+
+                if (dbResponse.ok) {
+                    closePopup()
+                    setMessage('Successfully uploaded new SubCluster image.');
+                    setImageStatus(true);
+                }
+
+                else {
+                    closePopup()
+                    setMessage('Failed to upload new SubCluster image.')
+                    setImageStatus(true);
+                }
             }
 
+         
         //const data = await dbResponse.json();
         //console.log('Sucess image post', data);
         } catch (error) {
             console.log("Error", error);
+            closePopup()
+            setMessage('Failed to upload new SubCluster image.');
+            setImageStatus(true);
         }
     }
 
@@ -57,8 +82,8 @@ const ReplaceImageButton = ({ID}) => {
 
     const handleSubmit = () => {
         uploadFilePost(newImage, ID);
-        closePopup();
-        refreshPage();
+        //closePopup();
+        //refreshPage();
     }
 
 
@@ -74,6 +99,15 @@ const ReplaceImageButton = ({ID}) => {
                         <button onClick={closePopup} className="cancelButton">Cancel</button>
                         <button id="submitImg" onClick={handleSubmit}>Submit</button>
                         </div>
+                    </div>
+                </div>
+            )}
+
+            {imageStatus && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <h1>{message}</h1>
+                        <button onClick={closeStatus}>Acknowledge and Close</button>
                     </div>
                 </div>
             )}

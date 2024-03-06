@@ -13,25 +13,36 @@ const SchoolManagementPage = () => {
     const [schools, setSchools] = useState([]);
     const [newSchool, setNewSchool] = useState('')
     const [isOpen, setIsOpen] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         const fetchSchools = async () => {
             try { 
                 const response = await (fetch('http://localhost:3001/school'));
                 if(!response.ok) {
+                    setLoading(false);
+                    setError(true);
                     throw new Error('Error fetching schools');
                 }
                 const data = await response.json();
                 //console.log(data)
   
                 setSchools(data);
+                setLoading(false);
                 
             } catch (error) {
                 console.error('Error: ', error);
+                setLoading(false);
+                setError(true);
             }
         }
         fetchSchools();
     }, []);
+
+    if (loading) {
+        return <div id="loading-animation"></div>
+    }
 
     const backButtonHandler = () => {
         navigate('/login/staffclusters/clustermanagementpage')
@@ -52,6 +63,11 @@ const SchoolManagementPage = () => {
         window.location.reload();
       }
 
+    const closeError = () => {
+        setError(false);
+        refreshPage();
+    }
+
 
 
     const addNewSchool = async () => {
@@ -62,7 +78,8 @@ const SchoolManagementPage = () => {
                 const response = await(fetch('http://localhost:3001/new-school', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
                     },
                     body: JSON.stringify({ newSchool })
                 }));
@@ -97,6 +114,16 @@ const SchoolManagementPage = () => {
                     </div>
                 )}
             </div>
+
+            {error && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <h1>Error rendering schools.</h1>
+                        <button onClick={closeError}>Acknowledge</button>
+                    </div>
+                </div>
+            )}
+
             <div class="content content-margin">
                 <div id="school-management-list">
                 {schools.map((school) => (

@@ -13,7 +13,13 @@ const SubClusterManagementPage = () => {
     //FETCH SUBCLUSTERS CODE
     const navigate = useNavigate();
     const[subClusters2, setSubClusters2] = useState([]);
+    const [error, setError] = useState(false);
     const auth = getAuth(app);
+
+    const closeError = () => {
+        setError(false);
+        refreshPage();
+    }
 
     const handleBackButton = () => {
         navigate('/login/staffclusters/')
@@ -30,6 +36,8 @@ const SubClusterManagementPage = () => {
             try {
                 const response = await (fetch('http://localhost:3001/subclustermanagementpage'));
                 if (!response.ok) {
+                    setLoading(false);
+                    setError(true);
                     throw new Error('Error fetching subclusters');
                 }
                 const data2 = await response.json();
@@ -37,6 +45,8 @@ const SubClusterManagementPage = () => {
                 console.log(data2)
             } catch (error) {
                 console.error('Error: ', error);
+                setLoading(false);
+                setError(true);
             }
             
         }
@@ -223,6 +233,16 @@ const SubClusterManagementPage = () => {
                         </div>
                     </div>
                  )}  
+
+
+                 {error && (
+                    <div className="popup">
+                        <div className="popup-content">
+                            <h1>Error fetching SubClusters.</h1>
+                            <button onClick={closeError}>Acknowledge and Refresh</button>
+                        </div>
+                    </div>
+                 )}
 
 
                 <h1>SubCluster Managment Page</h1>
