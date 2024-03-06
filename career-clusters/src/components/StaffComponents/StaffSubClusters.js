@@ -153,6 +153,17 @@ const StaffSubClusters = () => {
                 </div>
               </div>
             )}
+            {claimError && (
+              <div className="popup"> 
+                <div className="popup-content">
+                  <h1>You do not have access to this feature.</h1>
+                  <button onClick={closeClaimError}>Acknowledge</button>
+
+                </div>
+              </div>
+            )
+
+            }
 
 
             <div class="content content-margin">
