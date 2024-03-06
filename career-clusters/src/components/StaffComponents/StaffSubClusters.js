@@ -7,10 +7,21 @@ import { ExcelGenerationQueue } from './ExcelGeneration';
 import { Link } from 'react-router-dom';
 import './StaffSubClusters.css';
 import BottomRectangle from "../page_Components/BottomRectangle";
+import app from '../login_components/FirebaseConfig';
 
 const StaffSubClusters = () => {
     //Declare navigate hook
     const navigate = useNavigate();
+    const { clusterId } = useParams();
+    const [subclusters, setSubclusters] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [openError, setOpenError] = useState(false);
+    const [claim, setClaim] = useState([])
+    const [claimError, setClaimError] = useState(false);
+
+    const closeClaimError = () => {
+      setClaimError(false);
+    }
 
     const refreshPage = () => {
       window.location.reload();
@@ -28,7 +39,19 @@ const StaffSubClusters = () => {
 
     // Route to the cluster management page is button is clicked
     const handleButtonClickClusterManagement = () => {
-      navigate('/login/staffclusters/clustermanagementpage');
+      console.log(claim.claims.claims['clusterManagement'])
+      if (claim.claims.claims['clusterManagement'] == true)
+      {
+        navigate('/login/staffclusters/clustermanagementpage');
+      }
+      else {
+        console.log("In the else")
+        setClaimError(true);
+        //navigate('/login/staffclusters');
+        
+      }
+      //navigate('/login/staffclusters/clustermanagementpage');
+
     };
 
     //Handle logout
@@ -44,18 +67,41 @@ const StaffSubClusters = () => {
       }
     };
 
+    const auth = getAuth(app);
+    const user = auth.currentUser;
+    console.log(user.uid)
+    // Make post request here
+
+    useEffect( () => {
+      const fetchUserClaims = async () => {
+        try {
+          const response = await(fetch('http://localhost:3001/get-unique-claims', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body:JSON.stringify({uid: user.uid}),
+          }))
+
+          if (response.ok) 
+          {
+            const claims = await response.json()
+            setClaim(claims);
+          }
+        }
+        catch (error) {
+          console.log(error)
+        }
+      }
+      fetchUserClaims();
+    }, [])
+
 
     //Handle route to admin page
     const handleButtonClickStaff = () => {
       //Need to check whether or not user has correct permissions. 
       navigate('/login/adminpage');
     };
-
-
-    const { clusterId } = useParams();
-    const [subclusters, setSubclusters] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [openError, setOpenError] = useState(false);
 
     //Grab all the subclusters to be mapped on display
     useEffect(() => {
