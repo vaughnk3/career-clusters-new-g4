@@ -125,7 +125,19 @@ const StaffClusters = () => {
   
   const handleButtonClickStaff = () => {
     //Need to check whether or not user has correct permissions. 
-    navigate('/login/adminpage');
+    console.log(claim.claims.claims['admin'])
+    if (claim.claims.claims['admin'] == true)
+    {
+      navigate('/login/adminpage');
+    }
+    else {
+      console.log("In the else")
+      setClaimError(true);
+      //navigate('/login/staffclusters');
+      
+    }
+    //navigate('/login/staffclusters/clustermanagementpage');
+
   };
 
   const handleSubclusterManagementClick = () => {
