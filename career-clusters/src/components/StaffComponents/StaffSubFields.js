@@ -7,11 +7,14 @@ import { useNavigate } from 'react-router-dom';
 import { ExcelGenerationQueue } from './ExcelGeneration';
 import { Link } from 'react-router-dom';
 import './StaffSubClusters.js';
+import app from '../login_components/FirebaseConfig';
 
 
 const StaffSubFields = () => {
   const { subclusterId } = useParams();
   const [ subFields, setSubFields] = useState([]);
+  const [claim, setClaim] = useState([])
+  const [claimError, setClaimError] = useState(false);
 
   useEffect(() => {
       const fetchSubFields = async () => {
@@ -29,6 +32,9 @@ const StaffSubFields = () => {
       fetchSubFields();
   }, [subclusterId])
 
+  const closeClaimError = () => {
+    setClaimError(false);
+  }
   //Navigate hook for forceful navigation
   const navigate = useNavigate();
  
@@ -38,9 +44,23 @@ const StaffSubFields = () => {
   }
 
 
-  const handleButtonClickClusterManagement = () => {
-    navigate('/login/staffclusters/clustermanagementpage');
-  };
+ // Route to the cluster management page is button is clicked
+    const handleButtonClickClusterManagement = () => {
+      console.log(claim.claims.claims['clusterManagement'])
+      if (claim.claims.claims['clusterManagement'] == true)
+      {
+        navigate('/login/staffclusters/clustermanagementpage');
+      }
+      else {
+        console.log("In the else")
+        setClaimError(true);
+        //navigate('/login/staffclusters');
+        
+      }
+      //navigate('/login/staffclusters/clustermanagementpage');
+
+    };
+
 
 
   const handleButtonClickLogout = async () => {
@@ -54,6 +74,35 @@ const StaffSubFields = () => {
       console.error('Logout error:', error.message);
     }
   };
+
+  const auth = getAuth(app);
+  const user = auth.currentUser;
+  console.log(user.uid)
+  // Make post request here
+
+  useEffect( () => {
+    const fetchUserClaims = async () => {
+      try {
+        const response = await(fetch('http://localhost:3001/get-unique-claims', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body:JSON.stringify({uid: user.uid}),
+        }))
+
+        if (response.ok) 
+        {
+          const claims = await response.json()
+          setClaim(claims);
+        }
+      }
+      catch (error) {
+        console.log(error)
+      }
+    }
+    fetchUserClaims();
+  }, [])
 
   const handleButtonClickStaff = () => {
     //Need to check whether or not user has correct permissions. 
@@ -69,6 +118,17 @@ const StaffSubFields = () => {
 
     return (
         <div id="page">
+          {claimError && (
+              <div className="popup"> 
+                <div className="popup-content">
+                  <h1>You do not have access to this feature.</h1>
+                  <button onClick={closeClaimError}>Acknowledge</button>
+
+                </div>
+              </div>
+            )
+
+            }
           <div className="overlay">
             <Link to="/login/staffclusters"><img src={require('./HomeButton.png')} alt="Home Button" className="home-button"></img></Link>
             <div class="staff-button-column-one">
