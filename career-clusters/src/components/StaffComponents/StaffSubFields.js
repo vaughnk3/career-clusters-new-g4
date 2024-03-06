@@ -155,8 +155,8 @@ const StaffSubFields = () => {
               <a class="staff-button" onClick={ExcelGenerationQueue}>Export Data (.xlsx)</a>
             </div>
           </div>
-          <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-            <div id="content">
+            <div class="content content-margin">
+            <div id="subfield-content">
                 <div id="row">
                     <div id="topLeft">
                         <h2 id="fName">{field.fieldName}</h2>
@@ -178,8 +178,9 @@ const StaffSubFields = () => {
                         <h1>{field.growthRate}</h1>
                     </div>
                 </div>
+                </div>
             </div>
-            <br></br><br></br><br></br><br></br>
+
             <BottomRectangle/>
           </div>
     )
