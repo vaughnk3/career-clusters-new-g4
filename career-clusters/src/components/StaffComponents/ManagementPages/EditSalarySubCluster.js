@@ -8,7 +8,8 @@ const EditSalarySubCluster = ({ID}) => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [subclusterSalary, setsubclusterSalary] = useState('');
-    const [openError, setOpenError] = useState(false);
+    const [statusSalary, setStatusSalary] = useState(false);
+    const [message, setMessage] = useState('');
 
     const auth = getAuth(app);
 
@@ -25,10 +26,11 @@ const EditSalarySubCluster = ({ID}) => {
         window.location.reload();
     }
 
-    const closeError = () => {
-        setOpenError(false);
+    const closeStatus = () => {
+        setStatusSalary(false);
         refreshPage();
     }
+    
 
     const changeSubClusterSalary = async () => {
         try {
@@ -46,17 +48,23 @@ const EditSalarySubCluster = ({ID}) => {
                 if (response.ok) {
                     console.log('SubCluster name updated successfully');
                     setIsOpen(false);
-                    refreshPage();
+                    setMessage('Successfully changed the SubCluster Salary.');
+                    setStatusSalary(true);
+                    
                 } else {
                     console.error('Failed to update subcluster name');
                     setIsOpen(false);
-                    setOpenError(true);
+                    setMessage('Failed to change SubCluster Salary');
+                    setStatusSalary(true);
+                    
                 } 
             }
         }   catch (error) {
             console.error('Error updating subcluster name: ', error);
             setIsOpen(false);
-            setOpenError(true);
+            setMessage('Failed to change SubCluster Salary');
+            setStatusSalary(true);
+            
         }
         //console.log('POST request sent from edit button')
         //setIsOpen(false);
@@ -81,12 +89,11 @@ const EditSalarySubCluster = ({ID}) => {
                     </div>
             )}
 
-            {openError && (
+            {statusSalary && (
                 <div className="popup">
                     <div className="popup-content">
-                        <h1>Error</h1>
-                        <p>Error updating SubCluster Salary.</p>
-                        <button onClick={closeError}>Acknowledge and Refresh</button>
+                        <h1>{message}</h1>
+                        <button onClick={closeStatus}>Acknowledge and Refresh</button>
                     </div>
                 </div>
             )}

@@ -7,7 +7,8 @@ const EditImageSubCluster = ({ID}) => {
    
     const [isOpen, setIsOpen] = useState(false);
     const [newImage, setNewImage] = useState(null);
-    const [openError, setOpenError] = useState(false);
+    const [statusImage, setStatusImage] = useState(false);
+    const [message, setMessage] = useState('');
 
     const auth = getAuth(app);
 
@@ -23,6 +24,10 @@ const EditImageSubCluster = ({ID}) => {
         window.location.reload();
     }
 
+    const closeStatus = () => {
+        setStatusImage(false);
+        refreshPage();
+    }
 
     const uploadFilePost = async (file, id) => {
         try {
@@ -43,17 +48,22 @@ const EditImageSubCluster = ({ID}) => {
         
                 if (dbResponse.ok) {
                     console.log('SubCluster name updated successfully');
-                    refreshPage();
+                    setIsOpen(false);
+                    setMessage('Successfully updated SubCluster Image.')
+                    setStatusImage(true);
                 } else {
                     console.error('Failed to update subcluster name');
                     setIsOpen(false);
-                    setOpenError(true);        
+                    setMessage('Failed to update SubCluster Image.');
+                    setStatusImage(true);
+                           
                } 
             }
         } catch (error) {
             console.log("Error", error);
             setIsOpen(false);
-            setOpenError(true);
+            setMessage('Failed to update SubCluster Image.');
+            setStatusImage(true);
         }
     }
 
@@ -70,10 +80,7 @@ const EditImageSubCluster = ({ID}) => {
     }
 
 
-    const closeError = () => {
-        setOpenError(false);
-        refreshPage();
-    }
+   
 
     return (
         <div className="Image">
@@ -93,12 +100,11 @@ const EditImageSubCluster = ({ID}) => {
                 </div>
             )}
 
-            {openError && (
+            {statusImage && (
                 <div className="popup">
                     <div className="popup-content">
-                        <h1>Error</h1>
-                        <p>Error updating SubCluster image.</p>
-                        <button onClick={closeError}>Acknowledge and Refresh</button>
+                        <h1>{message}</h1>
+                        <button onClick={closeStatus}>Acknowledge and Refresh</button>
                     </div>
                 </div>
             )}
