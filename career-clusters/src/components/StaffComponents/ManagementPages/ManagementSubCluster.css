@@ -1,6 +1,6 @@
 .subcluster_m {
     width: 90%;
-    height: 6rem;
+    height: 4rem;
     margin-bottom:2.5%;
     background-color: #D9D9D9;
     border: 6px solid var(--green);
@@ -286,3 +286,8 @@
     border-radius:30px;
 }
 
+.sc_editbar {
+    display:inline-flex;
+    height:5rem;
+    padding-top:13px;
+}
