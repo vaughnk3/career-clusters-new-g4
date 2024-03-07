@@ -8,7 +8,8 @@ import app from "../../login_components/FirebaseConfig";
 const EditNameSubcluster = ({ID}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [subclusterName, setsubclusterName] = useState('');
-    const [openError, setOpenError] = useState(false);
+    const [statusName, setStatusName] = useState(false);
+    const [message, setMessage] = useState('');
 
     const auth = getAuth(app);
 
@@ -24,10 +25,11 @@ const EditNameSubcluster = ({ID}) => {
         window.location.reload();
     }
 
-    const closeError = () => {
-        setOpenError(false);
+    const closeStatus = () => {
+        setStatusName(false);
         refreshPage();
     }
+   
 
     const changeSubClusterName = async () => {
         try {
@@ -45,17 +47,22 @@ const EditNameSubcluster = ({ID}) => {
                 if (response.ok) {
                     console.log('SubCluster name updated successfully');
                     setIsOpen(false);
-                    refreshPage();
+                    setMessage('Successfully updated SubCluster name.')
+                    setStatusName(true);
                 } else {
                     console.error('Failed to update subcluster name');
                     setIsOpen(false);
-                    setOpenError(true);
+                    setMessage('Failed to update SubCluster name.')
+                    setStatusName(true);
+                    
                 } 
             }
         }   catch (error) {
             console.error('Error updating subcluster name: ', error);
             setIsOpen(false);
-            setOpenError(true);
+            setMessage('Failed to update SubCluster name.')
+            setStatusName(true);
+            
         }
         //console.log('POST request sent from edit button')
         //setIsOpen(false);
@@ -81,12 +88,11 @@ const EditNameSubcluster = ({ID}) => {
                 )}
 
 
-                {openError && (
+                {statusName && (
                     <div className="popup">
                         <div className="popup-content">
-                            <h1>Error</h1>
-                            <p>Error updating SubCluster name.</p>
-                            <button onClick={closeError}>Acknowledge and Refresh</button>
+                            <h1>{message}</h1>
+                            <button onClick={closeStatus}>Acknowledge and Refresh</button>
                         </div>
                     </div>
                 )}
