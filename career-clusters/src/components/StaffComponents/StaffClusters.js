@@ -198,9 +198,9 @@ const StaffClusters = () => {
         )}
         { claimError && (
           <div className="popup">
-            <div className="popup-content">
+            <div className="popup-content mickey">
               <img src={require('./silly.png')}></img>
-              <button onClick={closeError}>Apologize to the Posey UwU</button>
+              <button onClick={closeError}>Please forgive me, Posey</button>
             </div>
           </div>
         )}

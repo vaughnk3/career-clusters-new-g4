@@ -58,16 +58,18 @@ const CreateStaffAccount = () => {
 
     return (
     <div id="page">
-        <TopRectangle/>
+        <div id="_topRectangle">
+            <p>Enter the email and password for the account to be created.</p>
+        </div>
         <div class="content content-margin">
-            <form id="form" onSubmit={handleSignUp}>
-                <div>
-                    <label> New Email</label>
-                        <input type="email" value={email} className="field" onChange={(e) => setUserEmail(e.target.value)} required />
-                    <label> New Password</label>
-                        <input type="password" value={password} className="field" onChange={(e) => setPassword(e.target.value)} required />
+            <form id="staff-account-form" onSubmit={handleSignUp}>
+                <div id="staff-account-form-content">
+                    <label><h3>New Email</h3></label>
+                        <input type="email" value={email} onChange={(e) => setUserEmail(e.target.value)} required />
+                    <label><h3>New Password</h3></label>
+                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
-                        <button id="createAcc" type="submit">Create Account</button>
+                        <button class="demographic-button" type="submit">Create Account</button>
                     </div>
                 </form>
         </div>
