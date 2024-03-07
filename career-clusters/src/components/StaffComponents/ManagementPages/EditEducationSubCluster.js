@@ -8,7 +8,8 @@ const EditEducationSubCluster = ({ID}) => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [subclusterEducation, setsubclusterEducation] = useState('');
-    const [openError, setOpenError] = useState(false);
+    const [statusEduc, setStatusEduc] = useState(false);
+    const [message, setMessage] = useState('');
 
     const auth = getAuth(app);
 
@@ -24,8 +25,8 @@ const EditEducationSubCluster = ({ID}) => {
         window.location.reload();
     }
 
-    const closeError = () => {
-        setOpenError(false);
+    const closeStatus = () => {
+        setStatusEduc(false);
         refreshPage();
     }
 
@@ -46,17 +47,23 @@ const EditEducationSubCluster = ({ID}) => {
                 if (response.ok) {
                     console.log('SubCluster name updated successfully');
                     setIsOpen(false);
-                    refreshPage();
+                    setMessage('Successfully updated SubCluster education level.');
+                    setStatusEduc(true);
+                    
                 } else {
                     console.error('Failed to update subcluster name');
                     setIsOpen(false);
-                    setOpenError(true);
+                    setMessage('Failed to update SubCluster education level.');
+                    setStatusEduc(true);
+                    
                 } 
             }
         }   catch (error) {
             console.error('Error updating subcluster name: ', error);
             setIsOpen(false);
-            setOpenError(true);
+            setMessage('Failed to update SubCluster education level.');
+            setStatusEduc(true);
+            
         }
         //console.log('POST request sent from edit button')
         //setIsOpen(false);
@@ -81,12 +88,11 @@ const EditEducationSubCluster = ({ID}) => {
                     </div>
             )}
 
-            {openError && (
+            {statusEduc && (
                 <div className="popup">
                     <div className="popup-content">
-                        <h1>Error</h1>
-                        <p>Error updating SubCluster Education Level.</p>
-                        <button onClick={closeError}>Acknowledge and Refresh</button>
+                        <h1>{message}</h1>
+                        <button onClick={closeStatus}>Acknowledge and Refresh</button>
                     </div>
                 </div>
             )}

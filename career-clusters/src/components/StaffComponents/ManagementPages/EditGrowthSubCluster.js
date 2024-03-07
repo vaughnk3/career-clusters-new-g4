@@ -8,7 +8,13 @@ import app from "../../login_components/FirebaseConfig";
 const EditGrowthSubCluster = ({ID}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [subclusterGrowthRate, setsubclusterGrowthRate] = useState('');
-    const [openError, setOpenError] = useState(false);
+    const [statusGrowth, setStatusGrowth] = useState(false);
+    const [message, setMessage] = useState('');
+
+    const closeStatus = () => {
+        setStatusGrowth(false);
+        refreshPage();
+    }
 
     const auth = getAuth(app);
 
@@ -32,10 +38,7 @@ const EditGrowthSubCluster = ({ID}) => {
         window.location.reload();
     }
 
-    const closeError = () => {
-        setOpenError(false);
-        refreshPage();
-    }
+    
 
     const changeSubClusterGrowthRate = async () => {
         try {
@@ -53,17 +56,23 @@ const EditGrowthSubCluster = ({ID}) => {
                 if (response.ok) {
                     console.log('SubCluster name updated successfully');
                     setIsOpen(false);
-                    refreshPage();
+                    setMessage('Successfully updated SubCluster Growth Rate.');
+                    setStatusGrowth(true);
+                    
                 } else {
                     console.error('Failed to update subcluster name');
                     setIsOpen(false);
-                    setOpenError(true);
+                    setMessage('Failed to update SubCluster Growth Rate.')
+                    setStatusGrowth(true);
+                    
                }    
             }
         }   catch (error) {
             console.error('Error updating subcluster name: ', error);
             setIsOpen(false);
-            setOpenError(true);
+            setMessage('Failed to update SubCluster Growth Rate.')
+            setStatusGrowth(true);
+            
         }
         //console.log('POST request sent from edit button')
         //setIsOpen(false);
@@ -92,12 +101,11 @@ const EditGrowthSubCluster = ({ID}) => {
                     </div>
             )}
 
-            {openError && (
+            {statusGrowth && (
                 <div className="popup">
                     <div className="popup-content">
-                        <h1>Error</h1>
-                        <p>Error updating SubCluster Growth Rate.</p>
-                        <button onClick={closeError}>Acknowledge and Refresh</button>
+                        <h1>{message}</h1>
+                        <button onClick={closeStatus}>Acknowledge and Refresh</button>
                     </div>
                 </div>
             )}

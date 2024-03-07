@@ -8,7 +8,8 @@ const EditDescriptionSubcluster = ({ID}) => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [subclusterDescrip, setsubclusterDescrip] = useState('');
-    const [openError, setOpenError] = useState(false);
+    const [statusDescrip, setStatusDescrip] = useState(false);
+    const [message, setMessage] = useState('');
 
     const auth = getAuth(app);
 
@@ -24,8 +25,8 @@ const EditDescriptionSubcluster = ({ID}) => {
         window.location.reload();
     }
 
-    const closeError = () => {
-        setOpenError(false);
+    const closeStatus = () => {
+        setStatusDescrip(false);
         refreshPage();
     }
 
@@ -45,17 +46,20 @@ const EditDescriptionSubcluster = ({ID}) => {
                 if (response.ok) {
                     console.log('SubCluster name updated successfully');
                     setIsOpen(false);
-                    refreshPage();
+                    setMessage('Sucessfully updated SubCluster description.');
+                    setStatusDescrip(true);
                 } else {
                     console.error('Failed to update subcluster name');
                     setIsOpen(false);
-                    setOpenError(true);
+                    setMessage('Failed to update SubCluster description.')
+                    setStatusDescrip(true);
                 } 
             }
         }   catch (error) {
             console.error('Error updating subcluster name: ', error);
             setIsOpen(false);
-            setOpenError(true);
+            setMessage('Failed to update SubCluster description.')
+            setStatusDescrip(true);
         }
         //console.log('POST request sent from edit button')
         //setIsOpen(false);
@@ -78,13 +82,12 @@ const EditDescriptionSubcluster = ({ID}) => {
                     </div>
             )}
 
-            {openError && (
+            {statusDescrip && (
                 <div className="popup">
                     <div className="popup-content">
-                        <h1>Error</h1>
-                            <p>Error updating SubCluster description.</p>
-                            <button onClick={closeError}>Acknowledge and Refresh</button>
-                     </div>
+                        <h1>{message}</h1>
+                        <button onClick={closeStatus}>Acknowledge and Refresh</button>
+                    </div>
                 </div>
             )}
         </div>

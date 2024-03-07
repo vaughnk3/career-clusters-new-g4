@@ -7,7 +7,8 @@ import app from "../../login_components/FirebaseConfig";
 
 const DeleteSubClusterButton = ({ID}) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [errorDelete, setErrorDelete] = useState(false);
+    const [statusDelete, setStatusDelete] = useState(false);
+    const [message, setMessage] = useState('');
 
 
     const auth = getAuth(app);
@@ -21,10 +22,11 @@ const DeleteSubClusterButton = ({ID}) => {
         setIsOpen(false);
     }
 
-    const closeError = () => {
-        setErrorDelete(false);
+    const closeStatus = () => {
+        setStatusDelete(false);
         refreshPage();
     }
+   
 
     const refreshPage = () => {
         window.location.reload();
@@ -38,24 +40,32 @@ const DeleteSubClusterButton = ({ID}) => {
                 const response = await(fetch('http://localhost:3001/subclustermanagementpage/delete-subcluster', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+
                     },
                     body: JSON.stringify({ ID })
                 }));
                 if (response.ok) {
                     console.log('SubCluster deleted successfully');
                     setIsOpen(false);
-                    refreshPage();
+                    setMessage('Successfully deleted SubCluster.');
+                    setStatusDelete(true);
+                    
                 } else {
                     console.error('Failed to delete subcluster');
                     setIsOpen(false);
-                    setErrorDelete(true);
+                    setMessage('Failed to delete SubCluster.');
+                    setStatusDelete(true);
+                    
                 } 
             }
         }   catch (error) {
             console.error('Error deleting subcluster: ', error);
             setIsOpen(false);
-            setErrorDelete(true);
+            setMessage('Failed to delete SubCluster.');
+            setStatusDelete(true);
+            
         }
         //console.log('POST request sent from delete subcluster')
         //setIsOpen(false);
@@ -77,12 +87,11 @@ const DeleteSubClusterButton = ({ID}) => {
                     </div>
                 )}
 
-            {errorDelete && (
+            {statusDelete && (
                 <div className="popup">
                     <div className="popup-content">
-                        <h1>Error</h1>
-                        <p>An error has occured deleting the subcluster.</p>
-                        <button onClick={closeError}>Acknowledge and Refresh</button>
+                        <h1>{message}</h1>
+                        <button onClick={closeStatus}>Acknowledge and Refresh</button>
                     </div>
                 </div>
             )}
