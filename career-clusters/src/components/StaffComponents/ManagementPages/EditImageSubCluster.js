@@ -81,11 +81,13 @@ const EditImageSubCluster = ({ID}) => {
             {isOpen && (
                 <div className="popup">
                     <div className="popup-content">  
-                        <label for="img" className='newsc-left'>Replace Image</label>
-                        <input type="file" id="img" name="img" accept="image/*" className='newsc-right2' onChange={handleFileInputChange}></input>
+                        <label for="img" className='standard-popup'>Replace Image</label>
+                        <br/><br/>
+                        <input type="file" id="img" name="img" accept="image/*" className='standardIn-popup' onChange={handleFileInputChange}></input>
+                        <br/>
                         <div class="replacebuttonrow">
-                        <button onClick={closePopup} className="cancelButton">Cancel</button>
-                        <button id="submitImg" onClick={handleSubmit}>Submit</button>
+                        <button onClick={closePopup} className="standard-cancelButton">Cancel</button>
+                        <button id="standard-submitImg" onClick={handleSubmit}>Submit</button>
                         </div>
                     </div>
                 </div>

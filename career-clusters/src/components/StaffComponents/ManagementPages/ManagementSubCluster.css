@@ -291,3 +291,17 @@
     height:5rem;
     padding-top:13px;
 }
+
+.standardIn-popup {
+    padding:10px 10px;
+}
+
+#growth-rate {
+    padding:10px 10px;
+}
+
+#img {
+    display:inline-flex;
+    margin-left:55px;
+    margin-right:auto;
+}

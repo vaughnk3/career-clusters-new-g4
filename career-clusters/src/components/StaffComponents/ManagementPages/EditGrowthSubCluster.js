@@ -85,17 +85,19 @@ const EditGrowthSubCluster = ({ID}) => {
             <button className="editGrowthRate" onClick={openPopup}>Edit Growth Rate</button>
             {isOpen && (
                     <div className="popup">
-                        <div className="popup-content">  
-                            <h2>Change Growth Rate</h2>
+                        <div className="popup-content">
+                            <label for="growth-rate" className="standard-popup"><b>Change Growth Rate</b></label>
+                            <br/><br/>
                             <select id="growth-rate" name="rate" value={subclusterGrowthRate} onChange={handleSelectChange} >
                                 <option>Select Below</option>
                                 <option value="High">High</option>
                                 <option value="Medium">Medium</option>
                                 <option value="Low">Low</option>
                             </select>
+                            <br/>
                             <div className="replacebuttonrow">
-                            <button onClick={closePopup} className="cancelButton">Cancel</button>
-                            <button id="submitName" onClick={changeSubClusterGrowthRate}>Submit</button>
+                            <button onClick={closePopup} className="standard-cancelButton">Cancel</button>
+                            <button id="standard-submitName" onClick={changeSubClusterGrowthRate}>Submit</button>
                             </div>
                         </div>
                     </div>
