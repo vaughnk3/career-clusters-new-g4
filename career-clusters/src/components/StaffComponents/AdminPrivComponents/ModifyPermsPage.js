@@ -12,6 +12,7 @@ const ModifyPermsPage = () => {
     const [selectedPermission, setSelectedPermission] = useState('');
     const [statusPopup, setStatusPopup] = useState(false);
     const [message, setMessage] = useState('');
+    const [showForm, setShowForm] = useState(false);
     const permissionNames = Object.keys(claimsList.claims)
 
     const closeStatus = () => {
@@ -102,18 +103,86 @@ const ModifyPermsPage = () => {
       //console.log(payload.claims);
     }
    
+    const modifyPermissions = () => {
+      setShowForm(!showForm);
+    }
     
     return (
         <div>
             <TopRectangle/>
             <h1>Modify Perms Page , routed from admin </h1>
-            <ul>
+            <table>
+              <tr>
+                <th></th>
+                <th>Administrator</th>
+                <th>Cluster Management</th>
+                <th>SubCluster Management</th>
+                <th>Export Excel</th>
+                <th>Create Staff</th>
+                <th>Modify Perms</th>
+                <th>School Management</th>
+                <th>Clear Click Counts</th>
+              </tr>
+              {users.map(user => (
+                <tr>
+                  <td>{user.email}</td>
+                  <td>
+                    {user.permissions.claims["Administrator"] ? 'Yes' : 'No'}
+                  </td>
+                  <td>
+                    {user.permissions.claims["Cluster Management"] ? 'Yes' : 'No'}
+                  </td> 
+                  <td>
+                    {user.permissions.claims["SubCluster Management"] ? 'Yes' : 'No'}
+                  </td> 
+                  <td>
+                    {user.permissions.claims["Export Excel"] ? 'Yes' : 'No'}
+                  </td> 
+                  <td>
+                    {user.permissions.claims["Create Staff"] ? 'Yes' : 'No'}
+                  </td> 
+                  <td>
+                    {user.permissions.claims["Modify Perms"] ? 'Yes' : 'No'}
+                  </td> 
+                  <td>
+                    {user.permissions.claims["School Management"] ? 'Yes' : 'No'}
+                  </td> 
+                  <td>
+                    {user.permissions.claims["Clear Click Counts"] ? 'Yes' : 'No'}
+                  </td>                 
+                </tr>
+              ))}
+            </table>
+<button onClick={modifyPermissions}>Modify Permissions</button>
+
+{showForm && (
+    <form id="userUpdate" onSubmit={handleSubmit}>
+        <div id="userSelect">
+            <label htmlFor="user">User:</label>
+            <select name="user" value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
                 {users.map(user => (
-                    <li key={user.uid}>
-                        {user.email}: Permissions - {JSON.stringify(user.permissions.claims)}
-                    </li>
+                    <option key={user.uid} value={user.uid}>{user.email}</option>
                 ))}
-            </ul>
+            </select>
+        </div>
+        <div id="actionSelect">
+            <label htmlFor="action">Action:</label>
+            <select name="action" value={action} onChange={(e) => setAction(e.target.value)}>
+                <option value="add">Add</option>
+                <option value="remove">Remove</option>
+            </select>
+        </div>
+        <div id="permissionSelect">
+            <label htmlFor="permission">Permission:</label>
+            <select name="permission" value={selectedPermission} onChange={(e) => setSelectedPermission(e.target.value)}>
+                {permissionNames.map(permission => (
+                    <option key={permission} value={permission}>{permission}</option>
+                ))}
+            </select>
+        </div>
+        <button type="submit">Update Permissions</button>
+    </form>
+)}
 
           { statusPopup && (
             <div className="popup">
@@ -125,35 +194,7 @@ const ModifyPermsPage = () => {
           )}
           
 
-          <form id="userUpdate" onSubmit={handleSubmit}>
-            <div id="userSelect">
-              <label for="user">User:</label>
-                  <select name="user" value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
-                    {users.map(user => (
-                      <option key={user.uid} value={user.uid}>{user.email}</option>
-                    ))}
-                  </select>
-            </div>
-
-            <div id="actionSelect">
-              <label for="action">Action:</label>
-              <select name="action" value={action} onChange={(e) => setAction(e.target.value)}>
-                <option value="add">Add</option>
-                <option value="remove">Remove</option>
-              </select>
-            </div>
-
-            <div id="permissionSelect">
-              <label for="permission">Permission:</label>
-              <select name="permission" value={selectedPermission} onChange={(e) => setSelectedPermission(e.target.value)}>
-                  {permissionNames.map(permission => (
-                    <option key={permission} value={permission}>{permission}</option>
-                  ))}
-              </select>
-            </div>
-
-            <button type="submit">Update Permissions</button>
-          </form>
+        
             <BottomRectangle/>
         </div>
     )

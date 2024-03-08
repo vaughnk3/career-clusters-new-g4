@@ -7,3 +7,20 @@
     text-align:center;
     margin-right:auto 0;
 }
+
+tr {
+    border: 2px solid black;
+}
+
+th {
+    border: 2px solid green;
+    background-color:var(--darkblue);
+    color:white;
+    padding:2rem;
+}
+
+td {
+    border: 2px solid green;
+    color:var(--darkblue);
+    padding:2rem; 
+}
