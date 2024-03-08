@@ -1,7 +1,7 @@
 .subcluster_m {
     width: 90%;
     height: 4rem;
-    margin-bottom:2.5%;
+    margin-bottom:1.50%;
     background-color: #D9D9D9;
     border: 6px solid var(--green);
 	border-radius: 60px;
@@ -235,7 +235,7 @@
 }
 
 .scmgmt_list {
-    margin-top:120px;
+    margin-top:130px;
 }
 
 .sc_editbar {
