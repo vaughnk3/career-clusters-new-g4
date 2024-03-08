@@ -72,7 +72,7 @@ const EditDescriptionSubcluster = ({ID}) => {
             {isOpen && (
                     <div className="popup">
                         <div className="popup-content">  
-                            <label for='subclusterDescription' className='standard-popup'>Edit Description</label>
+                            <label for='subclusterDescrip' className='standard-popup'>Edit Description</label>
                             <br/><br/>
                             <textarea type="text" className="standardIn-popup" maxLength="200" id="subclusterDescrip" name="subclusterDescrip" placeholder="Enter the changed SubCluster description." value={subclusterDescrip} onChange={(e) => setsubclusterDescrip(e.target.value)}></textarea>
                             <br/>
