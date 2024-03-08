@@ -36,7 +36,7 @@
 
    transition: .2s color, .2s background-color;   
 
-   display: inline-flex;
+   display: inline-block;
    text-align: left;
 }
 
@@ -47,14 +47,15 @@
 
 #school_pod h1 {
 	/*font-size: min(2.5em, calc(2.5vw*1.5));*/
-    font-size:20px;
+    font-size:24px;
 	margin-left:3%;
-    align-self:center;    
+    align-self:center;  
+    display:inline-flex;  
 }
 
 #school-pod-buttons {
     float: right;
-    margin-top:5px;
+    padding-top:9px;
 }
 
 #school_pod button {

@@ -105,10 +105,12 @@ const SchoolManagementPage = () => {
                 {isOpen && (
                     <div className="popup">
                         <div className="popup-content">                           
-                            
+                                <label>Add a School</label>
+                                <br/><br/>
                                 <input type="text"  placeholder="Enter the name of new school" value={newSchool} onChange={(e) => setNewSchool(e.target.value)}></input>
+                                <br/><br/>
                                 <button onClick={closePopup}>Cancel</button>
-                                <button onClick={addNewSchool}>Add School</button>
+                                <button onClick={addNewSchool}>Add</button>
                             
                         </div>
                     </div>
