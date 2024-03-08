@@ -147,8 +147,7 @@ const ClusterManagementPage = () => {
                                 <input type="text" id="clusterNamePop" name="clusterName" placeholder="Enter the name of new cluster" value={clusterName} onChange={(e) => setClusterName(e.target.value)}></input>
                                 <input type="file" id="imgN" name="imgN" accept="image/*" onChange={handleFileInputChange}></input>
                                 </div>
-                            <br/>
-                            <br/>
+                           
                             <div className="button-row">
                                 <button className="cancelButton" onClick={closePopup}>Cancel</button>
                                 <button className="addButton" onClick={addCluster}>Add</button>
