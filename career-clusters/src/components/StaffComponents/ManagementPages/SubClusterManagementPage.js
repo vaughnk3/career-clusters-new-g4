@@ -15,11 +15,11 @@ const SubClusterManagementPage = () => {
     const [isOpen, setIsOpen] = useState(false);
     const openPopup = () => { setIsOpen(true); }
     const closePopup = () => { setIsOpen(false); }
-    const [newSCDescrip, setNewDescrip] = useState('');
-    const [newSCName, setNewName] = useState('');
-    const [newSCSalary, setNewSalary] = useState('');
-    const [newSCEdLevel, setNewEdLevel] = useState('');
-    const [newSCGrowthRate, setNewGrowthRate] = useState('');
+    const [newSCDescrip, setNewDescrip] = useState(' ');
+    const [newSCName, setNewName] = useState(' ');
+    const [newSCSalary, setNewSalary] = useState(' ');
+    const [newSCEdLevel, setNewEdLevel] = useState(' ');
+    const [newSCGrowthRate, setNewGrowthRate] = useState(' ');
     const [clusterID, setClusterID] = useState('');
     const [newImage, setNewImage] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -106,30 +106,41 @@ const SubClusterManagementPage = () => {
 
             const addSubCluster = async () => {
                 let subclusterID = 0;
+                var canSend = true;
+                if(newImage == "") {
+                    document.getElementById("img").style.outline = '2px solid red';
+                    canSend = false;
+                }
+                if(clusterID == "") {
+                    document.getElementById("select-cluster").style.outline = '2px solid red';
+                    canSend = false;
+                }
                 try {
-                    const formData = new FormData();
-                    formData.append('image', newImage);
-                    formData.append('subclusterName', newSCName)
-                    formData.append('clusterID', clusterID)
-                    const user = auth.currentUser;
-                    if(user) {
-                        const token = await user.getIdToken();
-                        const response = await(fetch('http://localhost:3001/subclustermanagementpage/add-subcluster', {
-                            method: 'POST',
-                            headers: {
-                                'Authorization': `Bearer ${token}`,                 //pass authenticated user token to backend
-                            },
-                            body: formData
-                        }));
-    
-                        if (response.ok) {
-                            const data = await response.json();
-                            subclusterID = data.subclusterID;
-                            console.log('SubCluster added successfully with ID: ', subclusterID);
-                            
-                        } else {
-                            console.error('Failed to add subcluster');
-                        } 
+                    if(canSend == true) {
+                        const formData = new FormData();
+                        formData.append('image', newImage);
+                        formData.append('subclusterName', newSCName)
+                        formData.append('clusterID', clusterID)
+                        const user = auth.currentUser;
+                        if(user) {
+                            const token = await user.getIdToken();
+                            const response = await(fetch('http://localhost:3001/subclustermanagementpage/add-subcluster', {
+                                method: 'POST',
+                                headers: {
+                                    'Authorization': `Bearer ${token}`,                 //pass authenticated user token to backend
+                                },
+                                body: formData
+                            }));
+        
+                            if (response.ok) {
+                                const data = await response.json();
+                                subclusterID = data.subclusterID;
+                                console.log('SubCluster added successfully with ID: ', subclusterID);
+                                
+                            } else {
+                                console.error('Failed to add subcluster');
+                            } 
+                        }
                     }
                 }   catch (error) {
                     console.error('Error adding subcluster: ', error);
