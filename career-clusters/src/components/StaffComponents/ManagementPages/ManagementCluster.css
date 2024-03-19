@@ -84,7 +84,14 @@
 
 .button-row {
     display:inline-flex;
+    justify-content: center;
+    margin-top:30px;
+    flex-flow:row nowrap;
+    justify-content:center;
+    align-content:center;
     width:100%;
+    position:relative;
+    margin-bottom:20px;
 }
 
   .close{
@@ -181,19 +188,15 @@
 }
 
 .left-add {
-    display:flex;
-    flex-direction:column;
-    margin-left:10px;
-    margin-right:300px;
+    display:inline-flex;
+    flex-flow:row nowrap;
+    width:100%;
+    justify-content:center;
 }
 
 .right-add {
     display:inline-flex;
-    flex-direction:column;
-    margin-left:300px;
-    margin-right:10px;
-}
-
-#imgN {
-    padding-top:60px;
+    flex-direction:row;
+    width:100%;
+    justify-content:center;
 }
