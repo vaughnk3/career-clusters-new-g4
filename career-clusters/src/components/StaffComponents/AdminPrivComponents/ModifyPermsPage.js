@@ -20,6 +20,10 @@ const ModifyPermsPage = () => {
       window.location.reload();
     }
 
+    const closeModifyPerms = () => {
+      setShowForm(false);
+    }
+
 
     const UsersPermissionsList = () => {
         useEffect(() => {
@@ -109,7 +113,9 @@ const ModifyPermsPage = () => {
     
     return (
         <div>
+            <button className="permsButton" onClick={modifyPermissions}>Modify Permissions</button>
             <TopRectangle/>
+
             <h1>Modify Perms Page , routed from admin </h1>
             <table>
               <tr>
@@ -153,12 +159,11 @@ const ModifyPermsPage = () => {
                 </tr>
               ))}
             </table>
-<button onClick={modifyPermissions}>Modify Permissions</button>
-
 {showForm && (
-    <form id="userUpdate" onSubmit={handleSubmit}>
+  <div className="form-backdrop">
+    <form id="userUpdate" className="form-modal" onSubmit={handleSubmit}>
         <div id="userSelect">
-            <label htmlFor="user">User:</label>
+            <label htmlFor="user">User</label><br></br>
             <select name="user" value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
                 {users.map(user => (
                     <option key={user.uid} value={user.uid}>{user.email}</option>
@@ -166,22 +171,26 @@ const ModifyPermsPage = () => {
             </select>
         </div>
         <div id="actionSelect">
-            <label htmlFor="action">Action:</label>
+            <label htmlFor="action">Action</label><br></br>
             <select name="action" value={action} onChange={(e) => setAction(e.target.value)}>
                 <option value="add">Add</option>
                 <option value="remove">Remove</option>
             </select>
         </div>
         <div id="permissionSelect">
-            <label htmlFor="permission">Permission:</label>
+            <label htmlFor="permission">Permission</label><br></br>
             <select name="permission" value={selectedPermission} onChange={(e) => setSelectedPermission(e.target.value)}>
                 {permissionNames.map(permission => (
                     <option key={permission} value={permission}>{permission}</option>
                 ))}
             </select>
         </div>
-        <button type="submit">Update Permissions</button>
+        <button id="doneButton" onClick={closeModifyPerms}>Cancel</button>
+
+        <button id="submitButton" type="submit">Submit</button>
+
     </form>
+  </div>
 )}
 
           { statusPopup && (
