@@ -5,9 +5,8 @@
     background-color: #D9D9D9;
     border: 6px solid var(--green);
 	border-radius: 60px;
-    margin-left:auto;
+    margin-left:35px;
     margin-right:auto;
-    
 	display:flex;
 	flex-direction: row;
 	cursor: pointer;
