@@ -1,6 +1,11 @@
 import React from 'react';
 import './BottomRectangle.css';
 
+
+/*
+This component is the JS file for the bottom rectange that contains Chamber contact information.
+All CSS id's and styling is located in BottomRectangle.css
+*/
 const BottomRectangle = () => {
     return (
         <div id="bottom-rectangle">
@@ -19,4 +24,5 @@ const BottomRectangle = () => {
       );
 };
 
+//Export the component
 export default BottomRectangle;

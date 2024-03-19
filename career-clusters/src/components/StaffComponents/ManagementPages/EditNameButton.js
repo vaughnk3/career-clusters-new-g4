@@ -82,11 +82,13 @@ const EditNameButton = ({ID}) => {
                 {isOpen && (
                     <div className="popup">
                         <div className="popup-content">  
-                            <h2>New Name</h2>
+                        <label for="clusterName" className="standard-popup"><b>Edit Cluster Name</b></label>
+                            <br/><br/>
                             <input type="text" id="clusterName" name="clusterName" placeholder="Enter the changed cluster name." value={clusterName} onChange={(e) => setClusterName(e.target.value)}></input>
+                            <br/>
                             <div class="editbuttonrow">
-                            <button onClick={closePopup} className="cancelButton">Cancel</button>
-                            <button id="submitName" onClick={changeClusterName}>Submit</button>
+                            <button onClick={closePopup} className="standard-cancelButton">Cancel</button>
+                            <button id="standard-submitName" onClick={changeClusterName}>Submit</button>
                             </div>
                         </div>
                     </div>

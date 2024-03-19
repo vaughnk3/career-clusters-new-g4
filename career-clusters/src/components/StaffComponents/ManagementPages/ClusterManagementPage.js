@@ -138,17 +138,19 @@ const ClusterManagementPage = () => {
                 {isOpen && (
                     <div className="popup">
                         <div className="popup-content">                           
-                            <div id="popupLeft">
-                                <h4> Name </h4>
-                                <h4> Image </h4>
+                            <div className="left-add">
+                            <label for="clusterNamePop">Name</label>
+                            <input type="text" id="clusterNamePop" name="clusterName" placeholder="Enter the name of new cluster" value={clusterName} onChange={(e) => setClusterName(e.target.value)}></input>
                             </div>
-                            <div id="popupRight">
-                                <input type="text" id="clusterNamePop" name="clusterName" placeholder="Enter the name of new cluster" value={clusterName} onChange={(e) => setClusterName(e.target.value)}></input>
+                            <br/>
+                            <br/>
+                            <div className="right-add">
+                            <label for="imgN">Image</label>
                                 <input type="file" id="imgN" name="imgN" accept="image/*" onChange={handleFileInputChange}></input>
                             </div>
                             <div className="button-row">
-                                <button className="cancelButton" onClick={closePopup}>Cancel</button>
-                                <button className="addButton" onClick={addCluster}>Add</button>
+                                <button className="addcancelButton" onClick={closePopup}>Cancel</button>
+                                <button className="addaddButton" onClick={addCluster}>Add</button>
                             </div>
                         </div>
                     </div>

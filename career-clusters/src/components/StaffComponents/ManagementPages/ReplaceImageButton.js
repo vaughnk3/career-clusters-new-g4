@@ -93,11 +93,13 @@ const ReplaceImageButton = ({ID}) => {
             {isOpen && (
                 <div className="popup">
                     <div className="popup-content">  
-                        <h2>Test Replace</h2>
+                        <label for="img" className='standard-popup'>Replace Image</label>
+                        <br/><br/>
                         <input type="file" id="img" name="img" accept="image/*" onChange={handleFileInputChange}></input>
+                        <br/>
                         <div class="replacebuttonrow">
-                        <button onClick={closePopup} className="cancelButton">Cancel</button>
-                        <button id="submitImg" onClick={handleSubmit}>Submit</button>
+                        <button onClick={closePopup} className="standard-cancelButton">Cancel</button>
+                        <button id="standard-submitImg" onClick={handleSubmit}>Submit</button>
                         </div>
                     </div>
                 </div>

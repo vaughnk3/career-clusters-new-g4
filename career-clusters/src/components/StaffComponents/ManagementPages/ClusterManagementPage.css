@@ -97,8 +97,7 @@
 
 
     #clusterNamePop {
-        margin-left:-20%;
-        margin-top:-17%;
+        margin-left:20%;
         border:3px solid var(--green);
         border-radius:30px;
         height:20%;
@@ -106,8 +105,8 @@
 
 
     #imgN {
-        margin-left:-20%;
-        margin-top:-14%;
+        margin-left:20%;
+        width:181px;
     }
 
     .button-row {
@@ -116,6 +115,7 @@
         justify-content:center;
         align-content:center;
         width:100%;
+        margin-top:50px;
         position:relative;
     }
 

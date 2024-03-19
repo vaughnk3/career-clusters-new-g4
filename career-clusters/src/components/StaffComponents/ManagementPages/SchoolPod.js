@@ -129,8 +129,10 @@ const SchoolPod = ({ID, schoolName}) => {
                         <div className="popup-content">
                          
                             <label>Edit Name</label>
+                            <br/><br/>
                             <input type="text" id="new-school" name="newSchoolName" placeholder="Enter the new school name." value={newSchoolName} onChange={(e) => setSchoolName(e.target.value)}></input>
-                            <button onClick={closePopup}>Cancel</button>
+                            <br/><br/>
+                            <button className="cancelButton" onClick={closePopup}>Cancel</button>
                             <button onClick={changeSchoolName}>Submit</button>
                         </div>
                     </div>

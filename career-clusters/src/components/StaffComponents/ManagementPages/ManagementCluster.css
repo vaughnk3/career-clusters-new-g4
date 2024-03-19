@@ -8,8 +8,7 @@
     margin-left:auto;
     margin-right:auto;
 	display:flex;
-	flex-direction: row;
-
+	flex-flow: row;
     padding-top: 10px;
     padding-bottom: 10px;
 
@@ -23,7 +22,7 @@
 
 .cluster_m h2 {
     display:inline-flex;
-    width:50%;
+    width:70%;
     align-self: center;
     justify-content:left;
     margin-left:5px;
@@ -38,7 +37,7 @@
     border: 2px solid var(--green);
 	border-radius: 20px;
     
-	margin-left: 10%; /* Add margin-left to position the image */
+	margin-left: 5%; /* Add margin-left to position the image */
     margin-right: 2rem;
     margin-top: auto;
     margin-bottom: auto;
@@ -85,7 +84,14 @@
 
 .button-row {
     display:inline-flex;
+    justify-content: center;
+    margin-top:30px;
+    flex-flow:row nowrap;
+    justify-content:center;
+    align-content:center;
     width:100%;
+    position:relative;
+    margin-bottom:20px;
 }
 
   .close{
@@ -167,4 +173,30 @@
 #deleteheader {
     display:flex;
     justify-content: center;
+}
+
+.mgmt_list_right {
+    display:inline-flex;
+    justify-content: center;
+    margin-top:30px;
+    flex-flow:row nowrap;
+    justify-content:space-around;
+    align-content:center;
+    width:100%;
+    position:relative;
+    margin-bottom:20px;
+}
+
+.left-add {
+    display:inline-flex;
+    flex-flow:row nowrap;
+    width:100%;
+    justify-content:center;
+}
+
+.right-add {
+    display:inline-flex;
+    flex-direction:row;
+    width:100%;
+    justify-content:center;
 }
