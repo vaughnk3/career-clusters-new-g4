@@ -15,6 +15,9 @@ const ModifyPermsPage = () => {
     const [showForm, setShowForm] = useState(false);
     const permissionNames = Object.keys(claimsList.claims)
 
+    const yesString = 'Yes';
+    const noString = 'No';
+
     const closeStatus = () => {
       setStatusPopup(false);
       window.location.reload();
@@ -112,12 +115,13 @@ const ModifyPermsPage = () => {
     }
     
     return (
-        <div>
-            <button className="permsButton" onClick={modifyPermissions}>Modify Permissions</button>
-            <TopRectangle/>
+        <div id="page">
+            <div id="topRectangle">
+              <button className="permsButton" onClick={modifyPermissions}>Modify Permissions</button>
+            </div>
 
-            <h1>Modify Perms Page , routed from admin </h1>
-            <table>
+            <div class="content content-margin">
+            <table id="permissions-table">
               <tr>
                 <th></th>
                 <th>Administrator</th>
@@ -133,32 +137,34 @@ const ModifyPermsPage = () => {
                 <tr>
                   <td>{user.email}</td>
                   <td>
-                    {user.permissions.claims["Administrator"] ? 'Yes' : 'No'}
+                    {user.permissions.claims["Administrator"] ? yesString : noString}
                   </td>
                   <td>
-                    {user.permissions.claims["Cluster Management"] ? 'Yes' : 'No'}
+                    {user.permissions.claims["Cluster Management"] ? yesString : noString}
                   </td> 
                   <td>
-                    {user.permissions.claims["SubCluster Management"] ? 'Yes' : 'No'}
+                    {user.permissions.claims["SubCluster Management"] ? yesString : noString}
                   </td> 
                   <td>
-                    {user.permissions.claims["Export Excel"] ? 'Yes' : 'No'}
+                    {user.permissions.claims["Export Excel"] ? yesString : noString}
                   </td> 
                   <td>
-                    {user.permissions.claims["Create Staff"] ? 'Yes' : 'No'}
+                    {user.permissions.claims["Create Staff"] ? yesString : noString}
                   </td> 
                   <td>
-                    {user.permissions.claims["Modify Perms"] ? 'Yes' : 'No'}
+                    {user.permissions.claims["Modify Perms"] ? yesString : noString}
                   </td> 
                   <td>
-                    {user.permissions.claims["School Management"] ? 'Yes' : 'No'}
+                    {user.permissions.claims["School Management"] ? yesString : noString}
                   </td> 
                   <td>
-                    {user.permissions.claims["Clear Click Counts"] ? 'Yes' : 'No'}
+                    {user.permissions.claims["Clear Click Counts"] ? yesString : noString}
                   </td>                 
                 </tr>
               ))}
             </table>
+            </div>
+            
 {showForm && (
   <div className="form-backdrop">
     <form id="userUpdate" className="form-modal" onSubmit={handleSubmit}>
