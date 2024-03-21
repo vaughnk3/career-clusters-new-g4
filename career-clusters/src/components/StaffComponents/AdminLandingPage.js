@@ -11,6 +11,7 @@ const AdminLandingPage = () => {
     const navigate = useNavigate();
     const [openClusterWipe, setClusterWipe] = useState(false);
     const [openSubClusterWipe, setSubClusterWipe] = useState(false);
+    const [openDemographicWipe, setDemographicWipe] = useState(false);
 
     const openCluster = () => {
         setClusterWipe(true);
@@ -24,6 +25,14 @@ const AdminLandingPage = () => {
     }
     const closeSubCluster = () => {
         setSubClusterWipe(false);
+    }
+
+    const openDemographic = () => {
+        setDemographicWipe(true);
+    }
+
+    const closeDemographic = () => {
+        setDemographicWipe(false);
     }
 
 
@@ -43,6 +52,11 @@ const AdminLandingPage = () => {
 
     const handleWipeClusterCounts =  async  () => {
         try {
+        
+        //Download excel file before the info is wiped.
+        ExcelGenerationQueue();
+
+
         const response = await(fetch('http://localhost:3001/wipe-cluster-clickCounts',  {
             method: 'POST', 
             headers: {
@@ -53,10 +67,15 @@ const AdminLandingPage = () => {
         }
 
         closeCluster();
+        
     }
 
     const handleWipeSubClusterCounts = async () => {
         try {
+
+            //Download excel file before the info is wiped.
+            ExcelGenerationQueue();
+
             const response = await(fetch('http://localhost:3001/wipe-subcluster-clickCounts', {
             method: 'POST',
             headers: {
@@ -68,6 +87,25 @@ const AdminLandingPage = () => {
         }
 
         closeSubCluster();
+    }
+
+
+    const handleWipeDemographicInfo = async () => {
+        try {
+            //Download excel file before info is wiped
+            ExcelGenerationQueue();
+
+            const response = await(fetch('http://localhost:3001/wipe-demographic-counts', {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json'
+            }
+            }))
+        } catch (error) {
+            console.log(error)
+        }
+
+        closeDemographic();
     }
     
     return (
@@ -92,11 +130,22 @@ const AdminLandingPage = () => {
                             </div>
                         </div>
                     )}
+                    <a onClick={openDemographic}>Clear Demographic Information Data</a>
+                    {openDemographicWipe && (
+                        <div className="popup">
+                            <div className="popup-content">
+                                <h1>Are you sure you want to clear stored Demographic Information?</h1>
+                                <p>This action is irreversible.</p>
+                                <button onClick={handleWipeDemographicInfo}>Clear Demographic Info</button>
+                                <button onClick={closeDemographic}>Cancel</button>
+                            </div>
+                        </div>
+                    )}
                 </div>
                 <div class="admin-landing-column">
                     <a href="/login/adminpage/modifyperms">Modify User Permissions</a>
                     <a href="/login/staffclusters/clustermanagementpage">Cluster Management</a> 
-                    <a href="">Manage Job Postings</a>
+                    <a href="https://business.yorkcountychamber.com/jobs">View Job Postings</a>
                     <a onClick={openSubCluster} >Clear SubCluster Click Counts</a>
                     {openSubClusterWipe && (
                         <div className="popup">

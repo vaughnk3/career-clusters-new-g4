@@ -865,6 +865,21 @@ app.post('/wipe-subcluster-clickCounts', (req, res) => {
   )
 })
 
+app.post('/wipe-demographic-counts', (req, res) => {
+  pool.query(
+    'QUERY GOES HERE', 
+    (error, results, fields) => {
+      if(error) {
+        console.error("Error wiping demographic counts: ", error);
+        res.status(500).send("Error wiping demographic counts");
+      } else {
+        console.log("Demographic counts wiped successfully");
+        res.status(200).send("Demographic counts wiped successfully");
+      }
+    }
+  )
+})
+
 
 const PORT = 3001;
 app.listen(PORT, () => {
