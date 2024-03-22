@@ -835,7 +835,8 @@ app.post('/get-unique-claims', async (req, res) => {
   }
 })
 
-app.post('/wipe-cluster-clickCounts', (req, res) => {
+// Wipe Cluster Click Counts
+app.post('/wipe-cluster-clickCounts', checkAuth, (req, res) => {
   pool.query(
     'UPDATE Cluster SET clickCount = 0',
     (error, results, fields) => {
@@ -843,14 +844,15 @@ app.post('/wipe-cluster-clickCounts', (req, res) => {
         console.error("Error wiping cluster counts: ", error);
         res.status(500).send("Error wiping cluster counts");
       } else {
-        console.log("cluster counts wiped sucessfully successfully");
-        res.status(200).send("cluster counts wiped sucessfully successfully");
+        console.log("Cluster counts wiped successfully");
+        res.status(200).send("Cluster counts wiped successfully");
       }
     }
   )
 })
 
-app.post('/wipe-subcluster-clickCounts', (req, res) => {
+// Wipe Subcluster Click Counts
+app.post('/wipe-subcluster-clickCounts', checkAuth, (req, res) => {
   pool.query(
     'UPDATE Subcluster SET clickCount = 0',
     (error, results, fields) => {
@@ -858,14 +860,15 @@ app.post('/wipe-subcluster-clickCounts', (req, res) => {
         console.error("Error wiping subcluster counts: ", error);
         res.status(500).send("Error wiping subcluster counts");
       } else {
-        console.log("subcluster counts wiped successfully");
-        res.status(200).send("subcluster counts wiped successfully");
+        console.log("Subcluster counts wiped successfully");
+        res.status(200).send("Subcluster counts wiped successfully");
       }
     }
   )
 })
 
-app.post('/wipe-demographic-counts', (req, res) => {
+// Wipe Demographic Counts
+app.post('/wipe-demographic-counts', checkAuth, (req, res) => {
   pool.query(
     'DELETE FROM UserDemographicInfo', 
     (error, results, fields) => {
@@ -879,6 +882,7 @@ app.post('/wipe-demographic-counts', (req, res) => {
     }
   )
 })
+
 
 
 const PORT = 3001;
