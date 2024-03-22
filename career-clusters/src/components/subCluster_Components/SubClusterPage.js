@@ -85,7 +85,7 @@ const SubClusterPage = ({ }) => {
     return (
         <div id="page">
             <div id="_topRectangle">
-                <p>Please select a subcluster from the selected cluster.</p>
+                <p>Please select a field within the career field selected.</p>
             </div>
 
 

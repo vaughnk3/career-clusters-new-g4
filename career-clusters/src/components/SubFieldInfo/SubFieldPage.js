@@ -32,7 +32,7 @@ const SubFieldsPage = () => {
     return (
         <div id="page">
             <div id="_topRectangle">
-                <p>Here is some information about the {field.fieldName} SubCluster.</p>
+                <p>Here is some information about the {field.fieldName} career.</p>
             </div>
             <UserIcon/>
             <div class="content content-margin">

@@ -16,6 +16,7 @@
 .subcluster_m:hover {
 	background-color: #253251;
 	color:white;
+    transform:scale(1.05)
 }
 
 .subcluster_m h2 {

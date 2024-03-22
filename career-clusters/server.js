@@ -798,12 +798,12 @@ app.post('/login/adminpage/create-user', async (req, res) => {
       "uid": uid,
       "claims": {
         "Administrator": false,
-        "Cluster Management": true,
-        "SubCluster Management": true,
-        "Export Excel": true,
+        "Cluster Management": false,
+        "SubCluster Management": false,
+        "Export Excel": false,
         "Create Staff": false,
         "Modify Perms": false,
-        "School Management":true,
+        "School Management":false,
         "Clear Click Counts":false
       }
     }

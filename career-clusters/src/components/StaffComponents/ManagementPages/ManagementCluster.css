@@ -15,9 +15,11 @@
     transition: .2s color, .2s background-color;   
 }
 
+
 .cluster_m:hover {
 	background-color: var(--darkblue);
 	color:white;
+    transform:scale(1.05)
 }
 
 .cluster_m h2 {
