@@ -140,6 +140,7 @@ const AdminLandingPage = () => {
                     <a href="/login/staffclusters">Staff Cluster View</a>
                     <a href="/subclustermanagementpage">Cluster Fields Management</a>
                     <a onClick={openCluster} >Clear Cluster Click Counts</a>
+                    <a onClick={openDemographic}>Clear Demographic Information Data</a>
                     {openClusterWipe && (
                         <div className="popup">
                             <div className="popup-content">
@@ -150,7 +151,7 @@ const AdminLandingPage = () => {
                             </div>
                         </div>
                     )}
-                    <a onClick={openDemographic}>Clear Demographic Information Data</a>
+                    
                     {openDemographicWipe && (
                         <div className="popup">
                             <div className="popup-content">
@@ -167,6 +168,7 @@ const AdminLandingPage = () => {
                     <a href="/login/staffclusters/clustermanagementpage">Cluster Management</a> 
                     <a href="https://business.yorkcountychamber.com/jobs">View Job Postings</a>
                     <a onClick={openSubCluster} >Clear SubCluster Click Counts</a>
+                    <a  onClick={ExcelGenerationQueue}>Export Data (.xlsx)</a>
                     {openSubClusterWipe && (
                         <div className="popup">
                             <div className="popup-content">
@@ -179,7 +181,8 @@ const AdminLandingPage = () => {
                     )}
                 </div>
                 <div class="admin-landing-column">
-                <a  onClick={ExcelGenerationQueue}>Export Data (.xlsx)</a>
+                
+
                 <a onClick={handleButtonClickLogout}>Logout</a>
                 </div>
 

@@ -85,24 +85,3 @@
       transform: rotate(720deg)
     }
   }
-
-.mickey {
-	background-image: url("https://i.pinimg.com/originals/f9/6d/fb/f96dfb9f9d4e0b42af3888de8b9473a7.gif");
-	background-size: 100% 100%;
-	border: 20px solid red;
-}
-
-.mickey img {
-	width: 100%;
-	border-radius: 10px;
-	margin-bottom: 20px;
-	filter: brightness(3.5) contrast(2) hue-rotate(330deg);	
-}
-
-.mickey button {
-	background: linear-gradient(red, yellow);
-	color: black;
-	font-size: 20pt;
-	font-family: 'Courier New', Courier, monospace;
-	font-weight: bold;
-}

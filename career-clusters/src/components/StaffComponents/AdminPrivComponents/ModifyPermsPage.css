@@ -59,7 +59,7 @@
   border-right: 4px solid var(--green);
 }
 
-#permissions-table tr:nth-child(odd) {
+#permissions-table tr:not(:first-child):nth-child(odd) {
   background-color: #eee;
 }
 

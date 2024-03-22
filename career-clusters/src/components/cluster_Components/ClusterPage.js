@@ -112,7 +112,7 @@ const ClusterPage = () => {
     <div id="page">
         <div id="topRectangle">
             <h1>Welcome</h1>
-            <p>Please select a cluster that interests you. This website will help show you with potential careers in your area of interest.</p>
+            <p>Please select a cluster that interests you. This website will help show you potential careers in your area of interest.</p>
         </div>
         
 
