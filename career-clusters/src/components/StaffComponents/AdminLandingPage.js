@@ -1,9 +1,10 @@
 import BottomRectangle from "../page_Components/BottomRectangle";
 import "./AdminLandingPage.css";
 import { ExcelGenerationQueue } from "./ExcelGeneration";
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth, getIdToken, signOut } from "firebase/auth";
 import {useNavigate} from 'react-router-dom';
 import { useState } from "react";
+import app from "../login_components/FirebaseConfig";
 
 
 
@@ -12,6 +13,8 @@ const AdminLandingPage = () => {
     const [openClusterWipe, setClusterWipe] = useState(false);
     const [openSubClusterWipe, setSubClusterWipe] = useState(false);
     const [openDemographicWipe, setDemographicWipe] = useState(false);
+
+    const auth = getAuth(app);
 
     const openCluster = () => {
         setClusterWipe(true);
@@ -53,15 +56,20 @@ const AdminLandingPage = () => {
     const handleWipeClusterCounts =  async  () => {
         try {
         
-        //Download excel file before the info is wiped.
-        ExcelGenerationQueue();
+            const user = auth.currentUser;
+            if (user) {
+                //Download excel file before the info is wiped.
+                ExcelGenerationQueue();
 
-
-        const response = await(fetch('http://localhost:3001/wipe-cluster-clickCounts',  {
-            method: 'POST', 
-            headers: {
-                'Content-Type': 'application/json'
-            },}))
+                const token = await user.getIdToken();
+                const response = await(fetch('http://localhost:3001/wipe-cluster-clickCounts',  {
+                    method: 'POST', 
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                }))
+            }
         } catch(error) {
             console.log(error);
         }
@@ -72,16 +80,22 @@ const AdminLandingPage = () => {
 
     const handleWipeSubClusterCounts = async () => {
         try {
+            const user = auth.currentUser;
 
-            //Download excel file before the info is wiped.
-            ExcelGenerationQueue();
+            if (user) {
+                //Download excel file before the info is wiped.
+                ExcelGenerationQueue();
 
-            const response = await(fetch('http://localhost:3001/wipe-subcluster-clickCounts', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
+                const token = await user.getIdToken();
+
+                const response = await(fetch('http://localhost:3001/wipe-subcluster-clickCounts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+                }))
             }
-        }))
         } catch (error) {
             console.log(error)
         }
@@ -92,15 +106,21 @@ const AdminLandingPage = () => {
 
     const handleWipeDemographicInfo = async () => {
         try {
-            //Download excel file before info is wiped
-            ExcelGenerationQueue();
+            const user = auth.currentUser;
 
-            const response = await(fetch('http://localhost:3001/wipe-demographic-counts', {
-            method: 'POST', 
-            headers: {
-                'Content-Type': 'application/json'
+            if (user) {
+                //Download excel file before info is wiped
+                ExcelGenerationQueue();
+                
+                const token = await user.getIdToken();
+                const response = await(fetch('http://localhost:3001/wipe-demographic-counts', {
+                method: 'POST', 
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+                }))
             }
-            }))
         } catch (error) {
             console.log(error)
         }
