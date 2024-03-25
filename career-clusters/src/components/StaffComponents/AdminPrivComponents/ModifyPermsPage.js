@@ -18,6 +18,8 @@ const ModifyPermsPage = () => {
     const yesString = 'Yes';
     const noString = 'No';
 
+    const adminPermissions = ["Administrator", "Create Staff", "Modify Perms", "Clear Click Counts"];
+
     const closeStatus = () => {
       setStatusPopup(false);
       window.location.reload();
@@ -171,9 +173,12 @@ const ModifyPermsPage = () => {
         <div id="userSelect">
             <label htmlFor="user">User</label><br></br>
             <select name="user" value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
-                {users.map(user => (
-                    <option key={user.uid} value={user.uid}>{user.email}</option>
-                ))}
+            {users.map(user => {
+              if (!user.permissions.claims["Administrator"]) {
+                return <option key={user.uid} value={user.uid}>{user.email}</option>
+              }
+              return null;
+            })}
             </select>
         </div>
         <div id="actionSelect">
@@ -186,9 +191,12 @@ const ModifyPermsPage = () => {
         <div id="permissionSelect">
             <label htmlFor="permission">Permission</label><br></br>
             <select name="permission" value={selectedPermission} onChange={(e) => setSelectedPermission(e.target.value)}>
-                {permissionNames.map(permission => (
-                    <option key={permission} value={permission}>{permission}</option>
-                ))}
+                {permissionNames.map(permission => {
+                  if (!adminPermissions.includes(permission)) {
+                    return <option key={permission} value={permission}>{permission}</option>
+                  }
+                  return null;      
+              })}
             </select>
         </div>
         <button id="doneButton" onClick={closeModifyPerms}>Cancel</button>
