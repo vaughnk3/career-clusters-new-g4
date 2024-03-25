@@ -19,7 +19,6 @@
 .cluster_m:hover {
 	background-color: var(--darkblue);
 	color:white;
-    transform:scale(1.05)
 }
 
 .cluster_m h2 {
@@ -44,8 +43,8 @@
     margin-top: auto;
     margin-bottom: auto;
 
-	height: 12vw;
-    
+	min-height: 12vw;
+    max-height: 12vw;
 }
 
 
