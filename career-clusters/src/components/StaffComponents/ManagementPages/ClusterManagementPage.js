@@ -50,43 +50,52 @@ const ClusterManagementPage = () => {
 
     // Post request for adding a cluster
     const addCluster = async () => {
+        var canSend = true;
+        //Checks if any image has been entered and sets false flag & border outlining if so 
+        if(!newImage) {                                         
+            document.getElementById("imgWrapper").style.border = '2px solid red';
+            canSend = false;
+        }  
+        if(canSend === true) {      // If no flag, allow for requests to be made 
         try {
-            const user = auth.currentUser;
-            if(user) {
-                const token = await user.getIdToken();
-                const formData = new FormData();
-                formData.append('image', newImage); // Append the file
-                formData.append('clusterName', clusterName); // Append the clusterName as a text field
+                const user = auth.currentUser;
+                if(user) {
+                    const token = await user.getIdToken();
+                    const formData = new FormData();
+                    formData.append('image', newImage); // Append the file
+                    formData.append('clusterName', clusterName); // Append the clusterName as a text field
+            
+                    const response = await fetch('http://localhost:3001/login/staffclusters/clustermanagementpage/add-cluster', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: formData,
+                    
+                    });
+            
+                    if (response.ok) {
+                        console.log('Cluster and image added successfully');
+                        setIsOpen(false);
+                        setMessage('Successfully created new cluster.')
+                        setAddStatus(true);
         
-                const response = await fetch('http://localhost:3001/login/staffclusters/clustermanagementpage/add-cluster', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    },
-                    body: formData,
-                   
-                });
-        
-                if (response.ok) {
-                    console.log('Cluster and image added successfully');
-                    setIsOpen(false);
-                    setMessage('Successfully created new cluster.')
-                    setAddStatus(true);
-    
-                } else {
-                    console.error('Failed to add cluster and upload image');
-                    setIsOpen(false);
-                    setMessage('Failed to create new cluster.')
-                    setAddStatus(true);
+                    } else {
+                        console.error('Failed to add cluster and upload image');
+                        setIsOpen(false);
+                        setMessage('Failed to create new cluster.')
+                        setAddStatus(true);
+                    }
                 }
-            }
+            
         } catch (error) {
             console.error('Error adding cluster and uploading image: ', error);
             setIsOpen(false);
             setMessage('Failed to create new cluster').
             setAddStatus(true);
         }
-        setIsOpen(false);
+    }
+        // setIsOpen(false);
         //refreshPage();
     };
     
@@ -145,8 +154,10 @@ const ClusterManagementPage = () => {
                             <br/>
                             <br/>
                             <div className="right-add">
+                            <div id="imgWrapper">
                             <label for="imgN">Image</label>
                                 <input type="file" id="imgN" name="imgN" accept="image/*" onChange={handleFileInputChange}></input>
+                            </div>
                             </div>
                             <div className="button-row">
                                 <button className="addcancelButton" onClick={closePopup}>Cancel</button>

@@ -125,3 +125,9 @@
         width:40%;
         height:20%;
     }
+
+
+    #imgWrapper {
+        margin:0;
+        padding:0;
+    }

@@ -107,8 +107,9 @@ const SubClusterManagementPage = () => {
             const addSubCluster = async () => {
                 let subclusterID = 0;
                 var canSend = true;
-                if(newImage === "") {
-                    document.getElementById("img").style.outline = '2px solid red';
+                //Checks if no iamge has been entered AND if no selection of parent cluster has been made, then set false flag and border outlining
+                if(!newImage) {
+                    document.getElementById("imgWrapper").style.border = '2px solid red';
                     canSend = false;
                 }
                 if(clusterID === "") {
@@ -141,50 +142,49 @@ const SubClusterManagementPage = () => {
                                 console.error('Failed to add subcluster');
                             } 
                         }
+                    console.log('POST request sent from add subcluster button')
+                    console.log('SubCluster added successfully with ID between: ', subclusterID);
                     }
                 }   catch (error) {
                     console.error('Error adding subcluster: ', error);
                 }
-                
-                console.log('POST request sent from add subcluster button')
-        
-                console.log('SubCluster added successfully with ID between: ', subclusterID);
-        
-                try {
-                    const user = auth.currentUser;
-                    if(user) {
-                        const token = await user.getIdToken();
-                        const response = await(fetch('http://localhost:3001/subclustermanagementpage/add-subcluster-field', {
-                            method: 'POST',
-                            // credentials: "include",    verification for back-end
-                            headers: {
-                                'Authorization': `Bearer ${token}`,
-                                'Content-Type' : 'application/json'
-                            },
-                            body: JSON.stringify({subclusterID, newSCName, newSCDescrip, newSCSalary, newSCEdLevel, newSCGrowthRate})
-                        }));
-                        console.log(subclusterID, " INSIDE SECOND REQUEST");
-                        if(response.ok) {
-                            console.log('Field data added successfully');
-                            setIsOpen(false);
-                            setMessage('SubCluster successfully created.');
-                            setAddState(true);
-                        } else {
-                            console.error('Failed to add field data');
-                            setIsOpen(false);
-                            setMessage('Failed to create SubCluster.');
-                            setAddState(true);
+                    try {
+                        if(canSend === true) {
+                        const user = auth.currentUser;
+                        if(user) {
+                            const token = await user.getIdToken();
+                            const response = await(fetch('http://localhost:3001/subclustermanagementpage/add-subcluster-field', {
+                                method: 'POST',
+                                // credentials: "include",    verification for back-end
+                                headers: {
+                                    'Authorization': `Bearer ${token}`,
+                                    'Content-Type' : 'application/json'
+                                },
+                                body: JSON.stringify({subclusterID, newSCName, newSCDescrip, newSCSalary, newSCEdLevel, newSCGrowthRate})
+                            }));
+                            console.log(subclusterID, " INSIDE SECOND REQUEST");
+                            if(response.ok) {
+                                console.log('Field data added successfully');
+                                setIsOpen(false);
+                                setMessage('SubCluster successfully created.');
+                                setAddState(true);
+                            } else {
+                                console.error('Failed to add field data');
+                                setIsOpen(false);
+                                setMessage('Failed to create SubCluster.');
+                                setAddState(true);
+                            }
                         }
                     }
-                } catch(error) {
-                    console.error('Error adding field: ', error);
-                    setIsOpen(false);
-                    setMessage('Failed to create SubCluster.');
-                    setAddState(true);
-                }
-                console.log('POST request sent from add subcluster button for field information')
-                setIsOpen(false);
-                //refreshPage();
+                    } catch(error) {
+                        console.error('Error adding field: ', error);
+                        setIsOpen(false);
+                        setMessage('Failed to create SubCluster.');
+                        setAddState(true);
+                    }
+                    console.log('POST request sent from add subcluster button for field information')
+                    // setIsOpen(false);
+                    //refreshPage();
             }
 
     /********************************************* */
@@ -253,7 +253,9 @@ const SubClusterManagementPage = () => {
                             </select>
 
                             <label class="label-addsc" for="img">Image</label>
-                            <input type="file" id="img" name="img" accept="image/*" onChange={handleFileInputChange}></input>
+                            <div id="imgWrapper">
+                                <input type="file" id="img" name="img" accept="image/*" onChange={handleFileInputChange}></input>
+                            </div>
                             </div>
                             <br/>
                             <div className="newsc-buttonrow">
@@ -275,7 +277,7 @@ const SubClusterManagementPage = () => {
                  )}
 
 
-                <h1>SubCluster Managment Page</h1>
+                <h1>SubCluster Management Page</h1>
             </div>
 
             <ul className="scmgmt_list">
