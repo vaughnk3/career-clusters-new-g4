@@ -107,16 +107,16 @@ const SubClusterManagementPage = () => {
             const addSubCluster = async () => {
                 let subclusterID = 0;
                 var canSend = true;
-                if(newImage == "") {
+                if(newImage === "") {
                     document.getElementById("img").style.outline = '2px solid red';
                     canSend = false;
                 }
-                if(clusterID == "") {
+                if(clusterID === "") {
                     document.getElementById("select-cluster").style.outline = '2px solid red';
                     canSend = false;
                 }
                 try {
-                    if(canSend == true) {
+                    if(canSend === true) {
                         const formData = new FormData();
                         formData.append('image', newImage);
                         formData.append('subclusterName', newSCName)
