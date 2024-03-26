@@ -51,11 +51,12 @@ const ClusterManagementPage = () => {
     // Post request for adding a cluster
     const addCluster = async () => {
         var canSend = true;
-        if(!newImage) {
+        //Checks if any image has been entered and sets false flag & border outlining if so 
+        if(!newImage) {                                         
             document.getElementById("imgWrapper").style.border = '2px solid red';
             canSend = false;
-        }
-        if(canSend === true) {
+        }  
+        if(canSend === true) {      // If no flag, allow for requests to be made 
         try {
                 const user = auth.currentUser;
                 if(user) {

@@ -107,6 +107,7 @@ const SubClusterManagementPage = () => {
             const addSubCluster = async () => {
                 let subclusterID = 0;
                 var canSend = true;
+                //Checks if no iamge has been entered AND if no selection of parent cluster has been made, then set false flag and border outlining
                 if(!newImage) {
                     document.getElementById("imgWrapper").style.border = '2px solid red';
                     canSend = false;
