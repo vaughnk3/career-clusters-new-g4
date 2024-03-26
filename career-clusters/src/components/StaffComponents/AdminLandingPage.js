@@ -138,7 +138,7 @@ const AdminLandingPage = () => {
                 <div class="admin-landing-column">
                     <a href="/login/adminpage/createstaffpage">Create Staff Account</a>
                     <a href="/login/staffclusters">Staff Cluster View</a>
-                    <a href="/subclustermanagementpage">Cluster Fields Management</a>
+                    <a href="/subclustermanagementpage">SubCluster Management</a>
                     <a onClick={openCluster} >Clear Cluster Click Counts</a>
                     <a onClick={openDemographic}>Clear Demographic Information Data</a>
                     {openClusterWipe && (
